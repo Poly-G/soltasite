@@ -6,13 +6,14 @@ import { devonPhotos } from "@/components/examples/example-photos";
 import { PhotoGallery } from "@/components/examples/photo-gallery";
 import { ReelDemo } from "@/components/examples/reel-demo";
 import { interTight } from "@/lib/fonts";
+import { createPageMetadata } from "@/lib/seo";
 import styles from "./devon.module.css";
 
-export const metadata: Metadata = {
-  title: { absolute: "Devon Hale · Actor · Stage and screen, New York" },
-  description: "Example actor site by Solta. Devon Hale, a fictional theatre and film actor in New York.",
-  robots: { index: false, follow: true },
-};
+export const metadata: Metadata = createPageMetadata({
+  path: "/examples/devon",
+  title: "Devon Hale · Actor · Stage and screen, New York",
+  description: "Example actor site by Solta Site. Devon Hale, a fictional theatre and film actor in New York.",
+});
 
 const credits = [
   { title: "The Long Winter", role: "Thomas", where: "Harbor Street Theatre", year: "2026" },
@@ -96,7 +97,7 @@ export default function DevonExamplePage() {
           <DemoAction>Self-submissions: email Devon <span aria-hidden="true">→</span></DemoAction>
         </div>
         <div className={styles.footer}>
-          <span>© 2026 Devon Hale · Fictional actor · Site by Solta · <Link className={styles.footerLink} href="/">soltasite.com</Link></span>
+          <span>© 2026 Devon Hale · Fictional actor · Site by Solta Site · <Link className={styles.footerLink} href="/">soltasite.com</Link></span>
           <nav aria-label="Devon example profiles">
             {["IMDb", "Actors Access", "Instagram"].map((profile) => <DemoAction key={profile}>{profile}</DemoAction>)}
           </nav>

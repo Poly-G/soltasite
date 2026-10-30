@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { siteConfig } from '@/lib/site-config';
 
 export function Logo({ dark = false }: { dark?: boolean }) {
-  return <Link className={`logo${dark ? ' d' : ''}`} href="/" aria-label="Solta home"><span>Solta</span></Link>;
+  return <Link className={`logo${dark ? ' d' : ''}`} href="/" aria-label={`${siteConfig.name} home`}><span>{siteConfig.name}</span></Link>;
 }
 
 export function SiteHeader({ mode = 'landing' }: { mode?: 'landing' | 'checkout' | 'materials' | 'simple' }) {
@@ -16,8 +16,8 @@ export function SiteHeader({ mode = 'landing' }: { mode?: 'landing' | 'checkout'
 
 export function SiteFooter({ compact = false }: { compact?: boolean }) {
   const mail = <a href={`mailto:${siteConfig.contactEmail}`} className="underline">{siteConfig.contactEmail}</a>;
-  if (compact) return <footer className="ink"><div className="wrap footbar"><span>soltasite.com · {mail}</span><span><Link href="/privacy">Privacy</Link> · <Link href="/accessibility">Accessibility</Link> · <Link href="/terms">Terms</Link> · © 2026 Solta Works</span></div></footer>;
-  return <footer className="ink"><div className="wrap foot"><Logo dark /><div className="tag">soltasite.com · Actor websites, built for you by Solta Works.</div><a className="mail" href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a><nav className="links" aria-label="Legal"><Link href="/privacy">Privacy</Link><Link href="/accessibility">Accessibility</Link><Link href="/terms">Terms</Link></nav><div className="copy">© 2026 Solta Works</div></div></footer>;
+  if (compact) return <footer className="ink"><div className="wrap footbar"><span>soltasite.com · {mail}</span><span><Link href="/privacy">Privacy</Link> · <Link href="/accessibility">Accessibility</Link> · <Link href="/terms">Terms</Link> · © 2026 {siteConfig.name}</span></div></footer>;
+  return <footer className="ink"><div className="wrap foot"><Logo dark /><div className="tag">soltasite.com · Actor websites, built for you.</div><a className="mail" href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a><nav className="links" aria-label="Legal"><Link href="/privacy">Privacy</Link><Link href="/accessibility">Accessibility</Link><Link href="/terms">Terms</Link></nav><div className="copy">© 2026 {siteConfig.name}</div></div></footer>;
 }
 
 export function StickyStart() {

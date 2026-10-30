@@ -6,13 +6,14 @@ import { mayaPhotos } from "@/components/examples/example-photos";
 import { PhotoGallery } from "@/components/examples/photo-gallery";
 import { ReelDemo } from "@/components/examples/reel-demo";
 import { rubik, workSans } from "@/lib/fonts";
+import { createPageMetadata } from "@/lib/seo";
 import styles from "./maya.module.css";
 
-export const metadata: Metadata = {
-  title: { absolute: "Maya Ortiz · Actor · Comedy and commercial, Los Angeles" },
-  description: "Example actor site by Solta. Maya Ortiz, a fictional comedy and commercial actor in Los Angeles.",
-  robots: { index: false, follow: true },
-};
+export const metadata: Metadata = createPageMetadata({
+  path: "/examples/maya",
+  title: "Maya Ortiz · Actor · Comedy and commercial, Los Angeles",
+  description: "Example actor site by Solta Site. Maya Ortiz, a fictional comedy and commercial actor in Los Angeles.",
+});
 
 const televisionCredits = [
   ["Roommates Anonymous", "Series regular"],
@@ -128,7 +129,7 @@ export default function MayaExamplePage() {
         </section>
         <div className={styles.footer}>
           <span>© 2026 Maya Ortiz · Fictional actor</span>
-          <span>Site by Solta · <Link className={styles.footerLink} href="/">soltasite.com</Link></span>
+          <span>Site by Solta Site · <Link className={styles.footerLink} href="/">soltasite.com</Link></span>
         </div>
       </footer>
     </div>

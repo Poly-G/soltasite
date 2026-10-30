@@ -40,7 +40,7 @@
 .solta-site .link .ar{margin-left:6px;text-decoration:none}
 
 /* logo */
-.solta-site .logo{font-family:var(--font-head);font-weight:700;font-size:30px;letter-spacing:-0.03em;color:var(--ink);line-height:1}
+.solta-site .logo{font-family:var(--font-head);font-weight:700;font-size:30px;letter-spacing:-0.03em;color:var(--ink);line-height:1;white-space:nowrap}
 .solta-site .logo span{background:linear-gradient(transparent 56%,var(--soft) 56%,var(--soft) 94%,transparent 94%);padding:0 3px;margin:0 -3px}
 .solta-site .logo.s{font-size:24px}
 .solta-site .logo.d{color:var(--cream)}
@@ -50,8 +50,8 @@
 .solta-site .mark{background:linear-gradient(transparent 58%,var(--mari) 58%,var(--mari) 90%,transparent 90%);background-repeat:no-repeat;background-size:100% 100%;padding:0 .05em;margin:0 -.05em;animation:sweep .55s var(--ease) .45s both}
 
 /* nav */
-.solta-site .nav{display:flex;justify-content:space-between;align-items:center;height:88px;border-bottom:1px solid var(--line)}
-.solta-site .nav .l{display:flex;align-items:baseline;gap:14px}
+.solta-site .nav{display:flex;justify-content:space-between;align-items:center;gap:10px;height:88px;border-bottom:1px solid var(--line)}
+.solta-site .nav .l{display:flex;align-items:baseline;gap:14px;flex-shrink:0}
 
 /* generic bits */
 .solta-site .chk{width:24px;height:24px;border-radius:50%;background:var(--mari);display:inline-flex;align-items:center;justify-content:center;flex:none;animation:pop .5s var(--ease) both}
@@ -127,6 +127,7 @@
 /* five things + price */
 .solta-site .get{display:grid;grid-template-columns:1fr 440px;gap:80px;align-items:start;padding-top:24px;padding-bottom:112px}
 .solta-site .get .l{display:flex;flex-direction:column;gap:36px}
+.solta-site .included-items{list-style:none;margin:0;padding:0}
 .solta-site .price{padding:44px 40px;display:flex;flex-direction:column;gap:18px;box-shadow:0 24px 60px -30px rgba(17,19,24,.35);margin-top:8px}
 .solta-site .price .disp{font-family:var(--font-head);font-weight:700;font-size:112px;letter-spacing:-0.04em;line-height:.95}
 .solta-site .price .lead{font-size:19px}
@@ -327,6 +328,8 @@
   .solta-site .paycard{padding:24px 20px;gap:16px}
 }
 @media (max-width:400px){
+  .solta-site .nav .logo{font-size:22px}
+  .solta-site .nav .btn.sm{padding:9px 10px;font-size:13px}
   .solta-site .art{width:100%;max-width:350px}
 }
 

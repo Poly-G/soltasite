@@ -5,8 +5,14 @@ import { MaterialsForm } from '@/components/materials/materials-form';
 import { SiteHeader, SiteFooter } from '@/components/site-shell';
 import { loadAuthorizedPaidOrder } from '@/lib/server/orders';
 import { cormorant, interTight, rubik, workSans } from '@/lib/fonts';
+import { createPageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = { title: 'Your materials', robots: { index: false, follow: false } };
+export const metadata: Metadata = createPageMetadata({
+  path: '/thanks',
+  title: 'Your Materials | Solta Site',
+  description: 'The ten-minute materials form for your actor site.',
+  follow: false,
+});
 export const dynamic = 'force-dynamic';
 
 export default async function ThanksPage({ searchParams }: { searchParams: Promise<{ payment?: string; session_id?: string }> }) {

@@ -3,11 +3,16 @@ import Link from "next/link";
 import { SiteHeader, SiteFooter } from "@/components/site-shell";
 import { CheckoutForm } from "@/components/checkout-form";
 import { siteConfig } from "@/lib/site-config";
+import { createPageMetadata, isLiveCheckoutEnabled } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: process.env.SOLTASITE_COMMERCE_ENABLED === "true" ? "Pay" : "Start your site",
-  robots: { index: false, follow: false },
-};
+export const metadata: Metadata = createPageMetadata({
+  path: "/start",
+  title: "Start Your Actor Website · $499 | Solta Site",
+  description: process.env.SOLTASITE_COMMERCE_ENABLED === "true"
+    ? "Pay once, then send your headshots, reel link and resume. Your review link arrives within 3 business days."
+    : `Online checkout isn’t open yet. Contact ${siteConfig.name} at ${siteConfig.contactEmail} with questions about your actor website.`,
+  index: isLiveCheckoutEnabled,
+});
 
 export default function Page() {
  if (process.env.SOLTASITE_COMMERCE_ENABLED !== "true") {

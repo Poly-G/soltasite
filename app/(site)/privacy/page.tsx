@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
 import { SiteHeader, SiteFooter } from "@/components/site-shell";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Privacy", robots: { index: false, follow: false } };
+export const metadata: Metadata = createPageMetadata({
+  path: "/privacy",
+  title: "Privacy | Solta Site",
+  description: "How Solta Site handles information provided for actor websites.",
+});
 
 export default function Page() {
  return <><SiteHeader mode="simple" /><main className="wrap min-h-[50vh]" style={{"paddingTop": "72px", "paddingBottom": "96px"}} id="main"><div style={{"maxWidth": "760px"}}><div className="form-head"><h1 className="text-[56px] max-[860px]:text-[40px] break-words">Privacy</h1><p className="lead">Placeholder. Poly writes this page, starting from the matching page on soltaworks.com and adjusting it for the actor product (payments by Stripe, files held for the build, the two-round refund rule).</p></div><section style={{"padding": "28px 0", "borderTop": "1px solid var(--line)"}}><h3 style={{"paddingBottom": "8px"}}>What we collect</h3><p className="p">Name, email, the materials you send for your site, and payment details handled by Stripe (we never see card numbers).</p></section><section style={{"padding": "28px 0", "borderTop": "1px solid var(--line)"}}><h3 style={{"paddingBottom": "8px"}}>What we use it for</h3><p className="p">Building and hosting your site, the receipt and review emails, and replying to you.</p></section><section style={{"padding": "28px 0", "borderTop": "1px solid var(--line)"}}><h3 style={{"paddingBottom": "8px"}}>Who else sees it</h3><p className="p">Service providers only: hosting, email, payments, file storage, spam protection.</p></section><section style={{"padding": "28px 0", "borderTop": "1px solid var(--line)"}}><h3 style={{"paddingBottom": "8px"}}>Cookies</h3><p className="p">No advertising or cross-site tracking. Turnstile for spam protection.</p></section><section style={{"padding": "28px 0", "borderTop": "1px solid var(--line)"}}><h3 style={{"paddingBottom": "8px"}}>Your choices</h3><p className="p">Ask for a copy of your data or ask us to delete it: contact@soltaworks.com.</p></section></div></main><SiteFooter compact /></>;

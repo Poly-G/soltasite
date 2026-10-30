@@ -60,7 +60,7 @@ export function DemoAction({
           {message}
         </div>
         <Link className={styles.link} href="/">
-          See how Solta builds actor sites <span aria-hidden="true">→</span>
+          See how Solta Site builds actor sites <span aria-hidden="true">→</span>
         </Link>
         <button
           type="button"

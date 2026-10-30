@@ -3,8 +3,14 @@ import { notFound } from 'next/navigation';
 import { MaterialsForm } from '@/components/materials/materials-form';
 import { SiteHeader, SiteFooter } from '@/components/site-shell';
 import { cormorant, interTight, rubik, workSans } from '@/lib/fonts';
+import { createPageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = { title: 'Materials design preview', robots: { index: false, follow: false } };
+export const metadata: Metadata = createPageMetadata({
+  path: '/preview/materials',
+  title: 'Materials Design Preview | Solta Site',
+  description: 'Preview the materials form for a Solta Site actor website.',
+  follow: false,
+});
 export const dynamic = 'force-dynamic';
 
 export default function MaterialsPreviewPage() {
