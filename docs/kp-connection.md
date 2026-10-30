@@ -1,6 +1,6 @@
 # Solta Site to KP connection
 
-**Status: durable commerce outbox implemented in the candidate backend; KP receiver, source dispatcher, and email sender are not implemented or enabled.** Local code and queued rows do not establish live delivery. This document supersedes the earlier inquiry-only proposal.
+**Status: durable commerce outbox implemented in the deployed Supabase schema; KP receiver, source dispatcher, and email sender are not implemented or enabled.** Local code and queued rows do not establish live delivery. This document supersedes the earlier inquiry-only proposal.
 
 ## Ownership and account boundary
 
@@ -12,7 +12,7 @@ There are no customer logins in the current Solta Site flow. KP staff identities
 
 ## Current source records and events
 
-`backend/schema/commerce.sql` defines `soltasite_orders`, `soltasite_materials_submissions`, `soltasite_assets`, and `soltasite_commerce_outbox`, alongside checkout and webhook records. Every logical event creates separate rows for `kp` and `email`, with a uniqueness constraint on `(destination,event_id)`.
+`supabase/migrations/20261030031755_initial_commerce.sql` defines `soltasite_orders`, `soltasite_materials_submissions`, `soltasite_assets`, and `soltasite_commerce_outbox`, alongside checkout and webhook records. Every logical event creates separate rows for `kp` and `email`, with a uniqueness constraint on `(destination,event_id)`.
 
 | Event type | Stable event ID | Stored references / trigger |
 | --- | --- | --- |

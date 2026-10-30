@@ -95,4 +95,4 @@ Successful submission returns HTTP 202 with `{ok:true,status:"received",submissi
 
 Use `npm ci`, `npm run dev`, `npm run typecheck`, `npm test`, and `npm run build`. Browser checks use `npm run test:e2e`. Keep supplied assets and licensing records. Preserve loading, validation, provider-failure, retry, and success states; never replace a live error with simulated payment or submission success.
 
-Read `backend/README.md`, `backend/schema/commerce.sql`, `docs/new-accounts-setup.md`, and `docs/kp-connection.md` before wiring services. Keep credentials in private environment configuration, never in frontend code, chat, or committed files. The original legal placeholders and actual hosted payment/upload/integration checks remain release work.
+Read `backend/README.md`, `supabase/migrations/20261030031755_initial_commerce.sql`, `docs/new-accounts-setup.md`, and `docs/kp-connection.md` before wiring services. Keep credentials in private environment configuration, never in frontend code, chat, or committed files. The original legal placeholders and actual hosted payment/upload/integration checks remain release work.

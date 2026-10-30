@@ -2,11 +2,11 @@
 
 The implemented flow is **USD $499 checkout → verified paid access → private materials submission**. Next.js Node route handlers live in `app/api`; server-only helpers live in `lib/server`.
 
-**Status:** implemented application code and locally verified candidate SQL. No hosted Supabase project has been migrated, no Stripe purchase has been made, and no KP or email delivery is active. Use only Solta Site's new provider accounts.
+**Status:** application code implemented; two migrations applied to the new SoltaSite project `rarcknqbxaeffevgpbvj`. All nine hosted database verification gates passed, with synthetic writes rolled back. The Vercel application still needs its private Supabase server key. No Stripe purchase has been made, and no KP or email delivery is active.
 
-## Database candidate
+## Applied database migrations
 
-`schema/commerce.sql` contains tables, indexes, grants, RLS, transactional functions and two private Storage bucket definitions. Generate a real migration with the Supabase CLI after reviewing this file against the confirmed new project; this directory deliberately does not claim a migration has been generated or applied.
+`../supabase/migrations/20261030031755_initial_commerce.sql` contains the tables, indexes, grants, RLS, transactional functions and two private Storage bucket definitions. `20261030031930_index_outbox_references.sql` adds the two covering indexes identified by the hosted performance advisor. Both files were generated with Supabase CLI 2.122.0, applied through the Supabase migration tool, and named to match the actual server-recorded versions. The migration directory is the canonical schema history.
 
 | Table | Role |
 | --- | --- |
@@ -17,9 +17,9 @@ The implemented flow is **USD $499 checkout → verified paid access → private
 | `soltasite_materials_submissions` | Immutable, versioned accepted materials |
 | `soltasite_commerce_outbox` | Pending KP and email work committed with the source event |
 
-The exact table names are authoritative in the SQL. Public, anonymous and authenticated browser roles cannot access these tables or execute the internal functions. The server role has explicit grants; RLS is enabled on every application table. Functions are security invoker with an empty search path.
+The exact table names are authoritative in the migrations. Public, anonymous and authenticated browser roles cannot access these tables or execute the internal functions. The server role has explicit grants; RLS is enabled on every application table. Functions are security invoker with an empty search path.
 
-`tests/database/commerce.test.ts` executes the actual SQL in local PGlite with a minimal model of Supabase's roles and bucket catalog. It verifies transactions, access restrictions, payment/refund event ordering, conflicting replays, reservation boundaries and bucket limits. This is not a substitute for checking the new hosted database and Storage API.
+`tests/database/commerce.test.ts` executes all tracked migrations in order in local PGlite with a minimal model of Supabase's roles and bucket catalog. It verifies transactions, access restrictions, payment/refund event ordering, conflicting replays, reservation boundaries and bucket limits. `verify-commerce.sql` separately passed all nine hosted gates using the real roles, RPCs, and bucket catalog. Every synthetic write was rolled back, and all six application tables remained empty. Hosted Storage HTTP and signed-upload behavior still need the server credential and an integration check.
 
 ## Payment and access
 
@@ -56,4 +56,8 @@ The root `.env.example` is the single environment inventory. `SOLTASITE_COMMERCE
 
 Run `npm run typecheck`, `npm test`, `npm run build` and `npm run test:e2e` from the repository root. Unit checks cover request/configuration boundaries, capability signing and material validation/drafts; the browser checks cover the converted routes, responsive layout, interactions and disabled-commerce behavior.
 
-Before activation, apply and inspect a CLI-generated migration on the new Supabase project, verify grants/RLS with the real roles, exercise signed Storage uploads and retries, and complete a Stripe test-mode checkout → webhook → materials → refund sequence. Add a retention/cleanup job for abandoned reservations and uploads, plus the receipt delivery that the customer copy promises. See [new account setup](../docs/new-accounts-setup.md).
+The hosted migration, grants/RLS, service-role RPC, and rollback checks are complete. Before activation, add the private server key, exercise signed Storage uploads and retries, and complete a Stripe test-mode checkout → webhook → materials → refund sequence. Add a retention/cleanup job for abandoned reservations and uploads, plus the receipt delivery that the customer copy promises. See [new account setup](../docs/new-accounts-setup.md).
+
+## Advisor results
+
+The hosted advisors reported no warnings or errors. Six [RLS-without-policy informational notices](https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy) are intentional: application tables have no direct browser access, and the server role has explicit grants. Do not add permissive policies to silence them. The two newly created outbox indexes can appear as [unused-index informational notices](https://supabase.com/docs/guides/database/database-linter?lint=0005_unused_index) before real traffic. The missing foreign-key indexes were fixed by the second migration.

@@ -1,37 +1,50 @@
 # Configure the new Solta Site accounts
 
-The owner has already created a new Vercel account and a new Supabase account, and has connected `Poly-G/soltasite` to Vercel. **Verify and use those new destinations.** The previously connected KP/Solta Works accounts must not receive this application, schema or credentials.
+The owner created new Vercel and Supabase accounts and connected `Poly-G/soltasite` to Vercel. **The new destinations are now confirmed.** The previously connected KP/Solta Works accounts must not receive this application, schema or credentials.
 
-The code conversion does not establish provider access. No remote migration, secret configuration or production deployment has been completed by these files.
+| Destination | Confirmed identity |
+| --- | --- |
+| GitHub | `Poly-G/soltasite`; conversion PR #1, branch `build/nextjs-supabase-conversion` |
+| Vercel team | SnD, slug `sn-d1`, ID `team_duIjSUsrF3ojzP4f4pyMEUAs` |
+| Vercel project | `soltasite`, ID `prj_XtzLWNJKw63Ol5mUB8SPioiiyHeM` |
+| Supabase project | `SoltaSite`, reference `rarcknqbxaeffevgpbvj` |
 
-## 1. Verify the intended destinations
+The conversion preview at commit `0abeeb876b66f4e256700eb7c20982212ce9c1e2` reached Ready. Production still pointed to the earlier `main` deployment at inspection; no production release or custom-domain change was made in this setup stage. Initial environment metadata showed no configured variables, including no hidden production variables. These observations do not establish working payments or database connectivity.
 
-Reconnect the Vercel and Supabase integrations to the intended new accounts. Confirm the Vercel team/project and Supabase organization/project identity before changes. Record project references in deployment notes, never secrets. If the Supabase project still needs creating, create it inside that confirmed new organization and choose its region deliberately.
+## 1. Confirmed Vercel settings
 
-Vercel settings for this repository:
+The intended new Vercel project is configured as follows. Keep operations explicitly scoped to the IDs above; no replacement project is needed.
 
 | Setting | Value |
 | --- | --- |
 | Framework | Next.js |
-| Root directory | Repository root |
-| Runtime | Node.js 24 |
+| Root directory | Repository root (`rootDirectory: null`) |
+| Runtime | Node.js `24.x` |
 | Install | `npm ci` |
 | Build | `npm run build` |
-| Output | Next.js default; do not set a static export directory |
+| Output | Next.js default (`outputDirectory: null`); no static export directory |
 
-The frontend can be previewed with commerce disabled and without credentials.
+The frontend can be previewed with commerce disabled and without credentials. Settings or environment changes require a subsequent deployment to take effect in the running application.
 
-## 2. Prepare the new Supabase database
+The observed branch alias is `https://soltasite-git-build-nextjs-supabase-conversion-sn-d1.vercel.app`; the inspected deployment URL is `https://soltasite-lp1s14uvh-sn-d1.vercel.app`. Use one chosen preview origin consistently when configuring and testing browser POSTs. The only attached project domain at inspection was `soltasite.vercel.app`; neither `soltasite.com` nor `www.soltasite.com` was attached yet.
 
-Review `backend/schema/commerce.sql`, use the current Supabase CLI migration workflow to create the initial migration, then apply it to the confirmed new project. No migration history or linked-project configuration has been invented in this repository.
+Vercel authentication currently protects deployments except custom domains. Before hosted Stripe testing, resolve webhook reachability deliberately and verify signed callbacks; a Ready preview or successful checkout redirect does not prove webhook delivery.
 
-Verify all application tables have RLS enabled, no anonymous/authenticated browser privileges, and only the intended server grants. Verify that `soltasite-headshots` and `soltasite-files` are private with their 25 MiB and 10 MiB limits. Run the local database tests and repeat the critical ownership, replay, refund and transaction checks against the new hosted project using synthetic records.
+## 2. Applied Supabase database
 
-Store the new project's HTTPS URL and modern secret key as `SUPABASE_URL` and `SUPABASE_SECRET_KEY`. This flow has no browser Supabase client, so no public Supabase key or customer Auth setup is required yet.
+Two migrations are applied to `rarcknqbxaeffevgpbvj`: `20261030031755_initial_commerce` and `20261030031930_index_outbox_references`. Their tracked SQL is under `supabase/migrations`. All nine hosted database verification gates passed, and a post-rollback count confirmed that all six application tables contain zero records. See `backend/verify-commerce.sql` for the reproducible check. This verifies the database boundary; the Vercel application still needs its private server key and the hosted upload/payment tests.
 
-## 3. Configure providers, initially in test mode
+Verified: all application tables have RLS enabled, no anonymous/authenticated browser privileges, and only the intended server grants. The `soltasite-headshots` and `soltasite-files` buckets are private with their 25 MiB and 10 MiB limits. Hosted checks covered effective permissions, service-role execution, ownership, replay, refund ordering, and transaction rollback. Advisors have only expected informational notices, documented in `backend/README.md`.
 
-Copy names from the root `.env.example` into private local or provider configuration. Never commit populated environment files or paste secrets into chat.
+The new project's API origin is `https://rarcknqbxaeffevgpbvj.supabase.co`, used as `SUPABASE_URL`. Its modern server secret belongs in `SUPABASE_SECRET_KEY`.
+
+**Private-key gap:** the connected Supabase tools expose publishable keys, not the required server secret. A publishable key cannot substitute for `SUPABASE_SECRET_KEY`. Transfer the correct new-project secret through authorized dashboard access or enter it privately in the intended Vercel environment. Never paste it into chat or commit it. This flow has no browser Supabase client, so no public Supabase key or customer Auth setup is required yet.
+
+## 3. Provider configuration and remaining credentials
+
+Ten environment entries are configured in Vercel: commerce and KP remain disabled, Stripe mode remains test, production has the canonical origin, new Supabase URL, allowed Turnstile hostnames, and a generated sensitive order-access signing secret. The conversion preview alone enables the non-submitting materials design route and has its own origin; it has no production database credential. `SUPABASE_SECRET_KEY`, Stripe keys/price, and the Turnstile site/secret keys are still missing.
+
+Use names from the root `.env.example` in private local or provider configuration. Never commit populated environment files or paste secrets into chat.
 
 | Variable | Purpose |
 | --- | --- |

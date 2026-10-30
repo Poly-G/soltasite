@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
-import { readFile } from "node:fs/promises";
+import { readFile, readdir } from "node:fs/promises";
 import { after, afterEach, before, beforeEach, test } from "node:test";
 import { PGlite } from "@electric-sql/pglite";
 
@@ -23,7 +23,10 @@ before(async () => {
       file_size_limit bigint, allowed_mime_types text[]
     );
   `);
-  await db.exec(await readFile(new URL("../../backend/schema/commerce.sql", import.meta.url), "utf8"));
+  const directory = new URL("../../supabase/migrations/", import.meta.url);
+  for (const file of (await readdir(directory)).filter(name => name.endsWith(".sql")).sort()) {
+    await db.exec(await readFile(new URL(file, directory), "utf8"));
+  }
 });
 beforeEach(async () => { await db.exec("begin; set local role service_role;"); });
 afterEach(async () => { await db.exec("rollback;"); });

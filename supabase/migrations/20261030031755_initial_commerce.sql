@@ -1,8 +1,5 @@
--- Candidate for a NEW Solta Site Supabase project only. Not applied remotely.
--- Generate a migration with the Supabase CLI after local review/verification.
--- All user access goes through the application; no customer accounts are created.
-begin;
-
+-- Initial commerce schema for the dedicated Solta Site Supabase project.
+-- Application access is server-only; no customer Auth accounts are required.
 create table public.soltasite_checkout_intents (
   request_id uuid primary key,
   fingerprint text not null check (fingerprint ~ '^[a-f0-9]{64}$'),
@@ -235,4 +232,3 @@ insert into storage.buckets(id,name,public,file_size_limit,allowed_mime_types)
 values('soltasite-headshots','soltasite-headshots',false,26214400,array['image/jpeg','image/png']),
       ('soltasite-files','soltasite-files',false,10485760,
        array['application/pdf','font/otf','font/ttf','font/woff','font/woff2','application/font-woff','application/octet-stream']);
-commit;

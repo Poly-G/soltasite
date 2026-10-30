@@ -6,9 +6,9 @@ The original visual direction, copy, actor examples, photos, and nine-section ma
 
 ## Current state
 
-The application and backend code are implemented and can be built without provider credentials. **Commerce is disabled by default.** The Supabase schema is reviewed candidate SQL, not a migration applied to a remote project. KP and email events are saved to a transactional outbox, but their dispatchers are not implemented.
+The application and backend code are implemented and can be built without provider credentials. **Commerce is disabled by default.** The two tracked Supabase migrations have been applied to the new SoltaSite project and verified against its hosted database. KP and email events are saved to a transactional outbox, but their dispatchers are not implemented.
 
-Solta Site uses the owner's **new Vercel and Supabase accounts**. The existing KP and Solta Works infrastructure is a reference only. Account creation and the Vercel GitHub connection have already been completed by the owner; the intended new provider connections still need to be verified before remote configuration.
+Solta Site uses the owner's **new Vercel and Supabase accounts**. The existing KP and Solta Works infrastructure is a reference only. Both new provider connections are confirmed. The Vercel project is configured for Next.js/Node 24; the database URL and order-access signing secret are configured for production. The private Supabase server key still needs adding before the application can authenticate to the database.
 
 ## Stack
 
@@ -70,9 +70,9 @@ Start with [new account setup](docs/new-accounts-setup.md). The configuration na
 
 The server expects an exact HTTPS application origin and the new hosted Supabase project URL. Preview environments need their own matching origin, Turnstile configuration, and Stripe test settings. Do not connect previews to production KP delivery.
 
-[Backend details](backend/README.md) cover the SQL candidate, private buckets, payment/access rules, retry behavior, and live verification still required. [Claude handoff](docs/claude-handoff.md) records the frontend contracts. [KP connection](docs/kp-connection.md) describes the dedicated integration that remains to be built.
+[Backend details](backend/README.md) cover the applied migrations, private buckets, payment/access rules, retry behavior, and remaining provider verification. [Claude handoff](docs/claude-handoff.md) records the frontend contracts. [KP connection](docs/kp-connection.md) describes the dedicated integration that remains to be built.
 
-Before enabling real purchases, complete the new-project migration, provider configuration, Stripe test-mode purchase/upload/refund checks, receipt delivery and abandoned-upload cleanup. Review the supplied placeholder legal text and the retained contact address. The Keshia example still says “Site coming soon”; the Maya and Devon examples are fictional.
+Before enabling real purchases, complete the server-key and payment-provider configuration, Stripe test-mode purchase/upload/refund checks, receipt delivery and abandoned-upload cleanup. Review the supplied placeholder legal text and the retained contact address. The Keshia example still says “Site coming soon”; the Maya and Devon examples are fictional.
 
 ## Source assets
 
