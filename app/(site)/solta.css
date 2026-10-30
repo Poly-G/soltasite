@@ -331,6 +331,7 @@
   .solta-site .nav .logo{font-size:22px}
   .solta-site .nav .btn.sm{padding:9px 10px;font-size:13px}
   .solta-site .art{width:100%;max-width:350px}
+  .solta-site .art .circ{left:calc(50% - 150px)}
 }
 
 
