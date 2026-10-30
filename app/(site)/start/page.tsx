@@ -1,10 +1,25 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { SiteHeader, SiteFooter } from "@/components/site-shell";
 import { CheckoutForm } from "@/components/checkout-form";
+import { siteConfig } from "@/lib/site-config";
 
-export const metadata: Metadata = { title: "Pay", robots: { index: false, follow: false } };
+export const metadata: Metadata = {
+  title: process.env.SOLTASITE_COMMERCE_ENABLED === "true" ? "Pay" : "Start your site",
+  robots: { index: false, follow: false },
+};
 
 export default function Page() {
+ if (process.env.SOLTASITE_COMMERCE_ENABLED !== "true") {
+   return <><SiteHeader mode="simple" /><main className="wrap min-h-[60vh] py-20" id="main">
+     <div className="form-head max-w-[760px]">
+       <div className="cap" style={{ fontWeight: 600 }}>Solta Site</div>
+       <h1>Online checkout isn’t open yet.</h1>
+       <p className="lead">Email <a href={`mailto:${siteConfig.contactEmail}`} className="underline">{siteConfig.contactEmail}</a> with any questions about your actor website.</p>
+       <Link className="btn self-start" href="/">Back to Solta Site <span aria-hidden="true">→</span></Link>
+     </div>
+   </main><SiteFooter compact /></>;
+ }
  return <><SiteHeader mode="checkout" /><main className="wrap pay min-h-[50vh]" id="main">
 <div className="a"><div style={{"display": "flex", "flexDirection": "column", "gap": "14px"}}><div className="cap" style={{"fontWeight": "600"}}>Step 1 of 2 · Pay</div><h1>Your actor site. $499, once.</h1><p className="lead" style={{"fontSize": "19px"}}>Pay now, then send us your materials on the next page. It takes about ten minutes, and you can come back to it.</p></div>
 <div className="card summ"><div className="top"><h3>Your actor site</h3><div className="disp">$499</div></div><div className="item row" style={{"padding": "12px 0", "fontSize": "17px", "alignItems": "start"}}><span className="chk"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.5l2.5 2.5 4.5-5" fill="none" stroke="#111318" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round"></path></svg></span><span>One-page site on your domain (up to four pages if you need them)</span></div><div className="item row" style={{"padding": "12px 0", "fontSize": "17px", "alignItems": "start"}}><span className="chk"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.5l2.5 2.5 4.5-5" fill="none" stroke="#111318" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round"></path></svg></span><span>Headshots, reel, resume, rep contact, links</span></div><div className="item row" style={{"padding": "12px 0", "fontSize": "17px", "alignItems": "start"}}><span className="chk"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.5l2.5 2.5 4.5-5" fill="none" stroke="#111318" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round"></path></svg></span><span>Two rounds of changes</span></div><div className="item row" style={{"padding": "12px 0", "fontSize": "17px", "alignItems": "start"}}><span className="chk"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.5l2.5 2.5 4.5-5" fill="none" stroke="#111318" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round"></path></svg></span><span>Live within 5 business days of getting your materials</span></div><div className="item row" style={{"padding": "12px 0", "fontSize": "17px", "alignItems": "start"}}><span className="chk"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.5l2.5 2.5 4.5-5" fill="none" stroke="#111318" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round"></path></svg></span><span>Two updates a year included, then $29 each</span></div><div className="tot"><span>Total today</span><span>$499</span></div><div className="cap">No monthly fee. Your domain (about $15 a year) is registered in your name.</div></div></div>
