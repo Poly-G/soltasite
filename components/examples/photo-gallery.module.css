@@ -1,0 +1,38 @@
+.gallery { position: relative; }
+.heading { margin: 0; }
+.actions button { border: 0; background: none; padding: 0; font: inherit; color: inherit; text-align: left; cursor: pointer; }
+.actions button:focus-visible { outline: 3px solid currentColor; outline-offset: 5px; border-radius: 2px; }
+.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px 16px; }
+.photo { min-width: 0; margin: 0; }
+.frame { overflow: hidden; }
+.frame img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.maya { display: grid; grid-template-columns: 320px minmax(0, 1fr); gap: 48px; padding: 84px 64px; border-top: 2.5px solid #1a1a1a; }
+.maya .heading { font-family: var(--font-rubik), sans-serif; font-weight: 800; letter-spacing: -0.03em; font-size: 46px; line-height: 1; }
+.maya .actions { display: flex; flex-direction: column; align-items: flex-start; gap: 5px; padding-top: 14px; font-size: 16px; font-weight: 600; line-height: 1.7; }
+.maya .actions button { text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 2px; }
+.maya .actions button:hover { text-decoration-color: #ff5a4e; }
+.maya .count { color: #6a6a6a; }
+.maya .photo { transition: transform 0.3s cubic-bezier(0.3, 1.4, 0.5, 1); }
+.maya .photo:hover { transform: rotate(-2deg) translateY(-5px); }
+.maya .frame { aspect-ratio: 3 / 4; border-radius: 16px; background: #eadfc4; }
+.maya .label { padding-top: 10px; font-size: 15px; font-weight: 600; }
+.devon { padding: 100px 64px 110px; }
+.devon .top { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; padding-bottom: 40px; }
+.devon .heading { font-size: 78px; font-weight: 500; line-height: 0.95; letter-spacing: -0.045em; }
+.devon .actions { display: flex; gap: 32px; font-size: 17px; font-weight: 500; color: #6e1b2a; }
+.devon .actions button:hover { text-decoration: underline; text-underline-offset: 4px; }
+.devon .frame { aspect-ratio: 4 / 5; background: #e4dccb; }
+.devon .label { padding-top: 14px; font-size: 15px; }
+@media (prefers-reduced-motion: reduce) { .gallery * { transition: none; } }
+@media (max-width: 860px) {
+  .maya { grid-template-columns: minmax(0, 1fr); gap: 20px; padding: 44px 20px; }
+  .maya .heading { font-size: 36px; }
+  .maya .grid { gap: 24px 10px; }
+  .maya .label { font-size: 13px; }
+  .maya .photo:hover { transform: none; }
+  .devon { padding: 56px 20px 64px; }
+  .devon .top { flex-direction: column; align-items: flex-start; gap: 12px; padding-bottom: 24px; }
+  .devon .heading { font-size: 44px; }
+  .devon .actions { font-size: 15px; gap: 20px; }
+  .devon .grid { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+}
