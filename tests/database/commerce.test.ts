@@ -3,6 +3,8 @@ import { randomUUID } from "node:crypto";
 import { readFile, readdir } from "node:fs/promises";
 import { after, afterEach, before, beforeEach, test } from "node:test";
 import { PGlite } from "@electric-sql/pglite";
+import type Stripe from "stripe";
+import { processVerifiedStripeEvent, type StripeEventEffects } from "../../lib/server/stripe-events.ts";
 
 // Real local PostgreSQL WASM execution. This is not hosted Supabase/Auth/Storage QA.
 // Only Supabase's built-in roles and bucket catalog are emulated; RPCs are unmodified.
@@ -183,3 +185,61 @@ test("a materials outbox failure rolls back the submission and order progress ti
   assert.equal(order.rows[0].materials_submitted_at, null);
   assert.equal(await count("soltasite_commerce_outbox"), 2);
 });
+
+for (const refundFirst of [false, true]) {
+  test(`shared-account webhook isolation preserves ${refundFirst ? "refund-before-payment" : "payment-before-refund"} database behavior`, async () => {
+    const value = await checkout(refundFirst ? "webhook-refund-first" : "webhook-paid-first");
+    const metadata = { source_system: "soltasite", request_id: value.requestId };
+    const verifiedSession = {
+      object: "checkout.session", id: value.sessionId, mode: "payment", status: "complete", payment_status: "paid",
+      livemode: false, amount_total: 49900, currency: "usd", metadata, client_reference_id: value.requestId,
+      payment_intent: value.paymentId, customer_email: value.email, customer_details: null,
+    } as unknown as Stripe.Checkout.Session;
+    const verifiedPayment = {
+      object: "payment_intent", id: value.paymentId, livemode: false, amount: 49900, currency: "usd", status: "succeeded", metadata,
+    } as unknown as Stripe.PaymentIntent;
+    // No charge source tag: the refund must be attributed via Stripe, not an existing database order.
+    const refundedCharge = {
+      object: "charge", id: `ch_${value.requestId.replaceAll("-", "")}`, livemode: false,
+      amount: 49900, currency: "usd", amount_refunded: 49900, paid: true, payment_intent: value.paymentId, metadata: {},
+    } as Stripe.Charge;
+    const paidEvent = { id: value.eventId, object: "event", type: "checkout.session.completed", livemode: false,
+      data: { object: verifiedSession } } as Stripe.Event;
+    const refundEvent = { id: `evt_refund_${value.requestId}`, object: "event", type: "charge.refunded", livemode: false,
+      data: { object: refundedCharge } } as Stripe.Event;
+    let providerCalls = 0;
+    const effects: StripeEventEffects = {
+      verifyPaidSession: async id => { providerCalls++; assert.equal(id, value.sessionId); return verifiedSession; },
+      retrievePaymentIntent: async id => { providerCalls++; assert.equal(id, value.paymentId); return verifiedPayment; },
+      recordPaidOrder: async input => {
+        await db.query(paidSql, [input.p_event_id, input.p_session_id, input.p_request_id, input.p_payment_intent_id,
+          input.p_amount, input.p_currency, input.p_livemode, input.p_customer_email]);
+      },
+      revokeRefundedOrder: async input => {
+        await db.query("select public.soltasite_revoke_refunded_order($1,$2)", [input.p_event_id, input.p_payment_intent_id]);
+      },
+    };
+    const otherMetadata = { source_system: "soltaworks" };
+    await processVerifiedStripeEvent({ ...paidEvent, data: { object: { ...verifiedSession, metadata: otherMetadata } } } as Stripe.Event, false, effects);
+    await processVerifiedStripeEvent({ ...refundEvent, data: { object: { ...refundedCharge, metadata: otherMetadata } } } as Stripe.Event, false, effects);
+    assert.equal(providerCalls, 0);
+    assert.equal(await count("soltasite_orders"), 0);
+    assert.equal(await count("soltasite_webhook_events"), 0);
+
+    if (refundFirst) {
+      await processVerifiedStripeEvent(refundEvent, false, effects);
+      assert.equal(await count("soltasite_orders"), 0);
+      assert.equal(await count("soltasite_webhook_events"), 1);
+    }
+    await processVerifiedStripeEvent(paidEvent, false, effects);
+    if (!refundFirst) await processVerifiedStripeEvent(refundEvent, false, effects);
+    await processVerifiedStripeEvent(paidEvent, false, effects); // A delayed paid retry cannot reopen refunded access.
+
+    const orders = await db.query<{ payment_status: string }>("select payment_status from public.soltasite_orders");
+    assert.deepEqual(orders.rows, [{ payment_status: "refunded" }]);
+    assert.equal(await count("soltasite_webhook_events"), 2);
+    const outgoing = await db.query<{ status: string }>("select status from public.soltasite_commerce_outbox");
+    assert.equal(outgoing.rows.length, refundFirst ? 0 : 2);
+    assert.ok(outgoing.rows.every(row => row.status === "cancelled"));
+  });
+}

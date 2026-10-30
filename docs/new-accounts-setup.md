@@ -1,6 +1,6 @@
 # Configure the new Solta Site accounts
 
-The owner created new Vercel and Supabase accounts and connected `Poly-G/soltasite` to Vercel. **The new destinations are now confirmed.** The previously connected KP/Solta Works accounts must not receive this application, schema or credentials.
+The owner created new Vercel and Supabase accounts and connected `Poly-G/soltasite` to Vercel. **The hosting and database destinations are confirmed.** The owner subsequently chose to share the existing Solta Works Stripe account. Hosting, database ownership and KP integration identity remain specific to Solta Site.
 
 | Destination | Confirmed identity |
 | --- | --- |
@@ -8,8 +8,10 @@ The owner created new Vercel and Supabase accounts and connected `Poly-G/soltasi
 | Vercel team | SnD, slug `sn-d1`, ID `team_duIjSUsrF3ojzP4f4pyMEUAs` |
 | Vercel project | `soltasite`, ID `prj_XtzLWNJKw63Ol5mUB8SPioiiyHeM` |
 | Supabase project | `SoltaSite`, reference `rarcknqbxaeffevgpbvj` |
+| Stripe account | Existing `Solta Works`, `acct_1UPBWxRBWfGUnoea` |
+| Stripe test environment | `Solta Site` sandbox within Solta Works, `acct_1UW7CeEYpNmRDZ8w` |
 
-The reviewed conversion remains on PR #1's preview branch, with Ready preview deployments. Current production still points to the earlier `main` deployment; no production release or custom-domain change was made in this setup stage. Vercel now has 11 environment entries, including the sensitive production-only Supabase server key. Configuration metadata does not establish working payments or runtime application/database connectivity.
+The reviewed conversion remains on PR #1's preview branch, with Ready preview deployments. Current production still points to the earlier `main` deployment; no production release or custom-domain change was made in this setup stage. Vercel now has 13 environment entries, including sensitive production-only Supabase and Stripe sandbox keys and the sandbox price. Configuration metadata does not establish working payments or runtime application/database connectivity.
 
 ## 1. Confirmed Vercel settings
 
@@ -42,7 +44,9 @@ The new project's API origin is `https://rarcknqbxaeffevgpbvj.supabase.co`, used
 
 ## 3. Provider configuration and remaining credentials
 
-Eleven environment entries are configured in Vercel: commerce and KP remain disabled, Stripe mode remains test, production has the canonical origin, new Supabase URL, allowed Turnstile hostnames, a generated sensitive order-access signing secret, and the sensitive production-only `SUPABASE_SECRET_KEY`. The conversion preview alone enables the non-submitting materials design route and has its own origin; it has no production database credential. Stripe keys/price and the Turnstile site/secret keys are still missing.
+Thirteen environment entries are configured in Vercel: commerce and KP remain disabled, Stripe mode remains test, production has the canonical origin, new Supabase URL, allowed Turnstile hostnames, a generated sensitive order-access signing secret, sensitive `SUPABASE_SECRET_KEY` and `STRIPE_SECRET_KEY`, and the sandbox `STRIPE_PRICE_ID`. The conversion preview alone enables the non-submitting materials design route and has its own origin; it has no production database or Stripe credential. `STRIPE_WEBHOOK_SECRET` and the Turnstile site/secret keys are still missing.
+
+The shared Stripe account has a dedicated Solta Site sandbox with product `prod_VXBaIPq0R1GJyo` and active one-time USD $499 price `price_1UW7DWEYpNmRDZ8wRCb7Q8us`. The sandbox API key was transferred privately into Vercel and its sensitive, production-only scope was verified through metadata. These are test credentials staged for a future deployment; they do not enable payments. No webhook destination has been registered yet. Choose and verify a reachable application endpoint before registering it. See [shared Stripe account setup](stripe-shared-account.md) for attribution and Dashboard searches.
 
 Use names from the root `.env.example` in private local or provider configuration. Never commit populated environment files or paste secrets into chat.
 
@@ -80,4 +84,4 @@ Implement receipt email delivery and its retry path before the site promises a r
 
 The original handoff marks the privacy, terms and accessibility copy as placeholders for owner review. Confirm that copy, the retained `contact@soltaworks.com` address, delivery/update promises and photo permissions. Replace the Keshia “Site coming soon” state when its actual URL is available.
 
-After the test purchase and operational work pass, configure production credentials in the new account, connect the intended domain, verify the production origin and enable commerce. No old Solta Works or KP secrets should be copied into this application.
+After the test purchase and operational work pass, create the matching live product/price and dedicated webhook in the owner-selected Solta Works Stripe account, configure the corresponding live credentials in the new Solta Site Vercel project, connect the intended domain, verify the production origin and enable commerce. Supabase credentials continue to come from the new SoltaSite project, and KP uses its dedicated integration contract and secret.

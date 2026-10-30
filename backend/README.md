@@ -2,7 +2,7 @@
 
 The implemented flow is **USD $499 checkout → verified paid access → private materials submission**. Next.js Node route handlers live in `app/api`; server-only helpers live in `lib/server`.
 
-**Status:** application code implemented; two migrations applied to the new SoltaSite project `rarcknqbxaeffevgpbvj`. All nine hosted database verification gates passed, with synthetic writes rolled back. Vercel now has 11 environment entries, including `SUPABASE_SECRET_KEY` as a sensitive production-only variable. This verifies configuration metadata, not runtime application connectivity. Current production remains on the earlier `main` source; the reviewed application remains on PR #1's preview branch. No Stripe purchase has been made, and no KP or email delivery is active.
+**Status:** application code implemented; two migrations applied to the new SoltaSite project `rarcknqbxaeffevgpbvj`. All nine hosted database verification gates passed, with synthetic writes rolled back. Vercel has production-scoped Supabase and Stripe sandbox secrets plus the sandbox price. This verifies configuration metadata, not runtime application connectivity. The owner chose the shared Solta Works Stripe account; its dedicated Solta Site sandbox contains the test product. Webhook registration/signing configuration and Turnstile remain outstanding. Current production remains on the earlier `main` source; the reviewed application remains on PR #1's preview branch. No Stripe purchase has been made, and no KP or email delivery is active.
 
 ## Applied database migrations
 
@@ -30,6 +30,14 @@ A stable request ID is persisted before the Stripe request. Unchanged retries re
 Stripe returns to `/api/orders/access?session_id={CHECKOUT_SESSION_ID}`. Access requires a verified paid Stripe session and the canonical paid order created by the signed webhook. The route issues a secure, HTTP-only, same-site cookie and redirects to `/thanks` without the session ID. A delayed webhook produces a pending screen with a retry link. The capability expires after 24 hours; the original verified checkout link can establish a fresh cookie while the order remains paid.
 
 The webhook checks raw signed bytes, test/live mode, session identity, expected product/price, quantity, amount and currency. Payment state and outbox events are written atomically. Refund tombstones and locking prevent a reordered event or paid replay from restoring refunded access. Every upload/materials operation rechecks that the order is still paid.
+
+### Shared Stripe account and website attribution
+
+The server adds `source_system=soltasite`, `source_site=soltasite.com`, the configured `source_origin`, and the checkout `request_id` to both the Checkout Session and PaymentIntent. The session retains its terms version, and the PaymentIntent description is `Solta Site — Actor Website`. Browser input cannot override these fields. Stripe copies PaymentIntent metadata to its Charge when the Charge is created; see [Stripe metadata documentation](https://docs.stripe.com/metadata).
+
+After signature and mode verification, unrelated or untagged Checkout events are acknowledged without retrieval or database writes. Explicitly other-source refunds are also ignored. Refunds that could belong to Solta Site are attributed through the canonical PaymentIntent and checked for consistent source/request metadata and payment properties before revoking access. This does not depend on an existing order, so a genuine refund arriving before the paid webhook still records a tombstone. Malformed Solta Site events, contradictory attribution, and provider/database failures remain errors and can be retried. The local event and database tests cover both event orders and unrelated-event isolation.
+
+See [Stripe setup and searches](../docs/stripe-shared-account.md) for the sandbox identities and Dashboard search queries.
 
 ## Uploads and submissions
 

@@ -4,7 +4,7 @@
 
 The supplied HTML/CSS design is converted to **Next.js App Router, React, TypeScript, and Tailwind CSS**, targeting Vercel with Supabase Postgres and private Storage. Dependencies are pinned in `package.json` and `package-lock.json`. This document describes the code; deployed accounts, migrations, credentials, and hosted verification are separate release steps.
 
-The product flow is **$499 USD once → Stripe Checkout → verified paid order → materials form**. There is no customer account or login in this implementation. The owner created new Supabase and Vercel accounts and linked the repo to the different Vercel account; use those intended new targets only, after verifying access. Do not reuse KP/Solta Works projects, keys, or deployment settings.
+The product flow is **$499 USD once → Stripe Checkout → verified paid order → materials form**. There is no customer account or login in this implementation. The owner created new Supabase and Vercel accounts and linked the repo to the different Vercel account; use those intended hosting/database targets after verifying access. The owner subsequently chose the existing Solta Works Stripe account, with a dedicated Solta Site sandbox and website attribution on checkout/payment records. See `docs/stripe-shared-account.md`. KP continues to require its dedicated Solta Site integration identity and secret.
 
 The original layout, colors, copy, photos, image crops, and typography remain the visual baseline. Marketing styles are scoped to `.solta-site`; the Maya and Devon examples use CSS Modules and their own font variables. Components render real TSX, not injected HTML. Fonts use `next/font`; actor photos use `next/image`.
 

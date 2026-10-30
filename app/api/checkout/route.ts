@@ -1,6 +1,7 @@
 import { commerceConfig } from '@/lib/server/config';
 import { checkDatabaseError, database, stripeClient } from '@/lib/server/clients';
 import { verifyTurnstile } from '@/lib/server/antibot';
+import { checkoutAttribution } from '@/lib/server/checkout-attribution';
 import { ApiError, unavailable } from '@/lib/server/errors';
 import { errorResponse, json, readJson, requireOrigin } from '@/lib/server/http';
 import { checkoutInput, fingerprint, ORDER_AMOUNT, ORDER_CURRENCY, SOURCE_SYSTEM, TERMS_VERSION } from '@/lib/server/policies';
@@ -37,8 +38,7 @@ export async function POST(request: Request) {
       automatic_tax: { enabled: false }, allow_promotion_codes: false,
       line_items: [{ price: config.stripePriceId, quantity: 1 }],
       customer_email: input.email, client_reference_id: input.requestId,
-      metadata: { source_system: SOURCE_SYSTEM, request_id: input.requestId, terms_version: TERMS_VERSION },
-      payment_intent_data: { metadata: { source_system: SOURCE_SYSTEM, request_id: input.requestId } },
+      ...checkoutAttribution(input.requestId, config.origin),
       success_url: `${config.origin}/api/orders/access?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${config.origin}/start?checkout=cancelled`,
     }, { idempotencyKey: `${SOURCE_SYSTEM}:checkout:${input.requestId}` });

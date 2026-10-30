@@ -8,7 +8,9 @@ The original visual direction, copy, actor examples, photos, and nine-section ma
 
 The application and backend code are implemented and can be built without provider credentials. **Commerce is disabled by default.** The two tracked Supabase migrations have been applied to the new SoltaSite project and verified against its hosted database. KP and email events are saved to a transactional outbox, but their dispatchers are not implemented.
 
-Solta Site uses the owner's **new Vercel and Supabase accounts**. The existing KP and Solta Works infrastructure is a reference only. Both new provider connections are confirmed. The Vercel project is configured for Next.js/Node 24 and has 11 environment entries. The database URL, order-access signing secret, and private `SUPABASE_SECRET_KEY` are configured for production; the server key is a sensitive variable scoped to production only.
+Solta Site uses the owner's **new Vercel and Supabase accounts** and, by the owner's choice, the existing **Solta Works Stripe account**. The Vercel project is configured for Next.js/Node 24. Production-scoped configuration includes the database URL, order-access signing secret, private `SUPABASE_SECRET_KEY`, and a Stripe sandbox key and USD $499 test price. Both server keys are sensitive variables. Stripe webhook registration/signing configuration and Turnstile keys remain outstanding.
+
+A dedicated **Solta Site sandbox inside Solta Works** contains the test product. Checkout and payment records carry server-controlled website attribution, and the webhook ignores unrelated sites' events before database writes. See [shared Stripe setup and payment searches](docs/stripe-shared-account.md).
 
 The reviewed application remains on the PR #1 preview branch. Current production still uses the earlier `main` source. Saving the server key does not establish runtime Supabase connectivity or release the converted application; hosted Stripe, Turnstile, upload, and complete-flow verification remain outstanding.
 
