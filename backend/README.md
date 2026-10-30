@@ -2,7 +2,7 @@
 
 The implemented flow is **USD $499 checkout → verified paid access → private materials submission**. Next.js Node route handlers live in `app/api`; server-only helpers live in `lib/server`.
 
-**Status:** application code implemented; two migrations applied to the new SoltaSite project `rarcknqbxaeffevgpbvj`. All nine hosted database verification gates passed, with synthetic writes rolled back. The Vercel application still needs its private Supabase server key. No Stripe purchase has been made, and no KP or email delivery is active.
+**Status:** application code implemented; two migrations applied to the new SoltaSite project `rarcknqbxaeffevgpbvj`. All nine hosted database verification gates passed, with synthetic writes rolled back. Vercel now has 11 environment entries, including `SUPABASE_SECRET_KEY` as a sensitive production-only variable. This verifies configuration metadata, not runtime application connectivity. Current production remains on the earlier `main` source; the reviewed application remains on PR #1's preview branch. No Stripe purchase has been made, and no KP or email delivery is active.
 
 ## Applied database migrations
 
@@ -19,7 +19,7 @@ The implemented flow is **USD $499 checkout → verified paid access → private
 
 The exact table names are authoritative in the migrations. Public, anonymous and authenticated browser roles cannot access these tables or execute the internal functions. The server role has explicit grants; RLS is enabled on every application table. Functions are security invoker with an empty search path.
 
-`tests/database/commerce.test.ts` executes all tracked migrations in order in local PGlite with a minimal model of Supabase's roles and bucket catalog. It verifies transactions, access restrictions, payment/refund event ordering, conflicting replays, reservation boundaries and bucket limits. `verify-commerce.sql` separately passed all nine hosted gates using the real roles, RPCs, and bucket catalog. Every synthetic write was rolled back, and all six application tables remained empty. Hosted Storage HTTP and signed-upload behavior still need the server credential and an integration check.
+`tests/database/commerce.test.ts` executes all tracked migrations in order in local PGlite with a minimal model of Supabase's roles and bucket catalog. It verifies transactions, access restrictions, payment/refund event ordering, conflicting replays, reservation boundaries and bucket limits. `verify-commerce.sql` separately passed all nine hosted gates using the real roles, RPCs, and bucket catalog. Every synthetic write was rolled back, and all six application tables remained empty. Hosted Storage HTTP and signed-upload behavior still need an integration check using the reviewed application and its intended environment configuration.
 
 ## Payment and access
 
@@ -56,7 +56,7 @@ The root `.env.example` is the single environment inventory. `SOLTASITE_COMMERCE
 
 Run `npm run typecheck`, `npm test`, `npm run build` and `npm run test:e2e` from the repository root. Unit checks cover request/configuration boundaries, capability signing and material validation/drafts; the browser checks cover the converted routes, responsive layout, interactions and disabled-commerce behavior.
 
-The hosted migration, grants/RLS, service-role RPC, and rollback checks are complete. Before activation, add the private server key, exercise signed Storage uploads and retries, and complete a Stripe test-mode checkout → webhook → materials → refund sequence. Add a retention/cleanup job for abandoned reservations and uploads, plus the receipt delivery that the customer copy promises. See [new account setup](../docs/new-accounts-setup.md).
+The hosted migration, grants/RLS, service-role RPC, and rollback checks are complete. The private server key is configured for production only; it has not been copied into the conversion preview. Before activation, verify runtime Supabase access from the reviewed application, complete Stripe and Turnstile configuration, exercise signed Storage uploads and retries, and complete a Stripe test-mode checkout → webhook → materials → refund sequence. Add a retention/cleanup job for abandoned reservations and uploads, plus the receipt delivery that the customer copy promises. See [new account setup](../docs/new-accounts-setup.md).
 
 ## Advisor results
 
