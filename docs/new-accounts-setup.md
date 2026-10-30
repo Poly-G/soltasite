@@ -11,7 +11,7 @@ The owner created new Vercel and Supabase accounts and connected `Poly-G/soltasi
 | Stripe account | Existing `Solta Works`, `acct_1UPBWxRBWfGUnoea` |
 | Stripe test environment | `Solta Site` sandbox within Solta Works, `acct_1UW7CeEYpNmRDZ8w` |
 
-The reviewed conversion remains on PR #1's preview branch, with Ready preview deployments. Current production still points to the earlier `main` deployment; no production release or custom-domain change was made in this setup stage. Vercel now has 13 environment entries, including sensitive production-only Supabase and Stripe sandbox keys and the sandbox price. Configuration metadata does not establish working payments or runtime application/database connectivity.
+The reviewed conversion remains on PR #1's preview branch, with Ready preview deployments from the earlier code verification. Current production still points to the earlier `main` deployment with commerce disabled; no production release or custom-domain change was made in this setup stage. Backend test configuration is complete and scoped only to `build/nextjs-supabase-conversion`, with commerce enabled only in that branch's configuration and Stripe in test mode. Separate Turnstile widgets and keys are configured for this branch and Production. Environment changes require rebuilding the reviewed branch; hosted checkout/upload/refund verification remains outstanding, and configuration metadata does not establish runtime connectivity.
 
 ## 1. Confirmed Vercel settings
 
@@ -28,25 +28,42 @@ The intended new Vercel project is configured as follows. Keep operations explic
 
 The frontend can be previewed with commerce disabled and without credentials. Settings or environment changes require a subsequent deployment to take effect in the running application.
 
-The observed branch alias is `https://soltasite-git-build-nextjs-supabase-conversion-sn-d1.vercel.app`; the inspected deployment URL is `https://soltasite-lp1s14uvh-sn-d1.vercel.app`. Use one chosen preview origin consistently when configuring and testing browser POSTs. The only attached project domain at inspection was `soltasite.vercel.app`; neither `soltasite.com` nor `www.soltasite.com` was attached yet.
+The chosen test origin is `https://soltasite-git-build-nextjs-supabase-conversion-sn-d1.vercel.app`. Use this stable branch alias consistently for browser POSTs, Turnstile hostname validation, checkout returns and Stripe webhook delivery. The only attached project domain at inspection was `soltasite.vercel.app`; neither `soltasite.com` nor `www.soltasite.com` was attached yet.
 
-Vercel authentication currently protects deployments except custom domains. Before hosted Stripe testing, resolve webhook reachability deliberately and verify signed callbacks; a Ready preview or successful checkout redirect does not prove webhook delivery.
+Vercel Authentication currently protects the test preview. A proposed Deployment Protection Exception for only the stable branch hostname has not been applied. Stage the complete reviewed test configuration behind authentication, obtain the specific approval needed to make that one preview hostname public, then apply and verify the narrow exception. Do not disable authentication for the whole project. A Ready preview, registered webhook or successful checkout redirect does not prove webhook delivery. See [Vercel's exception documentation](https://vercel.com/docs/deployment-protection/methods-to-bypass-deployment-protection/deployment-protection-exceptions); current exceptions are available on all plans.
 
 ## 2. Applied Supabase database
 
-Two migrations are applied to `rarcknqbxaeffevgpbvj`: `20261030031755_initial_commerce` and `20261030031930_index_outbox_references`. Their tracked SQL is under `supabase/migrations`. All nine hosted database verification gates passed, and a post-rollback count confirmed that all six application tables contain zero records. See `backend/verify-commerce.sql` for the reproducible check. This verifies the database boundary; runtime application connectivity and hosted upload/payment tests remain outstanding.
+Two migrations are applied to `rarcknqbxaeffevgpbvj`: `20261030031755_initial_commerce` and `20261030031930_index_outbox_references`. Their tracked SQL is under `supabase/migrations`. All nine hosted database verification gates passed, and the post-rollback count at that verification confirmed all six application tables were empty. See `backend/verify-commerce.sql` for the reproducible check. This verifies the database boundary; runtime application connectivity and hosted upload/payment tests remain outstanding.
 
 Verified: all application tables have RLS enabled, no anonymous/authenticated browser privileges, and only the intended server grants. The `soltasite-headshots` and `soltasite-files` buckets are private with their 25 MiB and 10 MiB limits. Hosted checks covered effective permissions, service-role execution, ownership, replay, refund ordering, and transaction rollback. Advisors have only expected informational notices, documented in `backend/README.md`.
 
 The new project's API origin is `https://rarcknqbxaeffevgpbvj.supabase.co`, used as `SUPABASE_URL`. Its modern server secret is now configured as `SUPABASE_SECRET_KEY` in Vercel.
 
-**Server key configured:** the owner-authorized private dashboard transfer is complete. A metadata-only check confirmed `SUPABASE_SECRET_KEY` has type `sensitive` and target `production`; its value was not printed or committed. It is not available to the conversion preview. Saving it is not a runtime connectivity test, and redeploying the existing production deployment would still use the old `main` source. Any application release must explicitly use the reviewed conversion source. This flow has no browser Supabase client, so no public Supabase key or customer Auth setup is required yet.
+**Server key configured for the test branch:** the owner-authorized private dashboard transfer is complete. The existing `SUPABASE_SECRET_KEY` entry was then moved from Production to target `preview`, restricted to `build/nextjs-supabase-conversion`, by editing metadata only. Its value was not retrieved, printed or committed. Other preview branches receive no database credential, and a future Production build now needs a separately configured server-key entry. Saving it is not a runtime connectivity test, and redeploying the existing production deployment would still use the old `main` source. Any application deployment must explicitly use the reviewed conversion source.
+
+Prelaunch tests use this same new SoltaSite database, which has no real customer data. It is not a separately disposable test database; record and reconcile test orders/uploads before live use, and do not assume cleanup has happened. This flow has no browser Supabase client, so no public Supabase key or customer Auth setup is required yet.
 
 ## 3. Provider configuration and remaining credentials
 
-Thirteen environment entries are configured in Vercel: commerce and KP remain disabled, Stripe mode remains test, production has the canonical origin, new Supabase URL, allowed Turnstile hostnames, a generated sensitive order-access signing secret, sensitive `SUPABASE_SECRET_KEY` and `STRIPE_SECRET_KEY`, and the sandbox `STRIPE_PRICE_ID`. The conversion preview alone enables the non-submitting materials design route and has its own origin; it has no production database or Stripe credential. `STRIPE_WEBHOOK_SECRET` and the Turnstile site/secret keys are still missing.
+`SOLTASITE_COMMERCE_ENABLED=true` is configured only for the reviewed preview branch, with `SOLTASITE_STRIPE_MODE=test` and `KP_SYNC_ENABLED=false`. Global/default and Production commerce remain false. The existing `STRIPE_SECRET_KEY`, `STRIPE_PRICE_ID`, `SUPABASE_SECRET_KEY` and `ORDER_ACCESS_SECRET` entries were moved from Production to the reviewed preview branch by metadata edits; no secret value was retrieved. The branch also has the exact test origin, `SUPABASE_URL`, exact `TURNSTILE_ALLOWED_HOSTNAMES`, explicit Stripe test mode, its public Turnstile site key and private verification secret. The conversion preview alone enables the non-submitting materials design route. Other previews retain no backend credentials.
 
-The shared Stripe account has a dedicated Solta Site sandbox with product `prod_VXBaIPq0R1GJyo` and active one-time USD $499 price `price_1UW7DWEYpNmRDZ8wRCb7Q8us`. The sandbox API key was transferred privately into Vercel and its sensitive, production-only scope was verified through metadata. These are test credentials staged for a future deployment; they do not enable payments. No webhook destination has been registered yet. Choose and verify a reachable application endpoint before registering it. See [shared Stripe account setup](stripe-shared-account.md) for attribution and Dashboard searches.
+A metadata-only audit confirmed all 11 required provider/configuration keys for the branch. All five private values—Supabase server key, Stripe API key, Stripe webhook secret, Turnstile verification secret and order-access secret—are stored as type `sensitive`. The separate branch commerce override does not enable Production or other previews.
+
+Production retains the canonical origin, Supabase URL, allowed production hostnames and its separate Turnstile keys, with commerce disabled. It no longer has the moved Stripe test credentials, Supabase server key or order-access secret. Configure its required private values independently before a future live release.
+
+The shared Stripe account has a dedicated Solta Site sandbox with product `prod_VXBaIPq0R1GJyo` and active one-time USD $499 price `price_1UW7DWEYpNmRDZ8wRCb7Q8us`. The sandbox API key is a sensitive variable scoped only to the reviewed preview branch. The sandbox webhook `we_1UW7teEYpNmRDZ8wjiIRlgbH` is registered and Active, and its matching `STRIPE_WEBHOOK_SECRET` is saved as a sensitive variable for that same branch. These are test credentials; saving them and registering the endpoint do not establish working payments or signed delivery. No endpoint events or purchases have been created yet. See [shared Stripe account setup](stripe-shared-account.md) for attribution and Dashboard searches.
+
+### Configured Turnstile widgets
+
+Both widgets use **Managed** mode with **pre-clearance disabled**. Public site keys below are identifiers, not server secrets; their private verification keys were saved directly into the matching Vercel environments.
+
+| Widget purpose | Public site key | Allowed hostname | Vercel scope |
+| --- | --- | --- | --- |
+| Solta Site sandbox | `0x4AAAAAAFsLH0-PjPx_q9Jt` | `soltasite-git-build-nextjs-supabase-conversion-sn-d1.vercel.app` | Preview, only `build/nextjs-supabase-conversion` |
+| Solta Site production | `0x4AAAAAAFsLOt7ka7vhnBWr` | `soltasite.com` (also covers `www.soltasite.com`) | Production |
+
+The application verifies the expected `checkout` and `materials` actions and exact returned hostname on the server. Cloudflare's root-domain allowance does not replace the application's explicit `TURNSTILE_ALLOWED_HOSTNAMES` check. See [Turnstile hostname management](https://developers.cloudflare.com/turnstile/additional-configuration/hostname-management/).
 
 Use names from the root `.env.example` in private local or provider configuration. Never commit populated environment files or paste secrets into chat.
 
@@ -68,15 +85,19 @@ Use names from the root `.env.example` in private local or provider configuratio
 
 Use independently scoped preview/test and production configuration. The server requires an HTTPS origin, including for a fully connected test deployment. Browser POST requests must use that exact origin; redirect alternate domains to the canonical one. Public environment values such as the Turnstile site key require a new build when changed.
 
-Register the Stripe webhook at `https://<this-environment-host>/api/stripe/webhook` for `checkout.session.completed`, `checkout.session.async_payment_succeeded` and `charge.refunded`. Use the matching endpoint signing secret. Configure the Turnstile widget for the intended hostnames; the client and server use actions `checkout` and `materials`.
+The registered sandbox Stripe webhook points to `https://soltasite-git-build-nextjs-supabase-conversion-sn-d1.vercel.app/api/stripe/webhook`, with snapshot payloads from **Your account** for exactly `checkout.session.completed`, `checkout.session.async_payment_succeeded` and `charge.refunded`. Its API version is `2026-09-30.endive`, the stable version offered by the Dashboard; the pinned SDK's API-request default remains `2026-10-28.endive`. The matching signing secret is restricted to the test branch. [Open this sandbox endpoint](https://dashboard.stripe.com/acct_1UW7CeEYpNmRDZ8w/test/workbench/webhooks/we_1UW7teEYpNmRDZ8wjiIRlgbH).
+
+The endpoint is not reachable by Stripe while Vercel Authentication protects that hostname. In addition, `commerceConfig()` runs before signature/source handling and returns `503` while commerce is disabled or any required configuration is missing. Complete provider configuration is now saved for the branch; environment changes require a rebuild, and hosted signed-delivery verification remains outstanding.
 
 ## 4. Verify a complete test purchase
 
-Enable commerce only in the configured test environment. Confirm a Stripe test payment creates one order through the signed webhook, then unlocks `/thanks`. Verify a delayed webhook shows the pending state; browser-only paid claims and another order's ID must not grant access.
+Keep the completed branch-scoped configuration with `SOLTASITE_COMMERCE_ENABLED=true`, `SOLTASITE_STRIPE_MODE=test` and `KP_SYNC_ENABLED=false`, and rebuild the reviewed source after environment changes. The public Turnstile key requires a rebuild. Stage and inspect the intended source and environment behind Vercel Authentication before applying any approved exception for the one stable preview hostname; Production must remain disabled.
+
+After reachability is established, confirm a Stripe test payment creates one order through the signed webhook, then unlocks `/thanks`. Verify a delayed webhook shows the pending state; browser-only paid claims and another order's ID must not grant access.
 
 Upload representative JPEG/PNG, PDF and supported font files, submit materials, refresh text drafts and retry interrupted requests. Confirm a successful submission creates one immutable materials receipt and pending outgoing events. Confirm duplicate/reordered webhooks and refunds leave the expected access state. Verify private objects cannot be read anonymously and invalid stored files are removed.
 
-Local automated tests cover these contracts where possible; they do not prove hosted Stripe, Turnstile, Vercel or Supabase behavior.
+The previous code verification passed 43 individual tests and the Vercel preview build. Those checks were not rerun for this documentation-only configuration update, and they do not prove hosted Stripe, Turnstile, Vercel or Supabase behavior. No complete hosted purchase/upload/refund verification has been performed yet.
 
 ## 5. Complete launch work
 
@@ -84,4 +105,4 @@ Implement receipt email delivery and its retry path before the site promises a r
 
 The original handoff marks the privacy, terms and accessibility copy as placeholders for owner review. Confirm that copy, the retained `contact@soltaworks.com` address, delivery/update promises and photo permissions. Replace the Keshia “Site coming soon” state when its actual URL is available.
 
-After the test purchase and operational work pass, create the matching live product/price and dedicated webhook in the owner-selected Solta Works Stripe account, configure the corresponding live credentials in the new Solta Site Vercel project, connect the intended domain, verify the production origin and enable commerce. Supabase credentials continue to come from the new SoltaSite project, and KP uses its dedicated integration contract and secret.
+After the test purchase and operational work pass, create the matching live product/price and dedicated live webhook in the owner-selected Solta Works Stripe account. Configure the Production-scoped live Stripe key, price and signing secret together with `SOLTASITE_STRIPE_MODE=live`. Restore a Production-scoped `SUPABASE_SECRET_KEY` from the intended new SoltaSite project and generate a new, independent `ORDER_ACCESS_SECRET`; the previously staged entries now belong only to the test branch. Verify the separate production Turnstile settings, reviewed source and exact production origin, connect the intended domain, and enable production commerce only as part of that deliberate live release. KP uses its dedicated integration contract and secret. Reconcile recorded sandbox data before live use and remove the public preview exception when it is no longer needed.

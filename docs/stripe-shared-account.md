@@ -11,10 +11,18 @@ The owner chose the existing **Solta Works Stripe account** for Solta Site payme
 | Product | `Solta Site — Actor Website`, `prod_VXBaIPq0R1GJyo` |
 | Price | `price_1UW7DWEYpNmRDZ8wRCb7Q8us`, active, one-time USD $499 |
 | Vercel project | `soltasite` in team `sn-d1` |
-| Saved Stripe configuration | Sandbox `STRIPE_SECRET_KEY` as a sensitive production-only variable; sandbox `STRIPE_PRICE_ID` scoped to production |
-| Activation | `SOLTASITE_STRIPE_MODE=test`; `SOLTASITE_COMMERCE_ENABLED=false` |
+| Saved Stripe configuration | Sandbox `STRIPE_SECRET_KEY` as a sensitive branch-preview variable; sandbox `STRIPE_PRICE_ID` scoped to the same branch |
+| Test branch | `build/nextjs-supabase-conversion` |
+| Test origin | `https://soltasite-git-build-nextjs-supabase-conversion-sn-d1.vercel.app` |
+| Sandbox webhook | `we_1UW7teEYpNmRDZ8wjiIRlgbH`, Active; snapshot payloads for Your account |
+| Webhook API version | `2026-09-30.endive`, the stable version offered by the Dashboard |
+| Webhook signing secret | Sensitive `STRIPE_WEBHOOK_SECRET`, only the reviewed preview branch |
+| Test activation | `SOLTASITE_STRIPE_MODE=test`; `SOLTASITE_COMMERCE_ENABLED=true` only for the reviewed preview branch |
+| Production/default activation | `SOLTASITE_COMMERCE_ENABLED=false`; KP remains disabled |
 
 [Open the sandbox product](https://dashboard.stripe.com/acct_1UW7CeEYpNmRDZ8w/test/products/prod_VXBaIPq0R1GJyo).
+
+[Open the sandbox webhook](https://dashboard.stripe.com/acct_1UW7CeEYpNmRDZ8w/test/workbench/webhooks/we_1UW7teEYpNmRDZ8wjiIRlgbH).
 
 The account's live merchant identity and payout configuration apply to live sales from all connected sites. Website attribution groups transactions within that account. Metadata is internal information and is not shown to customers by default; see [Stripe metadata](https://docs.stripe.com/metadata).
 
@@ -63,8 +71,14 @@ Other sites should set their own distinct source labels if comparable filtering 
 
 ## Remaining configuration and verification
 
-No webhook destination has been registered. The intended application needs a reachable HTTPS endpoint at `/api/stripe/webhook`; current Vercel protection and the earlier production source must be resolved deliberately before delivery testing. Register snapshot events for `checkout.session.completed`, `checkout.session.async_payment_succeeded` and `charge.refunded`, then save that endpoint's signing secret as `STRIPE_WEBHOOK_SECRET` in the matching environment.
+The sandbox API key and price were moved from their earlier Production scope to the reviewed preview branch without retrieving the secret. They are not available to other preview branches or future Production builds. Production still runs the earlier `main` deployment with commerce disabled.
 
-Turnstile site/secret keys, a deployed application with the complete matching configuration, and the hosted checkout → webhook → private upload → materials → refund test are still required. The preview has no production credentials. Current production remains the earlier `main` deployment. The saved sandbox API key and price do not establish successful runtime connectivity or authorize enabling real payments.
+The Active sandbox destination `we_1UW7teEYpNmRDZ8wjiIRlgbH` points to `https://soltasite-git-build-nextjs-supabase-conversion-sn-d1.vercel.app/api/stripe/webhook`. It delivers snapshot events from **Your account**, subscribed to exactly `checkout.session.completed`, `checkout.session.async_payment_succeeded` and `charge.refunded`. Its matching signing secret was transferred privately to sensitive `STRIPE_WEBHOOK_SECRET`, restricted to the same preview branch. No endpoint events or purchases have been created yet.
 
-Before live sales, create the live product/price and dedicated live webhook in the same Solta Works account, configure live credentials and mode together, and finish the operational release checklist in [service setup](new-accounts-setup.md).
+The endpoint uses `2026-09-30.endive`, the only stable API version offered by the Dashboard at setup. The pinned Stripe SDK defaults to `2026-10-28.endive` for its own API requests; both use the Endive release family. The endpoint version is recorded explicitly rather than being represented as identical to the SDK default. No application code change was made for this provider setup; actual payload handling remains part of hosted verification.
+
+Separate Managed Turnstile widgets are configured for the test hostname and `soltasite.com`, with pre-clearance disabled and keys saved in their matching environments. The preview uses the new SoltaSite database for prelaunch testing; no real customer data is present. Provider configuration is complete, with commerce enabled only for the reviewed branch and Stripe in test mode. Environment changes require rebuilding that branch; hosted checkout → webhook → private upload → materials → refund verification remains outstanding.
+
+Vercel Authentication still protects the test preview. A proposed public exception for only its stable hostname has not been applied. Rebuild and inspect the reviewed branch with the complete test configuration behind authentication, then obtain the specific approval needed for that exception and verify actual signed delivery. Registering an endpoint alone does not prove reachability: `commerceConfig()` runs before webhook signature/source handling and returns `503` while commerce is disabled or required configuration is missing. The saved sandbox configuration does not establish successful runtime connectivity or enable real payments.
+
+Before live sales, create the live product/price and dedicated live webhook in the same Solta Works account and configure live credentials and mode together. Production also needs its own Supabase server-key entry and a newly generated order-access secret because the previously staged values were moved to the test branch. Finish the operational release checklist in [service setup](new-accounts-setup.md).

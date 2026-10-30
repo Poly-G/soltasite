@@ -8,11 +8,13 @@ The original visual direction, copy, actor examples, photos, and nine-section ma
 
 The application and backend code are implemented and can be built without provider credentials. **Commerce is disabled by default.** The two tracked Supabase migrations have been applied to the new SoltaSite project and verified against its hosted database. KP and email events are saved to a transactional outbox, but their dispatchers are not implemented.
 
-Solta Site uses the owner's **new Vercel and Supabase accounts** and, by the owner's choice, the existing **Solta Works Stripe account**. The Vercel project is configured for Next.js/Node 24. Production-scoped configuration includes the database URL, order-access signing secret, private `SUPABASE_SECRET_KEY`, and a Stripe sandbox key and USD $499 test price. Both server keys are sensitive variables. Stripe webhook registration/signing configuration and Turnstile keys remain outstanding.
+Solta Site uses the owner's **new Vercel and Supabase accounts** and, by the owner's choice, the existing **Solta Works Stripe account**. The Vercel project is configured for Next.js/Node 24. Database access, order-access signing, and the Stripe sandbox key and USD $499 test price are now scoped only to the reviewed preview branch, `build/nextjs-supabase-conversion`. The existing values were moved from their earlier Production scope without retrieving the secrets. Other preview branches receive no backend credentials; a future production release needs its own complete configuration.
+
+Separate **Managed Cloudflare Turnstile widgets** are configured for the stable preview hostname and for `soltasite.com`, with pre-clearance disabled. Their public site keys and private server secrets are saved in the matching Vercel branch-preview and Production environments. The sandbox Stripe webhook is registered and Active, with its signing secret saved privately for the test branch. Provider configuration is complete, and commerce is enabled only in that branch's configuration with Stripe in test mode. Environment changes require rebuilding the reviewed branch; hosted checkout, upload and refund verification remain outstanding.
 
 A dedicated **Solta Site sandbox inside Solta Works** contains the test product. Checkout and payment records carry server-controlled website attribution, and the webhook ignores unrelated sites' events before database writes. See [shared Stripe setup and payment searches](docs/stripe-shared-account.md).
 
-The reviewed application remains on the PR #1 preview branch. Current production still uses the earlier `main` source. Saving the server key does not establish runtime Supabase connectivity or release the converted application; hosted Stripe, Turnstile, upload, and complete-flow verification remain outstanding.
+The reviewed application remains on the PR #1 preview branch. Current production still uses the earlier `main` source, with commerce disabled. The stable test preview remains behind Vercel Authentication; a proposed exception for that one hostname has not been applied. Saving provider configuration does not establish runtime Supabase connectivity or release the converted application; hosted Stripe, Turnstile, upload, and complete-flow verification remain outstanding.
 
 ## Stack
 
@@ -76,7 +78,7 @@ The server expects an exact HTTPS application origin and the new hosted Supabase
 
 [Backend details](backend/README.md) cover the applied migrations, private buckets, payment/access rules, retry behavior, and remaining provider verification. [Claude handoff](docs/claude-handoff.md) records the frontend contracts. [KP connection](docs/kp-connection.md) describes the dedicated integration that remains to be built.
 
-Before enabling real purchases, complete Stripe and Turnstile configuration, verify runtime Supabase access with the reviewed application, and finish test-mode purchase/upload/refund checks, receipt delivery and abandoned-upload cleanup. Review the supplied placeholder legal text and the retained contact address. The Keshia example still says “Site coming soon”; the Maya and Devon examples are fictional.
+Before enabling real purchases, deploy and verify the isolated preview's complete configuration and Stripe webhook delivery, complete test-mode purchase/upload/refund checks, and implement receipt delivery and abandoned-upload cleanup. Configure independent live-production payment credentials, restore a Production-scoped Supabase server key, and generate a new Production order-access secret. Review the supplied placeholder legal text and the retained contact address. The Keshia example still says “Site coming soon”; the Maya and Devon examples are fictional.
 
 ## Source assets
 
