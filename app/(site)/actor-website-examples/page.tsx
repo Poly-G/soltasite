@@ -91,33 +91,13 @@ export default function ActorWebsiteExamplesPage() {
           </div>
         </section>
 
-        <section className="band">
+                <section className="band">
           <div className="wrap sec">
             <div style={{ maxWidth: '900px' }}>
-              <div className="cap">What every actor website needs</div>
-              <h2 style={{ paddingTop: '10px' }}>Five things should be easy to find.</h2>
-              <div className="cols2" style={{ marginTop: '36px' }}>
-                <div className="card pad">
-                  <h3>1. A current headshot</h3>
-                  <p className="p">Lead with how you look now. Visitors should not have to click through a gallery to confirm they found the right person.</p>
-                </div>
-                <div className="card pad">
-                  <h3>2. Your reel</h3>
-                  <p className="p">Put the strongest reel or clip close to the top and make it playable without a scavenger hunt.</p>
-                </div>
-                <div className="card pad">
-                  <h3>3. Resume and credits</h3>
-                  <p className="p">Give people a fast on-page scan and a downloadable resume when they need the full version.</p>
-                </div>
-                <div className="card pad">
-                  <h3>4. Representation or contact</h3>
-                  <p className="p">List your rep when you have one. If you do not, give legitimate industry contacts a simple way to reach you.</p>
-                </div>
-                <div className="card pad">
-                  <h3>5. Your own domain</h3>
-                  <p className="p">A name-based domain gives you one stable link for casting profiles, email signatures, resumes and search results.</p>
-                </div>
-              </div>
+              <div className="cap">What these examples have in common</div>
+              <h2 style={{ paddingTop: '10px' }}>Different visual directions. The same core job.</h2>
+              <p className="lead">Each example makes the actor easy to recognize, puts the reel or work near the top, and gives a clear route to credits and professional contact information. The visual system changes around the performer; the essentials do not.</p>
+              <Link className="link" href="/what-to-put-on-an-actor-website">See the full actor website checklist <span className="ar" aria-hidden="true">→</span></Link>
             </div>
           </div>
         </section>
