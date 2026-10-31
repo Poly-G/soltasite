@@ -125,6 +125,7 @@ export default function ActorWebsiteChecklistPage() {
             <div className="cap">One page or several?</div>
             <h2 style={{ paddingTop: '10px' }}>Start with the amount of structure your material actually needs.</h2>
             <p className="lead">A newer actor with one reel, a resume and a few strong headshots can work very well on one scrolling page. An actor with a long theatre history, multiple reels or substantial press may need more room. The goal is not a page count. The goal is making the useful material easy to scan.</p>
+            <p className="p">Still deciding whether you need a site at all? <Link href="/do-actors-need-a-website">Read when an actor website is worth having →</Link></p>
             <div className="ctas" style={{ paddingTop: '24px' }}>
               <Link className="link" href="/actor-website-examples">See actor website examples <span className="ar" aria-hidden="true">→</span></Link>
               <Link className="link" href="/actor-website-cost">See what actor websites cost <span className="ar" aria-hidden="true">→</span></Link>
