@@ -128,6 +128,7 @@ export default function ActorWebsiteCostPage() {
             <div className="in">
               <h2>Want the site without learning a website builder?</h2>
               <p className="lead">Send us your materials. We build it around you and put it live on your domain.</p>
+              <p className="p">Want the full service details first? <Link href="/actor-website-design">See our actor website design service →</Link></p>
               <div className="ctas">
                 <Link className="btn" href="/start">Start your site · $499 <span className="ar" aria-hidden="true">→</span></Link>
                 <Link className="link" href="/actor-website-examples">See actor website examples <span className="ar" aria-hidden="true">→</span></Link>
