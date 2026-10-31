@@ -107,7 +107,7 @@ export default function LasVegasActorWebsiteDesignPage() {
               <div className="local-portrait-shade"></div>
               <div className="local-portrait-copy">
                 <div className="local-name">Keshia Jean</div>
-                <div className="local-market">Film + TV · Las Vegas / Los Angeles</div>
+                <div className="local-portrait-market">Film + TV · Las Vegas / Los Angeles</div>
                 <div className="local-reel">▶ Watch reel</div>
               </div>
             </div>
