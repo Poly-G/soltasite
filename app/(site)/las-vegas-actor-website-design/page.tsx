@@ -16,12 +16,12 @@ const resourceLinks = [
   {
     name: 'Film Nevada',
     href: 'https://film.nv.gov/',
-    text: 'Nevada’s official film office for production, locations, crew and industry resources.',
+    text: 'Nevada’s official film office for productions, locations, crew and industry resources.',
   },
   {
     name: 'Nevada Production Directory',
     href: 'https://film.nv.gov/about-us/film-nevadas-directories/',
-    text: 'A statewide industry directory where approved listings can include credits, résumé, website and reel.',
+    text: 'A statewide directory for film professionals. Listings can include credits, a résumé, website and reel.',
   },
   {
     name: 'UNLV Stage and Screen Acting',
@@ -36,22 +36,22 @@ const resourceLinks = [
   {
     name: 'VegasAuditions.com',
     href: 'https://www.vegasauditions.com/',
-    text: 'A Las Vegas–focused audition and casting resource for local performers.',
+    text: 'A local audition and casting site for Las Vegas performers.',
   },
 ];
 
 const lanes = [
-  ['01', 'Film + TV', 'Headshot and reel first. Credits support the work instead of taking over the page.'],
-  ['02', 'Commercial', 'A bright, immediate read with the face, clips and professional booking route easy to find.'],
-  ['03', 'Stage + screen', 'Give theatre and training real room without burying the reel or contact information.'],
-  ['04', 'Building credits', 'A smaller set of current material beats a padded portfolio full of old or unrelated work.'],
+  ['01', 'Film + TV', 'Put the headshot and reel first. Then back it up with selected credits and the full résumé.'],
+  ['02', 'Commercial', 'Keep the page quick. Face, clips, rep or contact info.'],
+  ['03', 'Stage + screen', 'Make room for theatre and training without pushing the reel and contact info too far down.'],
+  ['04', 'Building credits', 'You do not need to fill space. Use the best current material you have.'],
 ];
 
 const essentials = [
-  ['01', 'Current headshot', 'Make it easy to confirm who you are and how you look now.'],
-  ['02', 'Reel or strongest clip', 'One clear play action near the top. No hunting through menus.'],
-  ['03', 'Résumé + selected credits', 'Important work on the page, with the full résumé ready to download.'],
-  ['04', 'Representation or safe contact', 'Your rep when you have one; a professional route when you do not.'],
+  ['01', 'Current headshot', 'Use the headshot that looks like you now.'],
+  ['02', 'Reel or strongest clip', 'Put it near the top so people do not have to hunt for it.'],
+  ['03', 'Résumé + selected credits', 'Show the important credits on the page and keep the full résumé easy to download.'],
+  ['04', 'Representation or contact', 'List your rep if you have one. If not, use a professional email or contact form.'],
 ];
 
 export default function LasVegasActorWebsiteDesignPage() {
@@ -119,11 +119,11 @@ export default function LasVegasActorWebsiteDesignPage() {
         <section className="band">
           <div className="wrap sec local-market">
             <div className="local-section-head">
-              <div className="cap">Built for the way Vegas actors actually work</div>
-              <h2>The market is bigger than one lane.</h2>
+              <div className="cap">Las Vegas actors do different kinds of work</div>
+              <h2>Your site should make it clear what kind of actor you are.</h2>
               <p className="lead">
-                Depending on the performer, Las Vegas can mean screen work, commercials, live entertainment,
-                independent productions or a mix. Your site should make your lane obvious in seconds.
+                Some actors are focused on film and TV. Others do commercial work, stage, live entertainment,
+                independent productions or a mix. Your site should make that clear fast.
               </p>
             </div>
             <div className="local-lanes">
@@ -146,15 +146,14 @@ export default function LasVegasActorWebsiteDesignPage() {
             <div className="local-dual-city la">LA</div>
           </div>
           <div className="local-dual-copy">
-            <div className="cap">More than one working market?</div>
-            <h2>Vegas + LA can live on one site without looking scattered.</h2>
+            <div className="cap">Working in Vegas and LA?</div>
+            <h2>You can list both without making the site messy.</h2>
             <p className="lead">
-              If you legitimately work in Las Vegas and Los Angeles — or another market — keep one primary market near
-              your identity and use the second where it adds useful context.
+              If you work in Las Vegas and Los Angeles, or another market, you can show both. Keep one market near
+              your name and mention the second where it makes sense.
             </p>
             <p className="p">
-              Your face and your work should still carry the page. Geography is there to clarify your availability,
-              not turn the headline into a list of cities.
+              Your headshot and reel still come first. The cities only need to tell people where you work.
             </p>
             <Link className="link" href="/actor-seo">See the SEO for actors guide <span className="ar" aria-hidden="true">→</span></Link>
           </div>
@@ -164,8 +163,8 @@ export default function LasVegasActorWebsiteDesignPage() {
           <div className="wrap sec local-essentials">
             <div className="local-section-head compact">
               <div className="cap">What belongs on the site</div>
-              <h2>Four things. Easy to find.</h2>
-              <p className="p">The local market changes. The basic job of an actor site does not.</p>
+              <h2>Four things people should find fast.</h2>
+              <p className="p">No matter what kind of work you do, these are the basics.</p>
             </div>
             <div className="local-essential-list">
               {essentials.map(([number, title, text]) => (
@@ -185,8 +184,8 @@ export default function LasVegasActorWebsiteDesignPage() {
         <section className="wrap sec local-resources">
           <div className="local-resource-intro">
             <div className="cap">Las Vegas + Nevada actor resources</div>
-            <h2>Know the local ecosystem.</h2>
-            <p className="lead">A few durable places to understand production, training and auditions around the market.</p>
+            <h2>A few Las Vegas resources worth knowing.</h2>
+            <p className="lead">Useful starting points for production, training and auditions in Nevada.</p>
             <p className="cap">Independent resources. Solta Site is not affiliated with or endorsed by them.</p>
           </div>
           <div className="local-resource-list">
@@ -206,10 +205,10 @@ export default function LasVegasActorWebsiteDesignPage() {
         <section className="wrap get local-offer">
           <div className="l">
             <div className="cap">The Solta Site offer</div>
-            <h2>The website part should be the easy part.</h2>
-            <p className="lead">You send the materials. We make the design decisions, build the site and get it ready for your domain.</p>
+            <h2>You send the materials. We build the site.</h2>
+            <p className="lead">No website builder to learn. No template to wrestle with. We handle the design and build.</p>
             <div>
-              <div className="item numrow"><span className="num">01</span><span>Hosting included — no monthly Solta Site hosting fee</span></div>
+              <div className="item numrow"><span className="num">01</span><span>Hosting included. No monthly Solta Site hosting fee.</span></div>
               <div className="item numrow"><span className="num">02</span><span>Your own domain, in your name</span></div>
               <div className="item numrow"><span className="num">03</span><span>Two consolidated rounds of changes</span></div>
               <div className="item numrow"><span className="num">04</span><span>Two updates a year included</span></div>
@@ -223,7 +222,7 @@ export default function LasVegasActorWebsiteDesignPage() {
           <div className="card price">
             <div><span className="pill">One-time</span></div>
             <div className="disp">$499</div>
-            <p className="lead">Built around your actual material — not a generic “Vegas actor” template.</p>
+            <p className="lead">Built from your material, not from a generic Vegas template.</p>
             <div className="cap note">Serving Las Vegas performers online.</div>
             <Link className="btn full" href="/start">Start your site · $499 <span className="ar" aria-hidden="true">→</span></Link>
             <Link className="link" href="/actor-website-examples">See what yours could look like <span className="ar" aria-hidden="true">→</span></Link>
@@ -233,8 +232,8 @@ export default function LasVegasActorWebsiteDesignPage() {
         <section className="band">
           <div className="wrap sec local-proof">
             <div>
-              <div className="cap">Not a city template</div>
-              <h2>Your market gives context. Your work gives the site its look.</h2>
+              <div className="cap">Different actors should look different</div>
+              <h2>Vegas tells people where you work. It should not decide how your site looks.</h2>
             </div>
             <div className="local-proof-words" aria-hidden="true">
               <span>FILM + TV</span>
@@ -242,7 +241,7 @@ export default function LasVegasActorWebsiteDesignPage() {
               <span>STAGE + SCREEN</span>
             </div>
             <div className="local-proof-footer">
-              <p className="lead">Different performers can need the same information and still deserve completely different visual systems.</p>
+              <p className="lead">The same basic information can look completely different from one actor to the next.</p>
               <Link className="link" href="/actor-website-examples">Browse actor website examples <span className="ar" aria-hidden="true">→</span></Link>
             </div>
           </div>
@@ -253,8 +252,8 @@ export default function LasVegasActorWebsiteDesignPage() {
             <div className="circ"></div>
             <div className="in">
               <div className="cap">Las Vegas · Online</div>
-              <h2>Build the professional link you can keep using.</h2>
-              <p className="lead">Your materials. Your name. One place to send people when they look you up.</p>
+              <h2>Give people one good link when they look you up.</h2>
+              <p className="lead">Your headshot, reel, résumé and contact info. All in one place.</p>
               <div className="ctas">
                 <Link className="btn" href="/start">Start your site · $499 <span className="ar" aria-hidden="true">→</span></Link>
                 <Link className="link" href="/actor-website-examples">See the examples <span className="ar" aria-hidden="true">→</span></Link>
