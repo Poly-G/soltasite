@@ -90,35 +90,19 @@ export default function ActorWebsiteCostPage() {
           </div>
         </section>
 
-        <section className="wrap sec">
+                <section className="wrap sec">
           <div style={{ maxWidth: '900px' }}>
-            <div className="cap">What should be included</div>
-            <h2 style={{ paddingTop: '10px' }}>An actor website should not become a second job.</h2>
-            <p className="lead">For most actors, the site only needs to make the important material easy to find: your current headshot, reel, resume, credits and training, representation or contact route, and the links casting already uses.</p>
-            <div className="cols2" style={{ marginTop: '36px' }}>
-              <div>
-                <h3>Before you compare prices, check:</h3>
-                <ul className="p" style={{ paddingLeft: '20px', display: 'grid', gap: '10px' }}>
-                  <li>Is hosting included or billed separately?</li>
-                  <li>Do you own the domain?</li>
-                  <li>Can you update headshots and reels later?</li>
-                  <li>Is mobile design included?</li>
-                  <li>Are there extra charges for pages, photos or video embeds?</li>
-                  <li>Who maintains the site after launch?</li>
-                </ul>
-              </div>
-              <div>
-                <h3>With Solta Site:</h3>
-                <ul className="p" style={{ paddingLeft: '20px', display: 'grid', gap: '10px' }}>
-                  <li>$499 one-time build</li>
-                  <li>Hosting included</li>
-                  <li>No monthly hosting fee</li>
-                  <li>Your domain is in your name</li>
-                  <li>Two rounds of changes before launch</li>
-                  <li>Two updates a year included</li>
-                </ul>
-              </div>
-            </div>
+            <div className="cap">Compare the total, not just the headline price</div>
+            <h2 style={{ paddingTop: '10px' }}>Before you compare actor website prices, check what the price actually includes.</h2>
+            <ul className="p" style={{ paddingLeft: '20px', display: 'grid', gap: '10px', marginTop: '24px' }}>
+              <li>Is hosting included or billed separately?</li>
+              <li>Who owns and renews the domain?</li>
+              <li>Are mobile layouts included?</li>
+              <li>How many revision rounds are included?</li>
+              <li>What happens when your headshots, reel or representation changes?</li>
+              <li>Are there extra charges for pages, photos or video embeds?</li>
+            </ul>
+            <p className="p">For the content itself, use the <Link href="/what-to-put-on-an-actor-website">actor website checklist →</Link></p>
           </div>
         </section>
 
