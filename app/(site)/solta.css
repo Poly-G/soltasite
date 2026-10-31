@@ -241,8 +241,108 @@
   .solta-site .rv{opacity:1;transform:none}
 }
 
+
+/* Las Vegas local landing page */
+.solta-site .local-hero{display:grid;grid-template-columns:minmax(0,1fr) 470px;gap:58px;align-items:center;padding-top:64px;padding-bottom:96px}
+.solta-site .local-hero-copy{display:flex;flex-direction:column;gap:24px}
+.solta-site .local-hero-copy h1{max-width:690px}
+.solta-site .local-hero-copy .lead{max-width:620px}
+.solta-site .local-hero-copy .ctas{display:flex;align-items:center;gap:22px}
+.solta-site .local-hero-art{position:relative;height:610px}
+.solta-site .local-orbit{position:absolute;inset:70px 0 auto 52px;width:390px;height:390px;border-radius:50%;background:var(--cream)}
+.solta-site .local-portrait{position:absolute;top:22px;left:82px;width:318px;height:510px;border-radius:32px;overflow:hidden;background:var(--ink);box-shadow:0 28px 70px -34px rgba(17,19,24,.55)}
+.solta-site .local-portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;filter:grayscale(1) contrast(1.05) brightness(.9)}
+.solta-site .local-portrait-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(17,19,24,0) 44%,rgba(17,19,24,.88) 100%)}
+.solta-site .local-portrait-copy{position:absolute;left:24px;right:24px;bottom:24px;color:#fff}
+.solta-site .local-name{font-family:var(--font-head);font-size:34px;font-weight:700;letter-spacing:-.03em;line-height:1}
+.solta-site .local-market{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.72);padding-top:8px}
+.solta-site .local-reel{display:inline-flex;margin-top:14px;border:1px solid rgba(255,255,255,.52);border-radius:999px;padding:8px 12px;font-size:13px;font-weight:600}
+.solta-site .local-float{position:absolute;z-index:2;border-radius:999px;padding:12px 17px;font-size:13px;font-weight:700;letter-spacing:.06em;box-shadow:0 18px 40px -25px rgba(17,19,24,.5)}
+.solta-site .local-float-market{left:0;top:158px;background:var(--mari);color:var(--ink)}
+.solta-site .local-float-link{right:0;bottom:58px;background:var(--ink);color:var(--cream)}
+.solta-site .local-market{display:flex;flex-direction:column;gap:52px}
+.solta-site .local-section-head{max-width:790px;display:flex;flex-direction:column;gap:16px}
+.solta-site .local-section-head.compact{max-width:520px}
+.solta-site .local-lanes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:26px}
+.solta-site .local-lane{border-top:2px solid var(--ink);padding-top:18px;display:flex;flex-direction:column;gap:12px}
+.solta-site .local-lane .num{font-size:15px}
+.solta-site .local-lane h3{font-size:22px}
+.solta-site .local-lane .p{font-size:15.5px}
+.solta-site .local-dual{display:grid;grid-template-columns:460px 1fr;gap:72px;align-items:center}
+.solta-site .local-dual-visual{position:relative;min-height:500px;background:var(--ink);border-radius:28px;color:var(--cream);overflow:hidden;padding:44px}
+.solta-site .local-dual-dot{position:absolute;right:-68px;bottom:-76px;width:245px;height:245px;border-radius:50%;background:var(--mari)}
+.solta-site .local-dual-city{position:relative;font-family:var(--font-head);font-weight:700;font-size:92px;letter-spacing:-.07em;line-height:.74}
+.solta-site .local-dual-city.la{font-size:154px;margin-top:26px}
+.solta-site .local-dual-arrow{position:relative;font-size:34px;color:var(--mari);padding:28px 0 8px}
+.solta-site .local-dual-copy{display:flex;flex-direction:column;gap:22px}
+.solta-site .local-essentials{display:grid;grid-template-columns:420px 1fr;gap:78px;align-items:start}
+.solta-site .local-essential-list{border-top:1px solid var(--line)}
+.solta-site .local-essential{display:grid;grid-template-columns:56px 230px 1fr;gap:18px;align-items:start;padding:25px 0;border-bottom:1px solid var(--line)}
+.solta-site .local-essential h3{font-size:20px}
+.solta-site .local-essential .p{font-size:16px}
+.solta-site .local-essential-link{display:inline-block;margin-top:22px}
+.solta-site .local-resources{display:grid;grid-template-columns:380px 1fr;gap:90px;align-items:start}
+.solta-site .local-resource-intro{display:flex;flex-direction:column;gap:18px;position:sticky;top:28px}
+.solta-site .local-resource-list{border-top:1px solid var(--line)}
+.solta-site .local-resource-row{display:grid;grid-template-columns:50px 1fr 28px;gap:16px;align-items:start;padding:22px 0;border-bottom:1px solid var(--line);transition:padding .2s var(--ease),color .2s}
+.solta-site .local-resource-row:hover{padding-left:10px;color:var(--blue)}
+.solta-site .local-resource-text{display:flex;flex-direction:column;gap:4px}
+.solta-site .local-resource-text strong{font-family:var(--font-head);font-size:20px;letter-spacing:-.01em}
+.solta-site .local-resource-text span{font-size:15.5px;color:var(--grey)}
+.solta-site .local-resource-arrow{font-size:22px;text-align:right}
+.solta-site .local-offer{padding-top:112px}
+.solta-site .local-offer .ctas{display:flex;gap:20px;flex-wrap:wrap;padding-top:6px}
+.solta-site .local-proof{display:flex;flex-direction:column;gap:42px}
+.solta-site .local-proof>div:first-child{max-width:780px}
+.solta-site .local-proof-words{display:flex;flex-wrap:wrap;gap:10px 14px}
+.solta-site .local-proof-words span{font-family:var(--font-head);font-weight:700;font-size:42px;letter-spacing:-.04em;line-height:1;border:1px solid var(--ink);border-radius:999px;padding:11px 18px}
+.solta-site .local-proof-words span:nth-child(2){background:var(--mari)}
+.solta-site .local-proof-footer{display:flex;justify-content:space-between;gap:40px;align-items:flex-end}
+.solta-site .local-proof-footer .lead{max-width:700px;color:var(--ink)}
+
 /* ---------- phone ---------- */
 @media (max-width:860px){
+  .solta-site .local-hero{grid-template-columns:1fr;gap:14px;padding-top:34px;padding-bottom:34px}
+  .solta-site .local-hero-copy{gap:18px}
+  .solta-site .local-hero-copy .eyebrow{display:none}
+  .solta-site .local-hero-copy .ctas{flex-direction:column;align-items:stretch;gap:12px}
+  .solta-site .local-hero-copy .ctas .btn{width:100%}
+  .solta-site .local-hero-copy .ctas .link{display:none}
+  .solta-site .local-hero-art{height:465px;width:100%;max-width:360px;margin:20px auto 0}
+  .solta-site .local-orbit{left:18px;top:50px;width:315px;height:315px}
+  .solta-site .local-portrait{left:50px;top:8px;width:250px;height:410px;border-radius:26px}
+  .solta-site .local-name{font-size:29px}
+  .solta-site .local-market{font-size:10px}
+  .solta-site .local-float-market{left:0;top:124px;font-size:11px;padding:10px 13px}
+  .solta-site .local-float-link{right:0;bottom:14px;font-size:11px;padding:10px 13px}
+  .solta-site .local-market{gap:30px}
+  .solta-site .local-lanes{grid-template-columns:1fr;gap:0}
+  .solta-site .local-lane{padding:18px 0;border-top:1px solid var(--line);display:grid;grid-template-columns:42px 1fr;gap:6px 10px}
+  .solta-site .local-lane .num{grid-row:1 / span 2}
+  .solta-site .local-lane h3{font-size:19px}
+  .solta-site .local-lane .p{font-size:15px}
+  .solta-site .local-dual{grid-template-columns:1fr;gap:28px}
+  .solta-site .local-dual-visual{min-height:320px;padding:30px;border-radius:22px}
+  .solta-site .local-dual-city{font-size:62px}
+  .solta-site .local-dual-city.la{font-size:100px;margin-top:14px}
+  .solta-site .local-dual-arrow{font-size:26px;padding:18px 0 4px}
+  .solta-site .local-essentials{grid-template-columns:1fr;gap:28px}
+  .solta-site .local-essential{grid-template-columns:42px 1fr;gap:5px 10px;padding:18px 0}
+  .solta-site .local-essential .num{grid-row:1 / span 2}
+  .solta-site .local-essential h3{font-size:18px}
+  .solta-site .local-essential .p{font-size:15px}
+  .solta-site .local-resources{grid-template-columns:1fr;gap:28px}
+  .solta-site .local-resource-intro{position:static}
+  .solta-site .local-resource-row{grid-template-columns:36px 1fr 20px;padding:18px 0}
+  .solta-site .local-resource-text strong{font-size:18px}
+  .solta-site .local-resource-text span{font-size:14.5px}
+  .solta-site .local-offer{padding-top:48px}
+  .solta-site .local-offer .ctas{flex-direction:column;align-items:flex-start}
+  .solta-site .local-proof{gap:28px}
+  .solta-site .local-proof-words{gap:8px}
+  .solta-site .local-proof-words span{font-size:24px;padding:9px 13px}
+  .solta-site .local-proof-footer{flex-direction:column;align-items:flex-start;gap:18px}
+
   .solta-site{font-size:16px}
   .solta-site .mob{display:block}
   .solta-site .desk{display:none!important}
