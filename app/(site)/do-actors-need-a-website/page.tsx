@@ -121,6 +121,7 @@ export default function DoActorsNeedAWebsitePage() {
             <div className="cap">If you are ready</div>
             <h2 style={{ paddingTop: '10px' }}>Keep it simple and useful.</h2>
             <p className="p">Start with a current headshot, your strongest reel or clip, resume and credits, representation or a safe contact route, and the professional links that matter. You can see the full checklist and three different design directions below.</p>
+            <p className="p">Already using casting profiles or social media? <Link href="/actor-website-vs-instagram-linktree-casting-profile">See how an actor website compares to Instagram, Linktree and casting profiles →</Link></p>
             <div className="ctas" style={{ paddingTop: '24px' }}>
               <Link className="link" href="/what-to-put-on-an-actor-website">Actor website checklist <span className="ar" aria-hidden="true">→</span></Link>
               <Link className="link" href="/actor-website-examples">Actor website examples <span className="ar" aria-hidden="true">→</span></Link>
