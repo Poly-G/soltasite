@@ -2,13 +2,16 @@ import type { NextConfig } from 'next';
 
 const config: NextConfig = {
   poweredByHeader: false,
+  async redirects() {
+    return [{
+      source: '/actor-website-vs-instagram-linktree-casting-profile',
+      destination: '/do-actors-need-a-website',
+      permanent: true,
+    }];
+  },
   async headers() {
     const production = process.env.VERCEL_ENV === 'production';
-    const liveCheckout = production
-      && process.env.SOLTASITE_COMMERCE_ENABLED === 'true'
-      && process.env.SOLTASITE_STRIPE_MODE === 'live';
-    const publicNoIndexPaths = ['/examples/:path*', '/privacy', '/terms', '/accessibility'];
-    if (!liveCheckout) publicNoIndexPaths.push('/start');
+    const publicNoIndexPaths = ['/examples/:path*', '/privacy', '/terms', '/accessibility', '/start'];
 
     return [
       { source: '/:path*', headers: [
