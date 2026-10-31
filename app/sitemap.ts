@@ -14,6 +14,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: canonicalUrl('/actor-website-examples'),
       lastModified: '2026-10-31',
     },
+    {
+      url: canonicalUrl('/actor-website-cost'),
+      lastModified: '2026-10-31',
+    },
   ];
 
   if (isLiveCheckoutEnabled) pages.push({ url: canonicalUrl('/start') });
