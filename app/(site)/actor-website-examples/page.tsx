@@ -128,6 +128,7 @@ export default function ActorWebsiteExamplesPage() {
             <h2 style={{ paddingTop: '10px' }}>Match the design to the work, not a template trend.</h2>
             <p className="lead">A dramatic film actor can use a darker cinematic page. A commercial performer can go brighter and more personality-forward. A theatre actor may need more space for credits and training. The structure can stay simple while the visual read changes completely.</p>
             <p className="p">That is how Solta Site works: you send the materials, we build the site around the performer, and it goes live on your domain. You do not spend a weekend learning a website builder.</p>
+            <p className="p">Looking for the service itself? <Link href="/actor-website-design">See our actor website design service →</Link></p>
             <div className="ctas" style={{ paddingTop: '24px' }}>
               <Link className="btn" href="/start">Start your site · $499 <span className="ar" aria-hidden="true">→</span></Link>
               <Link className="link" href="/">See what is included <span className="ar" aria-hidden="true">→</span></Link>
