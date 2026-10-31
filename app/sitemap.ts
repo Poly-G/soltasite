@@ -4,11 +4,17 @@ import { canonicalUrl, isLiveCheckoutEnabled, isProductionDeployment } from '@/l
 export default function sitemap(): MetadataRoute.Sitemap {
   if (!isProductionDeployment) return [];
 
-  const pages: MetadataRoute.Sitemap = [{
-    url: canonicalUrl('/'),
-    // Update only when the homepage's content meaningfully changes.
-    lastModified: '2026-10-30',
-  }];
+  const pages: MetadataRoute.Sitemap = [
+    {
+      url: canonicalUrl('/'),
+      // Update only when the homepage's content meaningfully changes.
+      lastModified: '2026-10-31',
+    },
+    {
+      url: canonicalUrl('/actor-website-examples'),
+      lastModified: '2026-10-31',
+    },
+  ];
 
   if (isLiveCheckoutEnabled) pages.push({ url: canonicalUrl('/start') });
 
