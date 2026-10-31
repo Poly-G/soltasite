@@ -177,8 +177,8 @@ export default function ActorSeoPage() {
           <div className="close">
             <div className="circ"></div>
             <div className="in">
-              <h2>Want the site and the SEO foundation handled for you?</h2>
-              <p className="lead">Solta Site builds the actor website, sets the core metadata and technical SEO, and puts it live on your domain for $499 once.</p>
+              <h2>Want a professional site under your own name?</h2>
+              <p className="lead">Solta Site builds the actor website for you and puts it live on your own domain for $499 once.</p>
               <div className="ctas">
                 <Link className="btn" href="/start">Start your site · $499 <span className="ar" aria-hidden="true">→</span></Link>
                 <Link className="link" href="/actor-website-design">See the service details <span className="ar" aria-hidden="true">→</span></Link>
