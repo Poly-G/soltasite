@@ -249,99 +249,39 @@ This reduces index bloat and concentrates signals.
 
 ---
 
-## 5A. Geographic expansion strategy
+## 5A. Geographic rule
 
-SoltaSite remains an **online-only business**. We will not create or maintain a Google Business Profile unless the operating model later changes to genuine in-person customer service that satisfies Google's eligibility rules.
+SoltaSite is an **online-only business** and will not create city landing pages for now.
 
-Local SEO will therefore focus on **organic search**, not Google Maps / Local Pack rankings.
+### Current rule
 
-### Target markets
+- Do not create city-modified commercial pages such as `/las-vegas-actor-website-design`, `/actor-websites-los-angeles`, or similar location variants.
+- Do not create a Google Business Profile while SoltaSite remains online-only.
+- Do not use virtual offices, home addresses, coworking spaces, or other artificial local signals to manufacture local relevance.
+- Market research may be used to improve national guides, resource sections, outreach, and future first-party research.
 
-The approved expansion sequence is:
+### When a city page may be reconsidered
 
-1. **Las Vegas, Nevada**
-2. **Oklahoma City, Oklahoma**
-3. **Albuquerque, New Mexico**
-4. **Austin, Texas**
-5. **Atlanta, Georgia**
+Revisit a city only after SoltaSite has **real customers or first-party proof in that market** and can build a page that materially differs from the national service page.
 
-These markets are selected because they combine active or growing production ecosystems with meaningful populations of working and developing actors. Current official sources show active production support and/or incentives in Nevada, Oklahoma, New Mexico, Texas/Austin and Georgia.
+A future city page would need evidence such as:
+- real customer work in the market,
+- first-party observations or data from serving actors there,
+- genuinely different local customer needs,
+- useful local proof that cannot be reproduced by changing a city name.
 
-### Local-page rule
+Until then, city pages are treated as doorway-page risk and remain outside the indexable architecture.
 
-A city page is allowed only when it contains genuinely city-specific value.
+### Research can still become national guides
 
-A valid local page must include several of the following:
+Market research should be mined for broader actor questions that apply across cities. Two current candidates are:
 
-- local actor / production context,
-- market-specific guidance,
-- local casting / production resources,
-- local headshot, reel, coaching or industry resources where useful,
-- how actors in that market commonly overlap with nearby production markets,
-- local examples or customers once available,
-- unique internal links and copy based on the city's real ecosystem.
+- **Local hire for actors:** what “local hire” means, how casting calls use the term, and what an actor should put on a website or résumé.
+- **Self-tapes:** what casting may look at after a self-tape and how an actor's website, reel, credits, and contact information fit into that path.
 
-A local page must **not** be a rewritten national page with only the city name changed.
+These are research candidates, not automatic publication approvals. They still must pass the normal distinct-intent and SERP-quality review before becoming indexable pages.
 
-### Planned local URLs
-
-- `/las-vegas-actor-website-design`
-- `/oklahoma-city-actor-website-design`
-- `/albuquerque-actor-website-design`
-- `/austin-actor-website-design`
-- `/atlanta-actor-website-design`
-
-### Rollout rule
-
-Do not publish all five at once.
-
-Launch sequentially:
-
-**Las Vegas → Oklahoma City → Albuquerque → Austin → Atlanta**
-
-Each subsequent market opens only after the previous market page has:
-
-- been indexed,
-- accumulated initial Search Console impressions,
-- passed a duplicate-content / doorway-page review,
-- shown that the local template is producing unique content rather than thin variants.
-
-### Primary local query families
-
-Each page should own its city-modified commercial intent, for example:
-
-- actor website design Las Vegas
-- actor websites Las Vegas
-- website design for actors Las Vegas
-- Las Vegas actor website designer
-
-Do **not** create separate pages for each keyword variation.
-
-### Online-only positioning
-
-Because SoltaSite remains online:
-
-- do not claim a local office,
-- do not claim in-person service,
-- do not publish fake local addresses,
-- do not use coworking or virtual-office addresses for local-search manipulation,
-- do not imply membership in a local industry organization unless true.
-
-The page may accurately say SoltaSite serves actors in that market online.
-
-### Geographic expansion gate
-
-A city page must earn its own existence.
-
-Before publishing a market page, document:
-
-1. the target search intent,
-2. current local SERP competition,
-3. the city's actor / production ecosystem,
-4. at least three pieces of city-specific information the national page does not contain,
-5. the internal-link path to the national commercial page,
-6. how the page will be materially different from the previous city page.
-
+---
 
 ## 6. Pages we will NOT build now
 
