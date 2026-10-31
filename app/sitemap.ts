@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next';
-import { canonicalUrl, isLiveCheckoutEnabled, isProductionDeployment } from '@/lib/seo';
+import { canonicalUrl, isProductionDeployment } from '@/lib/seo';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   if (!isProductionDeployment) return [];
@@ -27,10 +27,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: '2026-10-31',
     },
     {
-      url: canonicalUrl('/actor-website-vs-instagram-linktree-casting-profile'),
-      lastModified: '2026-10-31',
-    },
-    {
       url: canonicalUrl('/actor-website-design'),
       lastModified: '2026-10-31',
     },
@@ -43,8 +39,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: '2026-10-31',
     },
   ];
-
-  if (isLiveCheckoutEnabled) pages.push({ url: canonicalUrl('/start') });
 
   return pages;
 }
