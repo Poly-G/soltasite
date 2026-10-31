@@ -30,6 +30,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: canonicalUrl('/actor-website-vs-instagram-linktree-casting-profile'),
       lastModified: '2026-10-31',
     },
+    {
+      url: canonicalUrl('/actor-website-design'),
+      lastModified: '2026-10-31',
+    },
   ];
 
   if (isLiveCheckoutEnabled) pages.push({ url: canonicalUrl('/start') });
