@@ -35,6 +35,7 @@ export default function ActorWebsiteDesignPage() {
             <p className="lead">Your headshot, reel, resume, credits and contact information on your own domain. We design and build the site for you. $499 once.</p>
             <p className="p">Comparing DIY tools first? <Link href="/actor-website-builder">See actor website builders vs done-for-you design →</Link></p>
             <p className="p">Need the search side too? <Link href="/actor-seo">See our SEO for actors guide →</Link></p>
+            <p className="p">In the Las Vegas market? <Link href="/las-vegas-actor-website-design">See actor website design for Las Vegas performers →</Link></p>
             <div className="ctas" style={{ paddingTop: '24px' }}>
               <Link className="btn" href="/start">Start your site · $499 <span className="ar" aria-hidden="true">→</span></Link>
               <Link className="link" href="/actor-website-examples">See actor website examples <span className="ar" aria-hidden="true">→</span></Link>
