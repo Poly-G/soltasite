@@ -23,7 +23,7 @@ const sharedOpenGraph = {
     url: canonicalUrl('/opengraph-image'),
     width: 1200,
     height: 630,
-    alt: 'Solta Site — Actor websites, built for you. $499, once.',
+    alt: 'Solta Site. Actor websites, built for you. $499, once.',
     type: 'image/png',
   }],
 };
