@@ -38,6 +38,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: canonicalUrl('/actor-seo'),
       lastModified: '2026-10-31',
     },
+    {
+      url: canonicalUrl('/las-vegas-actor-website-design'),
+      lastModified: '2026-10-31',
+    },
   ];
 
   return pages;
