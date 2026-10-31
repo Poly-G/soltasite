@@ -80,27 +80,27 @@ export default function DoActorsNeedAWebsitePage() {
           </div>
         </section>
 
-        <section className="band">
+                <section className="band">
           <div className="wrap sec">
-            <div style={{ maxWidth: '900px' }}>
-              <div className="cap">What a website actually does</div>
-              <h2 style={{ paddingTop: '10px' }}>It gives you control over the search result.</h2>
-              <div style={{ display: 'grid', gap: '22px', marginTop: '32px' }}>
-                <div>
-                  <h3>One link for everything</h3>
-                  <p className="p">Your resume, email signature, casting profiles, social bio and networking contacts can all point to the same address.</p>
+            <div style={{ maxWidth: '940px' }}>
+              <div className="cap">How it fits with the tools you already use</div>
+              <h2 style={{ paddingTop: '10px' }}>A website complements casting profiles and social media. It does not replace them.</h2>
+              <div className="cols2" style={{ marginTop: '36px' }}>
+                <div className="card pad">
+                  <h3>Casting profiles</h3>
+                  <p className="p">Keep them. Actors Access, Casting Networks and similar platforms are built for submissions and industry workflow. Your website has a different job: giving someone one professional page after they search your name or follow your link.</p>
                 </div>
-                <div>
-                  <h3>Your work in the order you want it seen</h3>
-                  <p className="p">You decide whether the reel, headshot, credits or representation comes first instead of letting another platform choose the layout.</p>
+                <div className="card pad">
+                  <h3>Instagram</h3>
+                  <p className="p">Instagram is useful for personality, community and recent work. A website is cleaner when someone wants your reel, resume, credits and professional contact information without sorting through a social feed.</p>
                 </div>
-                <div>
-                  <h3>A professional home that is not a social feed</h3>
-                  <p className="p">Instagram and TikTok can be useful, but a website separates your acting materials from everything else you post.</p>
+                <div className="card pad">
+                  <h3>Linktree or another link-in-bio page</h3>
+                  <p className="p">A link-in-bio page is good at routing people to several destinations. An actor website presents the important material itself, while still linking out to the profiles and platforms you use.</p>
                 </div>
-                <div>
-                  <h3>A domain you can keep</h3>
-                  <p className="p">Platforms change. A name-based domain can stay the same while the casting sites and social networks around it change.</p>
+                <div className="card pad dark">
+                  <h3>Your own website</h3>
+                  <p className="p">The advantage is control: your name on the domain, your materials in the order you choose, and one address you can keep even when platforms change.</p>
                 </div>
               </div>
             </div>
@@ -121,7 +121,6 @@ export default function DoActorsNeedAWebsitePage() {
             <div className="cap">If you are ready</div>
             <h2 style={{ paddingTop: '10px' }}>Keep it simple and useful.</h2>
             <p className="p">Start with a current headshot, your strongest reel or clip, resume and credits, representation or a safe contact route, and the professional links that matter. You can see the full checklist and three different design directions below.</p>
-            <p className="p">Already using casting profiles or social media? <Link href="/actor-website-vs-instagram-linktree-casting-profile">See how an actor website compares to Instagram, Linktree and casting profiles →</Link></p>
             <p className="p">Want to improve what appears when someone searches your name? <Link href="/actor-seo">Read the SEO for actors guide →</Link></p>
             <div className="ctas" style={{ paddingTop: '24px' }}>
               <Link className="link" href="/what-to-put-on-an-actor-website">Actor website checklist <span className="ar" aria-hidden="true">→</span></Link>
