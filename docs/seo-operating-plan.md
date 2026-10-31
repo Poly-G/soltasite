@@ -241,7 +241,7 @@ The current SERP commonly treats “website vs casting profile/social” as a su
 ### Action
 
 1. Move the strongest comparison content into `/do-actors-need-a-website`.
-2. 301 redirect the comparison URL to `/do-actors-need-a-website`.
+2. permanent redirect (308 in Next.js) the comparison URL to `/do-actors-need-a-website`.
 3. Remove the old URL from the sitemap.
 4. Update internal links to point directly to the surviving page.
 
@@ -666,7 +666,7 @@ Use email capture only where the user receives clear standalone value.
 
 1. Freeze net-new SEO URLs.
 2. Merge comparison page into `/do-actors-need-a-website`.
-3. Add 301 redirect.
+3. Add permanent redirect (308 in Next.js).
 4. Remove merged URL from sitemap.
 5. Remove `/start` from sitemap permanently.
 6. Audit every surviving page for:
