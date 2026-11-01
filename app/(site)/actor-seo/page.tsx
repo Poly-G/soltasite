@@ -7,7 +7,7 @@ import { SourceList } from '@/components/source-list';
 
 export const metadata: Metadata = createPageMetadata({
   path: '/actor-seo',
-  title: 'SEO for Actors: How to Show Up When Someone Googles Your Name | Solta Site',
+  title: 'SEO for Actors: Rank for Your Name | Solta Site',
   description: 'A practical actor SEO guide: use your professional name consistently, set up your domain and metadata, connect Search Console, earn relevant links, and keep your site current.',
   index: true,
 });
