@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { SiteFooter, SiteHeader } from '@/components/site-shell';
 import { createPageMetadata } from '@/lib/seo';
 import { siteConfig } from '@/lib/site-config';
+import { SourceList } from '@/components/source-list';
 
 export const metadata: Metadata = createPageMetadata({
   path: '/do-actors-need-a-website',
@@ -19,6 +20,9 @@ export default function DoActorsNeedAWebsitePage() {
     description: 'When an actor website is useful, when it can wait, and what it should do once you have one.',
     mainEntityOfPage: `${siteConfig.origin}/do-actors-need-a-website`,
     publisher: { '@id': `${siteConfig.origin}/#organization` },
+    datePublished: '2026-10-31',
+    dateModified: '2026-11-01',
+    citation: ["https://actorsaccess.com/","https://support.castingnetworks.com/en/articles/11240193","https://help.imdb.com/article/imdbpro/membership-benefits/pro-tips-for-talent/GHQ5W5C2BJ2KWP77"],
   };
 
   return (
@@ -130,6 +134,11 @@ export default function DoActorsNeedAWebsitePage() {
           </div>
         </section>
 
+        <SourceList reviewed="November 1, 2026" sources={[
+          { name: 'Actors Access', href: 'https://actorsaccess.com/', note: 'Actor profiles include headshots, résumé and performance media.' },
+          { name: 'Casting Networks: viewing a talent profile', href: 'https://support.castingnetworks.com/en/articles/11240193', note: 'Casting users can review photos, credits, reels and other profile assets.' },
+          { name: 'IMDbPro: pro tips for talent', href: 'https://help.imdb.com/article/imdbpro/membership-benefits/pro-tips-for-talent/GHQ5W5C2BJ2KWP77', note: 'IMDbPro describes profile sharing, résumé information and professional visibility.' },
+        ]} />
         <section className="wrap sec" style={{ paddingTop: 0 }}>
           <div className="close">
             <div className="circ"></div>
