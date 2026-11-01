@@ -366,8 +366,8 @@
 
 /* ==========================================================================
    MOTION
-   Only runs when <html> has the "motion" class (set in the <head>).
-   Reduced-motion devices never get it, so everything is simply visible.
+   Runs from first paint when the device allows motion.
+   Reduced-motion devices skip it, so everything is simply visible.
    ========================================================================== */
 
 @media (prefers-reduced-motion: no-preference) {
