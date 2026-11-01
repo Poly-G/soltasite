@@ -464,11 +464,43 @@ After Search Console domain verification completes:
 
 ### Bing / AI search
 
-Set up Bing Webmaster Tools.
+Set up Bing Webmaster Tools and import/verify the site.
 
-Implement IndexNow after the production URL set stabilizes.
+IndexNow is implemented using a root verification key plus `scripts/submit-indexnow.mjs`. Run it after meaningful production URL/content changes. Google does not use IndexNow; continue using Search Console + sitemap for Google.
 
-Reason: Bing is a meaningful retrieval source for AI/search ecosystems and IndexNow is inexpensive to support.
+Monitor Bing Webmaster Tools AI Performance once the property is connected. Track:
+- cited SoltaSite URLs,
+- grounding queries that produce citations,
+- citation counts,
+- topic clusters,
+- citation share where available.
+
+### AEO / answer-engine optimization
+
+AEO is part of the same content system, not a separate page factory.
+
+For question-led guides:
+- answer the primary question near the top,
+- use headings that match the actual question where natural,
+- keep the first answer concise enough to extract,
+- put nuance/evidence underneath,
+- use lists/tables only when they make the answer clearer,
+- do not manufacture FAQ sections or schema solely for rich-result chasing.
+
+### GEO / generative-engine optimization
+
+GEO is primarily a citability and entity-quality problem.
+
+Priorities:
+- consistent SoltaSite name, URL, offer and organization facts,
+- server-rendered public HTML,
+- factual claims that can be verified,
+- real examples and eventually real customer proof,
+- original research/data with published methodology,
+- external mentions from relevant actor-industry sources,
+- clear authorship/brand ownership where appropriate.
+
+Do not create “GEO pages,” duplicate AI summaries, llms.txt gimmicks, city doorway pages, or unsupported statistics.
 
 ### AI crawlers
 
@@ -476,7 +508,7 @@ Do not create special “AI SEO” pages.
 
 Allow legitimate retrieval crawlers to access public HTML unless there is a future business reason not to.
 
-SSR/static rendering and concise answer-first sections matter more than novelty files.
+SSR/static rendering, brand consistency, evidence, and concise answer-first sections matter more than novelty files.
 
 ---
 
@@ -499,20 +531,28 @@ Search Console:
 - queries by page,
 - branded vs non-branded query growth.
 
-Analytics:
-- organic sessions,
+First-party search attribution:
+- page views,
 - `start` CTA clicks,
-- checkout starts,
+- checkout submits,
+- Stripe checkout-session creation,
 - completed purchases,
-- email/contact clicks,
-- example-page engagement.
+- first-touch landing path,
+- referral host,
+- UTM source / medium / campaign,
+- grouped sources for Google, Bing, ChatGPT, Perplexity, Copilot, Claude, Gemini, social, paid and ordinary referrals.
+
+Privacy boundary:
+- analytics does not store names, emails, IP addresses or raw user-agent strings,
+- attribution is session-scoped in first-party browser storage,
+- checkout/purchase attribution joins on the anonymous checkout request UUID.
 
 Commerce:
-- preserve source/UTM attribution through checkout where technically possible.
+- preserve source/UTM attribution through the verified purchase event.
 
 AI visibility:
-- AI referral traffic,
-- conversions from AI referrals,
+- AI referral sessions and conversions,
+- Bing AI Performance citations / grounding queries,
 - branded mentions/citations when observable.
 
 ### Review cadence
@@ -722,11 +762,12 @@ Use email capture only where the user receives clear standalone value.
 1. Complete Google Search Console verification.
 2. Submit sitemap.
 3. Request indexing for homepage + main money/proof pages.
-4. Set up Bing Webmaster Tools.
-5. Add IndexNow.
+4. Set up Bing Webmaster Tools and verify/import the site.
+5. Run the implemented IndexNow submission after meaningful production changes.
 6. Run production crawl and Lighthouse checks.
 7. Verify robots/canonicals on the public domain.
-8. Add analytics conversion events.
+8. Verify first-party search attribution from page view through purchase.
+9. Baseline Bing AI Performance once data becomes available.
 
 **Gate:** all intended SEO URLs discoverable, canonical and technically indexable.
 
