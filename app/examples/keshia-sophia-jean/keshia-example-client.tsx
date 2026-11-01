@@ -41,7 +41,6 @@ export function KeshiaExampleClient({ className }: { className: string }) {
     const root = pageRef.current;
     if (!root) return;
     const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    root.dataset.motion = calm ? 'off' : 'on';
     const previous = document.documentElement.style.scrollBehavior;
     if (!calm) document.documentElement.style.scrollBehavior = 'smooth';
 
@@ -139,7 +138,7 @@ export function KeshiaExampleClient({ className }: { className: string }) {
       <main id="keshia-main" tabIndex={-1}>
         <section className={cx('hero')} id="top">
           <div className={cx('hero-photo')}>
-            <Image src="/assets/img/keshia-sophia-jean/hero.jpg" width={1284} height={1923} sizes="(max-width: 820px) 100vw, 64vw" alt="Keshia Sophia Jean, smiling, in glasses and a denim jacket" preload className={cx('hero-image')} />
+            <Image src="/assets/img/keshia-sophia-jean/hero.jpg" width={1284} height={1923} sizes="(max-width: 820px) 100vw, 64vw" alt="Keshia Sophia Jean, smiling, in glasses and a denim jacket" preload unoptimized className={cx('hero-image')} />
           </div>
           <div className={cx('hero-shade')} aria-hidden="true" />
           <div className={cx('container', 'hero-copy')}>
@@ -171,7 +170,7 @@ export function KeshiaExampleClient({ className }: { className: string }) {
               />
             ) : (
               <>
-                <Image className={cx('reel-poster')} src="/assets/img/keshia-sophia-jean/reel-poster.jpg" width={1584} height={744} sizes="100vw" alt="Demo reel still featuring Keshia Sophia Jean" />
+                <Image className={cx('reel-poster')} src="/assets/img/keshia-sophia-jean/reel-poster.jpg" width={1584} height={744} sizes="100vw" alt="Demo reel still featuring Keshia Sophia Jean" unoptimized />
                 <div className={cx('reel-shade')} aria-hidden="true" />
                 <button className={cx('reel-play')} type="button" aria-label="Play the demo reel" onClick={playReel}><span aria-hidden="true">▶</span></button>
                 <div className={cx('reel-label', 'poster')} aria-hidden="true">Demo reel</div>
@@ -197,7 +196,7 @@ export function KeshiaExampleClient({ className }: { className: string }) {
               <figure className={cx('frame')} data-reveal data-photo-frame key={photo.src}>
                 <div className={cx('frame-bar')}><span className={cx('mark')}>KSJ</span><span className={cx('mark', 'mark-num')}>{String(index + 1).padStart(2, '0')}</span></div>
                 <div className={cx('frame-photo')}>
-                  <Image src={photo.src} width={photo.width} height={photo.height} sizes="(max-width: 820px) 78vw, 25vw" alt={photo.alt} />
+                  <Image src={photo.src} width={photo.width} height={photo.height} sizes="(max-width: 820px) 78vw, 25vw" alt={photo.alt} unoptimized />
                 </div>
                 <figcaption className={cx('frame-bar')}><span className={cx('mark', 'mark-num')}>{photo.label}</span></figcaption>
               </figure>
@@ -211,7 +210,7 @@ export function KeshiaExampleClient({ className }: { className: string }) {
 
         <section className={cx('about')} id="about" aria-labelledby="keshia-about-title" data-reveal>
           <div className={cx('about-photo')}>
-            <Image src="/assets/img/keshia-sophia-jean/about-theater-seats.jpg" width={1500} height={2000} sizes="100vw" alt="Keshia Sophia Jean sitting in the red seats of an empty theater" />
+            <Image src="/assets/img/keshia-sophia-jean/about-theater-seats.jpg" width={1536} height={2048} sizes="100vw" alt="Keshia Sophia Jean sitting in the red seats of an empty theater" unoptimized />
             <div className={cx('about-shade')} aria-hidden="true" />
           </div>
           <div className={cx('about-head')}>
@@ -256,7 +255,7 @@ export function KeshiaExampleClient({ className }: { className: string }) {
         </section>
 
         <div className={cx('curtain')}>
-          <Image src="/assets/img/keshia-sophia-jean/curtain.jpg" width={1125} height={2000} sizes="100vw" alt="Keshia Sophia Jean in silhouette in front of theater curtains" />
+          <Image src="/assets/img/keshia-sophia-jean/curtain.jpg" width={1152} height={2048} sizes="100vw" alt="Keshia Sophia Jean in silhouette in front of theater curtains" unoptimized />
         </div>
 
         <section className={cx('contact')} id="contact" aria-labelledby="keshia-contact-title">
