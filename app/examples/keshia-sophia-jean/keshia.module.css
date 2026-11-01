@@ -126,7 +126,7 @@
     linear-gradient(0deg, rgba(var(--bg-rgb), 1) 0%, rgba(var(--bg-rgb), 0) 22%),
     linear-gradient(180deg, rgba(var(--bg-rgb), .6) 0%, rgba(var(--bg-rgb), 0) 16%);
 }
-.hero-copy { position: absolute; left: 0; right: 0; bottom: 72px; display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+.hero-copy { position: absolute; left: 0; right: 0; bottom: 48px; display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding-top: 28px; }
 .kicker { font-weight: 500; }
 .name { font-family: var(--script); font-weight: 600; font-size: clamp(90px, 12vw, 172px); line-height: .92; letter-spacing: 0; margin-bottom: 18px; padding: .04em .08em .1em .03em; margin-left: -.03em; }
 .hero-actions { display: flex; align-items: center; gap: 30px; padding-top: 8px; }
@@ -140,7 +140,7 @@
   }
   .hero-photo img { object-position: 50% 14%; }
   .hero-shade { bottom: auto; height: 540px; background: linear-gradient(180deg, rgba(var(--bg-rgb), .8) 0%, rgba(var(--bg-rgb), 0) 20%); }
-  .hero-copy { position: relative; bottom: auto; margin-top: -84px; padding-bottom: 28px; gap: 12px; }
+  .hero-copy { position: relative; bottom: auto; margin-top: -56px; padding-top: 16px; padding-bottom: 28px; gap: 12px; }
   .kicker { order: 2; font-size: 15px; font-weight: 400; }
   .name { order: 1; font-size: clamp(76px, 24vw, 116px); line-height: .94; margin-bottom: 10px; padding-bottom: .12em; }
   .hero-place { order: 3; font-size: 15px; margin-top: -12px; }
