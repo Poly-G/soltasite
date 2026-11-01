@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { SiteFooter, SiteHeader } from '@/components/site-shell';
 import { createPageMetadata } from '@/lib/seo';
 import { siteConfig } from '@/lib/site-config';
+import { SourceList } from '@/components/source-list';
 
 export const metadata: Metadata = createPageMetadata({
   path: '/what-to-put-on-an-actor-website',
@@ -42,6 +43,9 @@ export default function ActorWebsiteChecklistPage() {
     description: 'A practical checklist for the essential content on an actor website.',
     mainEntityOfPage: `${siteConfig.origin}/what-to-put-on-an-actor-website`,
     publisher: { '@id': `${siteConfig.origin}/#organization` },
+    datePublished: '2026-10-31',
+    dateModified: '2026-11-01',
+    citation: ["https://actorsaccess.com/","https://support.castingnetworks.com/en/articles/11240193","https://help.imdb.com/article/imdbpro/industry-research/name-title-company-pages-faq/GLY9HY48QGA9F5QC"],
   };
 
   return (
@@ -133,6 +137,11 @@ export default function ActorWebsiteChecklistPage() {
           </div>
         </section>
 
+        <SourceList reviewed="November 1, 2026" sources={[
+          { name: 'Actors Access', href: 'https://actorsaccess.com/', note: 'Profiles center headshots, résumé and performance media.' },
+          { name: 'Casting Networks: viewing a talent profile', href: 'https://support.castingnetworks.com/en/articles/11240193', note: 'Talent profiles surface photos, credits, reels and related assets.' },
+          { name: 'IMDbPro name pages', href: 'https://help.imdb.com/article/imdbpro/industry-research/name-title-company-pages-faq/GLY9HY48QGA9F5QC', note: 'IMDbPro name pages include credits, contacts, official websites, images and videos.' },
+        ]} />
         <section className="wrap sec" style={{ paddingTop: 0 }}>
           <div className="close">
             <div className="circ"></div>
