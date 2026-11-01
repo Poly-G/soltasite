@@ -9,7 +9,7 @@ import { siteConfig } from '@/lib/site-config';
 export const metadata: Metadata = createPageMetadata({
   path: '/actor-website-examples',
   title: 'Actor Website Examples: 3 Styles That Put Your Work First | Solta Site',
-  description: 'See one real client actor website plus two fictional design examples, with practical notes on layout, reels, headshots, resumes and contact.'
+  description: 'See one real client actor website plus two fictional design examples, with practical notes on layout, reels, headshots, resumes and contact.',
   index: true,
 });
 
