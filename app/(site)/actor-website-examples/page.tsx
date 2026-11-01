@@ -2,25 +2,18 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { SiteFooter, SiteHeader } from '@/components/site-shell';
+import { KeshiaClientExample } from '@/components/examples/keshia-client-example';
 import { createPageMetadata } from '@/lib/seo';
 import { siteConfig } from '@/lib/site-config';
 
 export const metadata: Metadata = createPageMetadata({
   path: '/actor-website-examples',
   title: 'Actor Website Examples: 3 Styles That Put Your Work First | Solta Site',
-  description: 'See three actor website examples for film, TV, commercial and theatre performers, plus what every actor site should include and how to choose a layout.',
+  description: 'See one real client actor website plus two fictional design examples, with practical notes on layout, reels, headshots, resumes and contact.'
   index: true,
 });
 
 const examples = [
-  {
-    name: 'Keshia Jean',
-    label: 'Film and TV · seeking representation',
-    image: '/assets/img/keshia-jean.jpg',
-    alt: 'Actor website example with a dark cinematic layout',
-    body: 'A cinematic direction that puts the reel and current headshot first, then gives agents a direct way to reach the actor.',
-    href: null,
-  },
   {
     name: 'Maya Ortiz',
     label: 'Comedy and commercial · represented',
@@ -45,7 +38,7 @@ export default function ActorWebsiteExamplesPage() {
     '@type': 'CollectionPage',
     name: 'Actor Website Examples',
     url: `${siteConfig.origin}/actor-website-examples`,
-    description: 'Three actor website examples and practical guidance on what an actor portfolio website should include.',
+    description: 'One real client actor website and two fictional design examples, plus practical guidance on what an actor portfolio website should include.'
     isPartOf: { '@id': `${siteConfig.origin}/#organization` },
   };
 
@@ -64,6 +57,15 @@ export default function ActorWebsiteExamplesPage() {
 
         <section className="wrap sec" style={{ paddingTop: 0 }}>
           <div className="examples">
+            <article className="ex">
+              <KeshiaClientExample />
+              <div>
+                <div className="cap">Real client site · Seeking representation</div>
+                <h2 style={{ fontSize: '34px', paddingTop: '8px' }}>Keshia Sophia Jean</h2>
+                <p className="p">Actor · Independent film · Los Angeles and Las Vegas</p>
+                <p className="p">Keshia picked the deep darkroom brown, handwritten name treatment and film-strip headshot row. Her reel sits up top, and the page ends with a meeting request for agents and managers.</p>
+              </div>
+            </article>
             {examples.map((example) => (
               <article className="ex" key={example.name}>
                 <div className="tile" style={{ overflow: 'hidden' }}>
@@ -80,11 +82,7 @@ export default function ActorWebsiteExamplesPage() {
                   <div className="cap">{example.label}</div>
                   <h2 style={{ fontSize: '34px', paddingTop: '8px' }}>{example.name}</h2>
                   <p className="p">{example.body}</p>
-                  {example.href ? (
-                    <Link className="link" href={example.href}>Open the example <span className="ar" aria-hidden="true">→</span></Link>
-                  ) : siteConfig.keshiaUrl ? (
-                    <a className="link" href={siteConfig.keshiaUrl}>Open the site <span className="ar" aria-hidden="true">→</span></a>
-                  ) : null}
+                  <Link className="link" href={example.href}>Open the example <span className="ar" aria-hidden="true">→</span></Link>
                 </div>
               </article>
             ))}
