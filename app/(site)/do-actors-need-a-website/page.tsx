@@ -7,7 +7,7 @@ import { SourceList } from '@/components/source-list';
 
 export const metadata: Metadata = createPageMetadata({
   path: '/do-actors-need-a-website',
-  title: 'Do Actors Need a Website? When It Helps — and When It Can Wait | Solta Site',
+  title: 'Do Actors Need a Website? When It Helps | Solta Site',
   description: 'Actors do not strictly need a website to get work, but a personal site can give casting, agents and collaborators one place you control. Here is when it is worth building one.',
   index: true,
 });
