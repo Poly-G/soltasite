@@ -38,7 +38,7 @@ export default function ActorWebsiteExamplesPage() {
     '@type': 'CollectionPage',
     name: 'Actor Website Examples',
     url: `${siteConfig.origin}/actor-website-examples`,
-    description: 'One real client actor website and two fictional design examples, plus practical guidance on what an actor portfolio website should include.'
+    description: 'One real client actor website and two fictional design examples, plus practical guidance on what an actor portfolio website should include.',
     isPartOf: { '@id': `${siteConfig.origin}/#organization` },
   };
 
