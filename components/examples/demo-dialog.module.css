@@ -1,0 +1,56 @@
+.dialog {
+  width: min(420px, calc(100vw - 40px));
+  max-height: calc(100dvh - 40px);
+  margin: auto;
+  padding: 26px;
+  border: 2px solid #1f1e1b;
+  border-radius: 16px;
+  background: #fffaf0;
+  color: #1f1e1b;
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 1.5;
+  box-shadow: 0 30px 60px -30px #0008;
+}
+
+.dialog::backdrop {
+  background: #16130f70;
+}
+
+.dialog .title {
+  margin: 0 0 14px;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.description {
+  margin-bottom: 16px;
+}
+
+.dialog .link {
+  display: block;
+  margin-bottom: 24px;
+  color: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.close {
+  min-height: 44px;
+  padding: 10px 18px;
+  border: 0;
+  border-radius: 999px;
+  background: #1f1e1b;
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.dialog :focus-visible {
+  outline: 3px solid #6e1b2a;
+  outline-offset: 4px;
+}

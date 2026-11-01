@@ -1,0 +1,34 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { SiteHeader, SiteFooter } from "@/components/site-shell";
+import { CheckoutForm } from "@/components/checkout-form";
+import { siteConfig } from "@/lib/site-config";
+import { createPageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = createPageMetadata({
+  path: "/start",
+  title: "Start Your Actor Website · $499 | Solta Site",
+  description: process.env.SOLTASITE_COMMERCE_ENABLED === "true"
+    ? "Pay once, then send your headshots, reel link and resume. Your review link arrives within 3 business days."
+    : `Online checkout isn’t open yet. Contact ${siteConfig.name} at ${siteConfig.contactEmail} with questions about your actor website.`,
+  index: false,
+});
+
+export default function Page() {
+ if (process.env.SOLTASITE_COMMERCE_ENABLED !== "true") {
+   return <><SiteHeader mode="simple" /><main className="wrap min-h-[60vh] py-20" id="main">
+     <div className="form-head max-w-[760px]">
+       <div className="cap" style={{ fontWeight: 600 }}>Solta Site</div>
+       <h1>Online checkout isn’t open yet.</h1>
+       <p className="lead">Email <a href={`mailto:${siteConfig.contactEmail}`} className="underline">{siteConfig.contactEmail}</a> with any questions about your actor website.</p>
+       <Link className="btn self-start" href="/">Back to Solta Site <span aria-hidden="true">→</span></Link>
+     </div>
+   </main><SiteFooter compact /></>;
+ }
+ return <><SiteHeader mode="checkout" /><main className="wrap pay min-h-[50vh]" id="main">
+<div className="a"><div style={{"display": "flex", "flexDirection": "column", "gap": "14px"}}><div className="cap" style={{"fontWeight": "600"}}>Step 1 of 2 · Pay</div><h1>Your actor site. $499, once.</h1><p className="lead" style={{"fontSize": "19px"}}>Pay now, then send us your materials on the next page. It takes about ten minutes, and you can come back to it.</p></div>
+<div className="card summ"><div className="top"><h3>Your actor site</h3><div className="disp">$499</div></div><div className="item row" style={{"padding": "12px 0", "fontSize": "17px", "alignItems": "start"}}><span className="chk"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.5l2.5 2.5 4.5-5" fill="none" stroke="#111318" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round"></path></svg></span><span>One-page site on your domain (up to four pages if you need them)</span></div><div className="item row" style={{"padding": "12px 0", "fontSize": "17px", "alignItems": "start"}}><span className="chk"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.5l2.5 2.5 4.5-5" fill="none" stroke="#111318" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round"></path></svg></span><span>Headshots, reel, resume, rep contact, links</span></div><div className="item row" style={{"padding": "12px 0", "fontSize": "17px", "alignItems": "start"}}><span className="chk"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.5l2.5 2.5 4.5-5" fill="none" stroke="#111318" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round"></path></svg></span><span>Two rounds of changes</span></div><div className="item row" style={{"padding": "12px 0", "fontSize": "17px", "alignItems": "start"}}><span className="chk"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.5l2.5 2.5 4.5-5" fill="none" stroke="#111318" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round"></path></svg></span><span>Live within 5 business days of getting your materials</span></div><div className="item row" style={{"padding": "12px 0", "fontSize": "17px", "alignItems": "start"}}><span className="chk"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.5l2.5 2.5 4.5-5" fill="none" stroke="#111318" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round"></path></svg></span><span>Two updates a year included, then $29 each</span></div><div className="tot"><span>Total today</span><span>$499</span></div><div className="cap">No monthly fee. Your domain (about $15 a year) is registered in your name.</div></div></div>
+<CheckoutForm />
+<div className="c"><div className="cap" style={{"fontWeight": "600", "paddingBottom": "8px"}}>What happens after you pay</div><div className="numrow" style={{"padding": "13px 0", "borderTop": "1px solid var(--line)", "fontSize": "17px"}}><span className="num">01</span><span>The materials form opens. A receipt lands in your inbox with the link, in case you come back later.</span></div><div className="numrow" style={{"padding": "13px 0", "borderTop": "1px solid var(--line)", "fontSize": "17px"}}><span className="num">02</span><span>You send headshots, your reel link, resume, rep info and links. Ten minutes.</span></div><div className="numrow" style={{"padding": "13px 0", "borderTop": "1px solid var(--line)", "fontSize": "17px"}}><span className="num">03</span><span>Your private review link arrives within 3 business days.</span></div><div className="numrow" style={{"padding": "13px 0", "borderTop": "1px solid var(--line)", "fontSize": "17px"}}><span className="num">04</span><span>Two rounds of changes, then live on your domain.</span></div></div>
+</main><SiteFooter compact /></>;
+}

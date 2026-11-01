@@ -1,0 +1,351 @@
+/* Handoff design tokens and bespoke illustration/motion, isolated from examples. */
+@reference "../globals.css";
+@layer components {
+/* Solta Site · soltasite.com
+   Plain CSS, no framework. Tokens first, then components, then the phone breakpoint.
+   Brand: Ink, Cream, Soft Blue (logo bar on light), Human Blue (buttons, links, logo bar on dark),
+   Marigold (highlights, check circles, small tags; never text, never the logo), Soft Grey. */
+
+.solta-site{
+  --ink:#111318; --cream:#F5F0E8; --blue:#354F8F; --soft:#C3CDEB; --mari:#F2C14E;
+  --grey:#4A4F5C; --line:rgba(17,19,24,.12); --ph:#E8E1D3;
+  --font-head:var(--font-bricolage), sans-serif; --font-body:var(--font-instrument), sans-serif;
+  --ease:cubic-bezier(.2,.7,.2,1);
+  --wrap:1120px;
+}
+.solta-site *{box-sizing:border-box}
+.solta-site{-webkit-text-size-adjust:100%}
+.solta-site{margin:0;font-family:var(--font-body);color:var(--ink);background:#fff;font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.solta-site img{display:block;max-width:100%}
+.solta-site a{color:inherit;text-decoration:none}
+.solta-site h1,.solta-site h2,.solta-site h3{font-family:var(--font-head);font-weight:700;margin:0;letter-spacing:-0.025em;line-height:1.03}
+.solta-site h1{font-size:66px}
+.solta-site h2{font-size:50px;letter-spacing:-0.02em;line-height:1.05}
+.solta-site h3{font-size:24px;line-height:1.15;letter-spacing:-0.01em}
+.solta-site p{margin:0}
+.solta-site .lead{font-size:21px;line-height:1.5;color:var(--grey)}
+.solta-site .cap{font-size:14px;color:var(--grey);line-height:1.5}
+.solta-site .p{color:var(--grey)}
+.solta-site .wrap{max-width:var(--wrap);margin:0 auto;padding-left:24px;padding-right:24px}
+.solta-site .mob{display:none}
+
+/* buttons and links */
+.solta-site .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--blue);color:#fff;padding:17px 28px;border-radius:10px;font-weight:600;font-size:17px;white-space:nowrap;border:0;font-family:inherit;cursor:pointer;transition:transform .2s var(--ease),box-shadow .2s}
+.solta-site .btn:hover{transform:translateY(-2px);box-shadow:0 12px 24px -12px rgba(53,79,143,.7)}
+.solta-site .btn.sm{padding:11px 18px;font-size:15px}
+.solta-site .btn.full{width:100%}
+.solta-site .btn .ar,.solta-site .link .ar{display:inline-block;transition:transform .2s var(--ease)}
+.solta-site .btn:hover .ar,.solta-site .link:hover .ar{transform:translateX(4px)}
+.solta-site .link{color:var(--blue);text-decoration:underline;text-underline-offset:3px;font-weight:600}
+.solta-site .link .ar{margin-left:6px;text-decoration:none}
+
+/* logo */
+.solta-site .logo{font-family:var(--font-head);font-weight:700;font-size:30px;letter-spacing:-0.03em;color:var(--ink);line-height:1;white-space:nowrap}
+.solta-site .logo span{background:linear-gradient(transparent 56%,var(--soft) 56%,var(--soft) 94%,transparent 94%);padding:0 3px;margin:0 -3px}
+.solta-site .logo.s{font-size:24px}
+.solta-site .logo.d{color:var(--cream)}
+.solta-site .logo.d span{background:linear-gradient(transparent 56%,var(--blue) 56%,var(--blue) 94%,transparent 94%)}
+
+/* highlight behind headline words */
+.solta-site .mark{background:linear-gradient(transparent 58%,var(--mari) 58%,var(--mari) 90%,transparent 90%);background-repeat:no-repeat;background-size:100% 100%;padding:0 .05em;margin:0 -.05em;animation:sweep .55s var(--ease) .45s both}
+
+/* nav */
+.solta-site .nav{display:flex;justify-content:space-between;align-items:center;gap:10px;height:88px;border-bottom:1px solid var(--line)}
+.solta-site .nav .l{display:flex;align-items:baseline;gap:14px;flex-shrink:0}
+
+/* generic bits */
+.solta-site .chk{width:24px;height:24px;border-radius:50%;background:var(--mari);display:inline-flex;align-items:center;justify-content:center;flex:none;animation:pop .5s var(--ease) both}
+.solta-site .item{padding:15px 0;border-top:1px solid var(--line);font-size:18px;line-height:1.4}
+.solta-site .item.row{display:grid;grid-template-columns:36px 1fr;align-items:center}
+.solta-site .item:nth-child(2) .chk{animation-delay:.1s}.solta-site .item:nth-child(3) .chk{animation-delay:.2s}.solta-site .item:nth-child(4) .chk{animation-delay:.3s}.solta-site .item:nth-child(5) .chk{animation-delay:.4s}.solta-site .item:nth-child(6) .chk{animation-delay:.5s}
+.solta-site .numrow{display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:baseline}
+.solta-site .num{font-family:var(--font-head);font-weight:700;font-size:20px;color:var(--grey)}
+.solta-site .band{background:var(--cream)}
+.solta-site .ink{background:var(--ink);color:var(--cream)}
+.solta-site .card{background:#fff;border:1px solid var(--line);border-radius:24px}
+.solta-site .pill{display:inline-block;background:var(--mari);color:var(--ink);font-weight:700;font-size:13px;padding:4px 12px;border-radius:999px;line-height:1.3}
+.solta-site .eyebrow{font-size:16px;color:var(--grey)}
+.solta-site .sec{padding-top:112px;padding-bottom:112px}
+
+/* hero */
+.solta-site .hero{display:grid;grid-template-columns:1fr 540px;gap:40px;align-items:center;padding-top:64px;padding-bottom:88px}
+.solta-site .hero .copy{display:flex;flex-direction:column;gap:26px}
+.solta-site .hero .copy .lead{max-width:520px}
+.solta-site .hero .ctas{display:flex;gap:22px;align-items:center}
+.solta-site .art{position:relative;height:650px;width:540px}
+.solta-site .art .circ{position:absolute;right:10px;top:40px;width:460px;height:460px;border-radius:50%;background:var(--cream)}
+.solta-site .art .devwrap{position:absolute;left:110px;top:20px}
+.solta-site .dev{background:#fff;border:10px solid var(--ink);border-radius:42px;overflow:hidden;display:flex;flex-direction:column;width:320px}
+.solta-site .dev img{width:100%;height:230px;object-fit:cover;object-position:50% 22%}
+.solta-site .dev .in{padding:16px;display:flex;flex-direction:column;gap:10px}
+.solta-site .dev .nm{font-family:var(--font-head);font-weight:700;font-size:26px;letter-spacing:-0.02em;line-height:1.05}
+.solta-site .dev .mt{font-size:12.5px;color:var(--grey);line-height:1.35}
+.solta-site .dev .reel{background:var(--ink);color:#fff;border-radius:10px;padding:12px 14px;display:flex;align-items:center;gap:10px;font-weight:600;font-size:14px}
+.solta-site .dev .r{border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:13.5px;display:flex;justify-content:space-between;gap:8px}
+.solta-site .dev .r span:last-child{color:var(--grey)}
+.solta-site .dev .lk{font-size:12px;color:var(--grey);text-align:center;padding-top:2px}
+.solta-site .float{position:absolute;background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 18px;box-shadow:0 18px 40px -22px rgba(17,19,24,.35);font-size:15px;line-height:1.3;animation:up .6s var(--ease) both}
+.solta-site .float>span{display:flex;gap:12px;align-items:center;animation:bob 4.5s ease-in-out infinite}
+.solta-site .float.dk{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+.solta-site .float.g{left:0;top:150px}.solta-site .float.g b{font-size:15px;color:var(--ink)}.solta-site .float.g small{font-size:12px;color:var(--grey);display:block}
+.solta-site .float.rw{left:360px;top:560px}.solta-site .float.rw>span{animation-delay:.9s}
+.solta-site .float.af{left:150px;top:560px;z-index:1}.solta-site .float.af>span{animation-delay:1.5s}
+
+/* why */
+.solta-site .why{display:flex;flex-direction:column;gap:44px}
+.solta-site .why h2{max-width:760px}
+.solta-site .cols2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.solta-site .card.pad{padding:36px 40px}
+.solta-site .card.dark{background:var(--ink);border-color:var(--ink);color:var(--cream)}
+.solta-site .card.dark .item{border-color:rgba(245,240,232,.18)}
+.solta-site .card .cap.t{font-weight:600;padding-bottom:10px}
+.solta-site .card.dark .cap.t{color:rgba(245,240,232,.7)}
+.solta-site .after{display:flex;gap:32px;align-items:center}
+.solta-site .after .lead{color:var(--ink);font-weight:500;max-width:700px}
+
+/* examples */
+.solta-site .ex-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px}
+.solta-site .ex-head .cap{font-size:16px;max-width:300px}
+.solta-site .examples{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
+.solta-site .ex{display:flex;flex-direction:column;gap:20px;transition:transform .3s var(--ease)}
+.solta-site .ex:hover{transform:translateY(-6px)}
+.solta-site .ex .tile{background:var(--cream);border-radius:24px;padding:32px 20px;height:296px;display:flex;justify-content:center;align-items:center}
+.solta-site .ex h3{min-height:56px}
+.solta-site .ex .cap{font-size:16px;padding-top:4px;min-height:52px}
+.solta-site .ex .link{display:inline-block;padding-top:10px}
+.solta-site .ex .link.off{color:var(--grey);text-decoration:none;cursor:default}
+.solta-site .ex .link.off:hover .ar{transform:none}
+.solta-site .mini{width:310px;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#fff;box-shadow:0 24px 50px -30px rgba(17,19,24,.4)}
+.solta-site .mini .bar{display:flex;align-items:center;gap:6px;padding:9px 12px;background:#F1EEE8;border-bottom:1px solid var(--line)}
+.solta-site .mini .bar i{width:8px;height:8px;border-radius:50%;background:#d8d3c8}
+.solta-site .mini .bar span{margin-left:8px;font-size:11px;color:var(--grey);background:#fff;border-radius:6px;padding:2px 10px}
+.solta-site .mini .shot{position:relative;height:198px;overflow:hidden}
+.solta-site .mini .shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.solta-site .mini .ov{position:absolute;inset:0}
+.solta-site .ex-cta{display:flex;gap:20px;align-items:center}
+
+/* five things + price */
+.solta-site .get{display:grid;grid-template-columns:1fr 440px;gap:80px;align-items:start;padding-top:24px;padding-bottom:112px}
+.solta-site .get .l{display:flex;flex-direction:column;gap:36px}
+.solta-site .included-items{list-style:none;margin:0;padding:0}
+.solta-site .price{padding:44px 40px;display:flex;flex-direction:column;gap:18px;box-shadow:0 24px 60px -30px rgba(17,19,24,.35);margin-top:8px}
+.solta-site .price .disp{font-family:var(--font-head);font-weight:700;font-size:112px;letter-spacing:-0.04em;line-height:.95}
+.solta-site .price .lead{font-size:19px}
+.solta-site .price .note{border-top:1px solid var(--line);padding-top:16px}
+
+/* how */
+.solta-site .how{display:flex;flex-direction:column;gap:48px}
+.solta-site .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:24px}
+.solta-site .step{display:flex;flex-direction:column;gap:10px;border-top:2px solid var(--ink);padding-top:18px;min-height:150px}
+.solta-site .step .num{font-size:16px}
+.solta-site .step h3{font-size:22px}
+.solta-site .step .cap{margin-top:auto}
+
+/* faq */
+.solta-site .faqs{display:grid;grid-template-columns:repeat(3,1fr);column-gap:48px}
+.solta-site .faq{padding:22px 0;border-top:1px solid var(--line)}
+.solta-site .faq summary{font-family:var(--font-head);font-weight:700;font-size:20px;letter-spacing:-0.01em;margin-bottom:6px;line-height:1.2;list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:12px}
+.solta-site .faq summary::-webkit-details-marker{display:none}
+.solta-site .faq summary .pl{display:none;font-size:22px;line-height:1;color:var(--grey);font-family:var(--font-body);font-weight:400}
+.solta-site .faq .p{font-size:16px}
+
+/* close + footer */
+.solta-site .close{position:relative;overflow:hidden;background:var(--cream);border-radius:28px;padding:72px 64px 64px}
+.solta-site .close .circ{position:absolute;right:-40px;bottom:-150px;width:340px;height:340px;border-radius:50%;background:var(--mari);transform-origin:70% 70%;animation:grow .9s var(--ease) .2s both}
+.solta-site .close .in{position:relative;display:flex;flex-direction:column;gap:28px;max-width:760px}
+.solta-site .close h2{font-size:64px}
+.solta-site .close .ctas{display:flex;gap:22px;align-items:center}
+.solta-site .foot{padding-top:56px;padding-bottom:56px;display:flex;flex-direction:column;gap:16px}
+.solta-site .foot .tag{color:rgba(245,240,232,.75);font-size:15px}
+.solta-site .foot .mail{color:var(--cream);font-size:15px;text-decoration:underline}
+.solta-site .foot .links{display:flex;gap:28px;color:var(--cream);font-size:15px;text-decoration:underline}
+.solta-site .foot .copy{color:rgba(245,240,232,.6);font-size:13px}
+.solta-site .footbar{padding-top:26px;padding-bottom:28px;display:flex;justify-content:space-between;font-size:14px;color:rgba(245,240,232,.8);gap:12px;flex-wrap:wrap}
+.solta-site .sticky{display:none}
+
+/* forms */
+.solta-site .fld{width:100%;border:1.5px solid rgba(17,19,24,.25);border-radius:10px;background:#fff;padding:0 16px;height:52px;font:inherit;font-size:17px;color:var(--ink)}
+.solta-site textarea.fld{height:auto;padding:14px 16px;resize:vertical}
+.solta-site .fld::placeholder{color:#6b707c}
+.solta-site .fld:focus{outline:2px solid var(--blue);outline-offset:1px}
+.solta-site .f{display:flex;flex-direction:column}
+.solta-site label.l,.solta-site .l{display:block;font-size:15px;font-weight:600;margin-bottom:7px}
+.solta-site .two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.solta-site .chips{display:flex;gap:10px;flex-wrap:wrap}
+.solta-site .chip{position:relative;display:inline-flex;align-items:center;gap:9px;padding:11px 16px;border-radius:10px;border:1.5px solid rgba(17,19,24,.25);font-size:16px;background:#fff;cursor:pointer;transition:border-color .15s,transform .15s}
+.solta-site .chip:hover{border-color:var(--ink);transform:translateY(-1px)}
+.solta-site .chip input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.solta-site .chip:has(input:checked){border:2px solid var(--ink);padding:10.5px 15.5px;font-weight:600}
+.solta-site .chip:has(input:focus-visible){outline:2px solid var(--blue);outline-offset:2px}
+.solta-site .chip .sw{width:16px;height:16px;border-radius:50%;border:1px solid rgba(17,19,24,.2);flex:none}
+.solta-site .chip.font{flex-direction:column;align-items:flex-start;gap:2px;padding:12px 18px}
+.solta-site .chip.font .smp{font-size:22px;line-height:1}
+.solta-site .chip.font .cap{font-size:13px}
+.solta-site .dz{display:flex;align-items:center;justify-content:center;text-align:center;border:1.5px dashed rgba(17,19,24,.45);border-radius:12px;background:#fff;color:var(--grey);font-size:15px;padding:0 16px}
+.solta-site .box{border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:16px}
+.solta-site .box.on{border:2px solid var(--ink)}
+.solta-site .box.off{border:1.5px dashed rgba(17,19,24,.3)}
+.solta-site .box .cap.t{font-weight:600}
+.solta-site .steps-form .stp{display:grid;grid-template-columns:260px 1fr;gap:48px;padding:40px 0;border-top:1px solid var(--line);align-items:start}
+.solta-site .stp h3{font-size:26px;padding-top:4px}
+.solta-site .stp .cap.sub{padding-top:6px}
+.solta-site .stp .in{display:flex;flex-direction:column;gap:18px}
+.solta-site .pair{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.solta-site .form-head{display:flex;flex-direction:column;gap:16px;max-width:780px;padding-bottom:40px}
+.solta-site .form-head h1{font-size:64px}
+.solta-site .form-foot{display:flex;gap:24px;align-items:center;border-top:1px solid var(--line);padding-top:36px}
+.solta-site .honey{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+/* branch switching: show the chosen rep branch, dim the other */
+.solta-site .rep .box.seek{opacity:.55}
+.solta-site .rep:has(#rep-no:checked) .box.have{opacity:.55;border-style:dashed;border-width:1.5px}
+.solta-site .rep:has(#rep-no:checked) .box.seek{opacity:1;border:2px solid var(--ink)}
+.solta-site .cust{display:none}
+.solta-site .look:has(#c-custom:checked) .cust.color{display:grid}
+.solta-site .look:has(#f-custom:checked) .cust.font{display:block}
+
+/* pay page */
+.solta-site .pay{display:grid;grid-template-columns:1fr 520px;gap:88px;align-items:start;padding-top:72px;padding-bottom:96px;grid-template-areas:"a b" "c b"}
+.solta-site .pay .a{grid-area:a;display:flex;flex-direction:column;gap:30px}
+.solta-site .pay .b{grid-area:b}
+.solta-site .pay .c{grid-area:c}
+.solta-site .pay h1{font-size:56px}
+.solta-site .summ{background:var(--cream);border:0;padding:30px 32px}
+.solta-site .summ .top{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:12px}
+.solta-site .summ .disp{font-family:var(--font-head);font-weight:700;font-size:34px}
+.solta-site .summ .tot{display:flex;justify-content:space-between;padding:14px 0 6px;border-top:1px solid rgba(17,19,24,.25);font-weight:700;font-size:18px}
+.solta-site .paycard{padding:40px;display:flex;flex-direction:column;gap:20px;box-shadow:0 30px 70px -36px rgba(17,19,24,.4)}
+.solta-site .applepay{height:52px;border-radius:10px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:17px}
+.solta-site .or{display:flex;align-items:center;gap:14px;color:var(--grey);font-size:14px}
+.solta-site .or i{flex:1;border-top:1px solid var(--line)}
+.solta-site .cardbox{border:1.5px solid rgba(17,19,24,.25);border-radius:10px;overflow:hidden}
+.solta-site .cardbox .fld{border:0;border-radius:0}
+.solta-site .cardbox .top{border-bottom:1px solid var(--line)}
+.solta-site .cardbox .two{gap:0}
+.solta-site .cardbox .two .fld:first-child{border-right:1px solid var(--line)}
+
+/* motion */
+@keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes sweep{from{background-size:0% 100%}to{background-size:100% 100%}}
+@keyframes pop{0%{transform:scale(.5);opacity:0}70%{transform:scale(1.12);opacity:1}100%{transform:scale(1)}}
+@keyframes grow{from{transform:scale(.5)}to{transform:scale(1)}}
+.solta-site .a{animation:up .7s var(--ease) both}
+.solta-site .a1{animation-delay:.05s}.solta-site .a2{animation-delay:.18s}.solta-site .a3{animation-delay:.3s}.solta-site .a4{animation-delay:.42s}.solta-site .a5{animation-delay:.55s}.solta-site .a6{animation-delay:.7s}
+.solta-site .art .circ{transform-origin:70% 70%;animation:grow .9s var(--ease) .2s both}
+.solta-site .rv{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.solta-site .rv.in{opacity:1;transform:none}
+.solta-site .rv .chk{animation-play-state:paused}
+.solta-site .rv.in .chk{animation-play-state:running}
+@media (prefers-reduced-motion:reduce){
+  .solta-site *,.solta-site *::before,.solta-site *::after{animation:none!important;transition:none!important}
+  .solta-site .rv{opacity:1;transform:none}
+}
+
+
+/* ---------- phone ---------- */
+@media (max-width:860px){
+  .solta-site{font-size:16px}
+  .solta-site .mob{display:block}
+  .solta-site .desk{display:none!important}
+  .solta-site .wrap{padding-left:20px;padding-right:20px}
+  .solta-site .sec{padding-top:48px;padding-bottom:48px}
+  .solta-site h1{font-size:44px;line-height:1.02}
+  .solta-site h2{font-size:32px;line-height:1.06}
+  .solta-site .lead{font-size:17px}
+  .solta-site .nav{height:60px}
+  .solta-site .nav .l .cap{display:none}
+  .solta-site .nav .logo{font-size:24px}
+  .solta-site .btn.sm{padding:9px 14px;font-size:14px}
+  .solta-site .hero{grid-template-columns:1fr;gap:18px;padding-top:32px;padding-bottom:8px}
+  .solta-site .hero .copy{gap:18px}
+  .solta-site .hero .ctas{flex-direction:column;align-items:stretch;gap:12px}
+  .solta-site .hero .ctas .btn{width:100%}
+  .solta-site .hero .ctas .link{display:none}
+  .solta-site .hero .eyebrow{display:none}
+  .solta-site .art{width:350px;height:520px;margin:28px auto 16px}
+  .solta-site .art .circ{left:30px;right:auto;top:20px;width:300px;height:300px}
+  .solta-site .art .devwrap{left:55px;top:0}
+  .solta-site .dev{width:240px;border-radius:34px;border-width:8px}
+  .solta-site .dev img{height:150px}
+  .solta-site .dev .nm{font-size:22px}
+  .solta-site .float.g,.solta-site .float.af{display:none}
+  .solta-site .float.rw{left:14px;top:468px;font-size:14px}
+  .solta-site .cols2{grid-template-columns:1fr}
+  .solta-site .card.pad{padding:24px 24px 12px}
+  .solta-site .today{display:none}
+  .solta-site .after{flex-direction:column;align-items:flex-start;gap:16px}
+  .solta-site .after .lead{font-size:16px}
+  .solta-site .ex-head{flex-direction:column;align-items:flex-start;gap:8px}
+  .solta-site .ex-head .cap{display:none}
+  .solta-site .examples{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -20px;padding:0 20px 8px;scrollbar-width:none}
+  .solta-site .examples::-webkit-scrollbar{display:none}
+  .solta-site .ex{flex:none;width:290px;scroll-snap-align:start;gap:12px}
+  .solta-site .ex .tile{padding:22px 16px;height:250px;border-radius:20px}
+  .solta-site .ex h3{font-size:18px;min-height:0}
+  .solta-site .ex .cap{min-height:0}
+  .solta-site .mini{width:258px}
+  .solta-site .mini .shot{height:165px}
+  .solta-site .ex-cta{flex-direction:column;align-items:stretch}
+  .solta-site .get{grid-template-columns:1fr;gap:28px;padding-top:0;padding-bottom:48px}
+  .solta-site .get .l{gap:24px}
+  .solta-site .price{padding:28px 24px 24px;margin:0}
+  .solta-site .price .disp{font-size:80px}
+  .solta-site .steps{grid-template-columns:1fr;gap:0}
+  .solta-site .step{flex-direction:row;justify-content:space-between;align-items:center;gap:12px;border-top:1px solid rgba(17,19,24,.18);padding:13px 0;min-height:0}
+  .solta-site .step .num{display:none}
+  .solta-site .step h3{font-size:17px;font-family:var(--font-body);font-weight:600;letter-spacing:0}
+  .solta-site .step .cap{margin:0;font-size:15px}
+  .solta-site .faqs{grid-template-columns:1fr}
+  .solta-site .faq{padding:17px 0}
+  .solta-site .faq summary{font-size:17px;margin:0}
+  .solta-site .faq summary .pl{display:block}
+  .solta-site .faq[open] summary{margin-bottom:8px}
+  .solta-site .close{border-radius:24px;padding:36px 24px 32px}
+  .solta-site .close .circ{right:-70px;bottom:-100px;width:170px;height:170px}
+  .solta-site .close h2{font-size:34px}
+  .solta-site .close .in{gap:18px}
+  .solta-site .close .ctas{flex-direction:column;align-items:flex-start;gap:12px}
+  .solta-site .foot{padding-top:28px;padding-bottom:32px;gap:10px}
+  .solta-site .foot .links{gap:16px;flex-wrap:wrap}
+  .solta-site .sticky{display:block;position:fixed;left:0;right:0;bottom:0;padding:12px 20px 16px;background:#fff;border-top:1px solid var(--line);box-shadow:0 -10px 30px -20px rgba(17,19,24,.4);z-index:5}
+  .solta-site .has-sticky{padding-bottom:92px}
+  .solta-site .footbar{flex-direction:column;gap:6px;font-size:13px}
+  /* forms */
+  .solta-site .two,.solta-site .pair{grid-template-columns:1fr}
+  .solta-site .pair{border:1px solid var(--line);border-radius:14px;padding:16px;gap:12px}
+  .solta-site .steps-form .stp{grid-template-columns:1fr;gap:16px;padding:28px 0}
+  .solta-site .stp h3{font-size:24px}
+  .solta-site .form-head h1{font-size:40px}
+  .solta-site .form-head{gap:12px;padding-bottom:24px}
+  .solta-site .form-foot{flex-direction:column;align-items:stretch;gap:14px;padding-top:28px}
+  .solta-site .form-foot .btn{width:100%}
+  .solta-site .look:has(#c-custom:checked) .cust.color{display:flex;flex-direction:column;gap:8px}
+  /* pay */
+  .solta-site .pay{grid-template-columns:1fr;grid-template-areas:"a" "b" "c";gap:24px;padding-top:28px;padding-bottom:44px}
+  .solta-site .pay h1{font-size:38px}
+  .solta-site .summ{padding:22px 20px}
+  .solta-site .summ h3{font-size:20px}
+  .solta-site .summ .disp{font-size:30px}
+  .solta-site .paycard{padding:24px 20px;gap:16px}
+}
+@media (max-width:400px){
+  .solta-site .nav .logo{font-size:22px}
+  .solta-site .nav .btn.sm{padding:9px 10px;font-size:13px}
+  .solta-site .art{width:100%;max-width:350px}
+  .solta-site .art .circ{left:calc(50% - 150px)}
+}
+
+
+.solta-site .wrap { @apply mx-auto max-w-[1120px] px-6 max-[860px]:px-5; }
+.solta-site .btn { @apply inline-flex items-center justify-center gap-2.5 rounded-[10px] font-semibold; }
+.solta-site .f { @apply flex flex-col; }
+.solta-site .two, .solta-site .pair { @apply grid grid-cols-2 gap-4 max-[860px]:grid-cols-1; }
+.solta-site .rv { opacity:1; transform:none; }
+.solta-site .rv.will-reveal:not(.in) { opacity:0; transform:translateY(18px); }
+.solta-site .btn:disabled { opacity:.6; transform:none; box-shadow:none; }
+.solta-site .form-error { color:#9b2525; font-size:14px; }
+.solta-site .form-notice { border:1px solid var(--line); border-radius:10px; padding:14px 16px; font-size:14px; }
+@media (prefers-reduced-motion: reduce) {
+ .solta-site .rv.will-reveal:not(.in) { opacity:1; transform:none; }
+}
+}

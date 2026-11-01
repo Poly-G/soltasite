@@ -1,1 +1,85 @@
-# soltasite
+# Solta Site
+
+Actor websites at **soltasite.com**. This repository converts the supplied Claude HTML/CSS/JavaScript handoff into **Next.js App Router, React, TypeScript, and Tailwind CSS**, with Vercel hosting and a Supabase backend.
+
+The original visual direction, copy, actor examples, photos, and nine-section materials form are retained. Checkout uses hosted Stripe Checkout; the supplied demonstration card fields are replaced by the real server integration.
+
+## Current state
+
+The application and backend code are implemented and can be built without provider credentials. **Commerce is disabled by default.** The two tracked Supabase migrations have been applied to the new SoltaSite project and verified against its hosted database. KP and email events are saved to a transactional outbox, but their dispatchers are not implemented.
+
+Solta Site uses the owner's **new Vercel and Supabase accounts** and, by the owner's choice, the existing **Solta Works Stripe account**. The Vercel project is configured for Next.js/Node 24. Database access, order-access signing, and the Stripe sandbox key and USD $499 test price are now scoped only to the reviewed preview branch, `build/nextjs-supabase-conversion`. The existing values were moved from their earlier Production scope without retrieving the secrets. Other preview branches receive no backend credentials; a future production release needs its own complete configuration.
+
+Separate **Managed Cloudflare Turnstile widgets** are configured for the stable preview hostname and for `soltasite.com`, with pre-clearance disabled. Their public site keys and private server secrets are saved in the matching Vercel branch-preview and Production environments. The sandbox Stripe webhook is registered and Active, with its signing secret saved privately for the test branch. Provider configuration is deployed and commerce is enabled only for that branch with Stripe in test mode. Hosted checks on commit `97cf787` have verified a declined payment, a successful USD $499 sandbox payment, signed webhook delivery and replay without duplicate records, paid access, website attribution and draft restoration. **The hosted test is partial and paused at browser file transfer.** No asset or submission was created, and the refund is deferred so the same paid test can continue. See the [hosted sandbox test report](docs/hosted-sandbox-test.md).
+
+A dedicated **Solta Site sandbox inside Solta Works** contains the test product. Checkout and payment records carry server-controlled website attribution, and the webhook ignores unrelated sites' events before database writes. See [shared Stripe setup and payment searches](docs/stripe-shared-account.md).
+
+The reviewed application remains on the PR #1 preview branch. Current production still uses the earlier `main` source, with commerce disabled. The owner approved and applied a public exception for only the stable test preview hostname; project-level Vercel Authentication remains enabled for the other protected deployment URLs. The successful hosted payment created one paid test order in Supabase and two pending outbox records. These records do not represent KP or email delivery, and this test does not release the converted application to production.
+
+## Stack
+
+| Layer | Implementation |
+| --- | --- |
+| Application | Next.js App Router + React + strict TypeScript |
+| Styling | Tailwind CSS 4, scoped original brand styles, CSS Modules for actor examples |
+| Hosting and API | Vercel, Next.js Node route handlers |
+| Database | Supabase Postgres; server-only access, explicit grants and row-level security |
+| Private uploads | Supabase Storage, signed uploads, ownership and file validation |
+| Payment | Stripe Checkout and signature-verified webhooks; one-time USD $499 |
+| Anti-abuse | Cloudflare Turnstile, request validation, database-backed limits |
+| Order access | Expiring signed HTTP-only cookie after verified payment; no customer login required |
+| Future KP connection | Dedicated Solta Site receiver and outbox delivery, not activated |
+
+Exact dependencies and Node 24 are pinned in `package.json` and `package-lock.json`.
+
+## Local development
+
+```bash
+npm ci
+cp .env.example .env.local
+npm run dev
+```
+
+Open `http://localhost:3000`. Marketing pages work without external credentials. Checkout remains unavailable until the complete provider configuration is supplied and explicitly enabled.
+
+To inspect the materials form without a payment, set `SOLTASITE_DESIGN_PREVIEW=true` locally and open `/preview/materials`. This route never uploads or submits, is marked noindex, and returns 404 when `VERCEL_ENV=production`. The real `/thanks` route always requires paid access.
+
+```bash
+npm run typecheck
+npm test
+npm run build
+npx playwright install chromium
+npm run test:e2e
+```
+
+The browser suite builds and starts a local production server automatically. For an existing production build server, set `E2E_BASE_URL` to its URL. `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` optionally selects an already installed Chromium. Browser tests use synthetic data and disabled commerce, never live payments.
+
+## Routes
+
+| Route | Purpose |
+| --- | --- |
+| `/` | Landing page, examples, FAQ and purchase links |
+| `/start` | Customer name/email, terms, anti-bot challenge and hosted checkout |
+| `/thanks` | Paid-only materials form, with versioned text drafts scoped to the order |
+| `/examples/maya`, `/examples/devon` | Fictional actor demos, photo galleries and accessible example dialogs |
+| `/privacy`, `/terms`, `/accessibility` | Supplied policy pages; owner review required before launch |
+| `/preview/materials` | Optional local/non-production form preview; never submits |
+| `/api/checkout` | Create or recover an idempotent Stripe Checkout session |
+| `/api/stripe/webhook` | Verify payment/refund events and persist canonical order state |
+| `/api/orders/access` | Verify paid order, issue the order cookie and remove the session ID from the URL |
+| `/api/uploads` | Reserve and authorize an order-owned private upload |
+| `/api/materials` | Verify assets and durably accept the materials submission |
+
+## Backend and launch setup
+
+Start with [new account setup](docs/new-accounts-setup.md). The configuration names are in `.env.example`; no provider credentials belong in Git, browser code, or chat. Only the Turnstile site key is public.
+
+The server expects an exact HTTPS application origin and the new hosted Supabase project URL. Preview environments need their own matching origin, Turnstile configuration, and Stripe test settings. Do not connect previews to production KP delivery.
+
+[Backend details](backend/README.md) cover the applied migrations, private buckets, payment/access rules, retry behavior, and remaining provider verification. [Claude handoff](docs/claude-handoff.md) records the frontend contracts. [KP connection](docs/kp-connection.md) describes the dedicated integration that remains to be built.
+
+Before enabling real purchases, finish the remaining hosted upload, materials and refund checks, implement KP/email delivery and abandoned-upload cleanup, and reconcile the sandbox test records. Configure independent live-production payment credentials, restore a Production-scoped Supabase server key, generate a new Production order-access secret, and connect the intended domain. Review the supplied placeholder legal text and the retained contact address. The Keshia example still says “Site coming soon”; the Maya and Devon examples are fictional.
+
+## Source assets
+
+The original handoff photographs are retained under `public/assets/img`. The supplied handoff describes the demo photos as licensed stock and the Keshia photo as used with permission. Keep those permissions with the project; this conversion does not create additional image rights. Fonts are served through `next/font`.
