@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { hasAnalyticsConsent, ANALYTICS_STORAGE_KEY } from '@/components/cookie-consent';
 import { usePathname } from 'next/navigation';
 
 type Attribution = {
@@ -15,7 +16,7 @@ type Attribution = {
   utmTerm: string | null;
 };
 
-const STORAGE_KEY = 'soltasite_search_attribution_v1';
+const STORAGE_KEY = ANALYTICS_STORAGE_KEY;
 const allowedEvents = new Set(['page_view','start_click','checkout_submit','checkout_session_created']);
 
 function clean(value: string | null, max: number): string | null {
@@ -51,7 +52,7 @@ function sourceGroup(referrerHost: string | null, utmSource: string | null, utmM
 }
 
 function getAttribution(): Attribution | null {
-  if (typeof window === 'undefined') return null;
+  if (typeof window === 'undefined' || !hasAnalyticsConsent()) return null;
   const saved = sessionStorage.getItem(STORAGE_KEY);
   if (saved) {
     try { return JSON.parse(saved) as Attribution; } catch { sessionStorage.removeItem(STORAGE_KEY); }
@@ -78,7 +79,7 @@ function getAttribution(): Attribution | null {
 }
 
 export function trackSearchEvent(eventName: string, requestId?: string) {
-  if (typeof window === 'undefined' || !allowedEvents.has(eventName)) return;
+  if (typeof window === 'undefined' || !allowedEvents.has(eventName) || !hasAnalyticsConsent()) return;
   const attribution = getAttribution();
   if (!attribution) return;
   const path = window.location.pathname.slice(0, 500) || '/';
@@ -110,11 +111,21 @@ export function SearchAttribution() {
   const pathname = usePathname();
 
   useEffect(() => {
-    getAttribution();
-    trackSearchEvent('page_view');
+    function recordPageView() {
+      if (!hasAnalyticsConsent()) return;
+      getAttribution();
+      trackSearchEvent('page_view');
+    }
+
+    recordPageView();
+    window.addEventListener('soltasite:analytics-accepted', recordPageView);
+    return () => window.removeEventListener('soltasite:analytics-accepted', recordPageView);
   }, [pathname]);
 
   useEffect(() => {
+    function onDeclined() {
+      sessionStorage.removeItem(STORAGE_KEY);
+    }
     function onClick(event: MouseEvent) {
       const target = event.target instanceof Element ? event.target.closest('a[href]') : null;
       if (!(target instanceof HTMLAnchorElement)) return;
@@ -124,7 +135,11 @@ export function SearchAttribution() {
       } catch {}
     }
     document.addEventListener('click', onClick, { capture: true });
-    return () => document.removeEventListener('click', onClick, { capture: true });
+    window.addEventListener('soltasite:analytics-declined', onDeclined);
+    return () => {
+      document.removeEventListener('click', onClick, { capture: true });
+      window.removeEventListener('soltasite:analytics-declined', onDeclined);
+    };
   }, []);
 
   return null;
