@@ -17,9 +17,9 @@
   --bg-rgb: 28, 20, 18;
 
   /* Fonts */
-  --poster: "League Gothic", Impact, "Arial Narrow", sans-serif;
-  --read: "Libre Franklin", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --script: "Caveat", "Bradley Hand", cursive;
+  --poster: var(--font-keshia-poster), Impact, "Arial Narrow", sans-serif;
+  --read: var(--font-keshia-read), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --script: var(--font-keshia-script), "Bradley Hand", cursive;
 
   /* Layout */
   --max: 1328px;
