@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { SiteFooter, SiteHeader } from '@/components/site-shell';
 import { createPageMetadata } from '@/lib/seo';
 import { siteConfig } from '@/lib/site-config';
+import { SourceList } from '@/components/source-list';
 
 export const metadata: Metadata = createPageMetadata({
   path: '/actor-seo',
@@ -29,6 +30,9 @@ export default function ActorSeoPage() {
     description: 'A practical guide to actor SEO and name-based search visibility.',
     mainEntityOfPage: `${siteConfig.origin}/actor-seo`,
     publisher: { '@id': `${siteConfig.origin}/#organization` },
+    datePublished: '2026-10-31',
+    dateModified: '2026-11-01',
+    citation: ["https://developers.google.com/search/docs/essentials","https://developers.google.com/search/docs/appearance/ai-features","https://developers.google.com/search/docs/appearance/structured-data/organization","https://help.imdb.com/article/contribution/submission-guides/linking-to-imdb-on-external-sites/GJ6MHXQ7AHEMZL2Q"],
   };
 
   return (
@@ -173,6 +177,12 @@ export default function ActorSeoPage() {
           </div>
         </section>
 
+        <SourceList reviewed="November 1, 2026" sources={[
+          { name: 'Google Search Essentials', href: 'https://developers.google.com/search/docs/essentials', note: 'Google’s core guidance on crawlability, useful content, links and search eligibility.' },
+          { name: 'Google: AI features and your website', href: 'https://developers.google.com/search/docs/appearance/ai-features', note: 'Google says normal SEO fundamentals still apply to AI Overviews and AI Mode.' },
+          { name: 'Google: Organization structured data', href: 'https://developers.google.com/search/docs/appearance/structured-data/organization', note: 'Guidance on using organization information and sameAs links to clarify an entity.' },
+          { name: 'IMDb: linking to official websites', href: 'https://help.imdb.com/article/contribution/submission-guides/linking-to-imdb-on-external-sites/GJ6MHXQ7AHEMZL2Q', note: 'IMDb supports official website links on person pages.' },
+        ]} />
         <section className="wrap sec" style={{ paddingTop: 0 }}>
           <div className="close">
             <div className="circ"></div>
