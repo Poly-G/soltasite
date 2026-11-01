@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useRef, useState, type FormEvent } from 'react';
 import { Turnstile } from '@/components/turnstile';
+import { trackSearchEvent } from '@/components/search-attribution';
 
 export function CheckoutForm() {
   const [busy, setBusy] = useState(false);
@@ -22,6 +23,7 @@ export function CheckoutForm() {
     const fingerprint = JSON.stringify({ name, email });
     if (!attempt.current || attempt.current.fingerprint !== fingerprint) attempt.current = { key: crypto.randomUUID(), fingerprint };
     if (!siteKey || !token) { setError('Checkout is not available yet. Please email us and we’ll help you get started.'); return; }
+    trackSearchEvent('checkout_submit', attempt.current.key);
     setBusy(true);
     try {
       const response = await fetch('/api/checkout', {
@@ -32,6 +34,7 @@ export function CheckoutForm() {
       if (!response.ok || !result.url) throw new Error(typeof result.error === 'object' && result.error.message ? result.error.message : 'Checkout is temporarily unavailable. Please try again or email us.');
       const destination = new URL(result.url);
       if (destination.protocol !== 'https:' || destination.hostname !== 'checkout.stripe.com') throw new Error('The checkout link could not be verified.');
+      trackSearchEvent('checkout_session_created', attempt.current.key);
       window.location.assign(destination.href);
     } catch (failure) {
       setError(failure instanceof Error && failure.name !== 'TimeoutError' ? failure.message : 'The connection timed out. Your details are still here. Please try again.');
