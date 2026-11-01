@@ -18,7 +18,7 @@ export function ReelDemo({ variant, id }: ReelDemoProps) {
     >
       <Image
         src={`/assets/img/${isMaya ? "maya-2" : "devon-5"}.jpg`}
-        alt=""
+        alt={`Example reel still for ${isMaya ? "Maya Ortiz" : "Devon Hale"}`}
         width={isMaya ? 1800 : 1350}
         height={isMaya ? 1200 : 1800}
         sizes={isMaya ? "(max-width: 860px) calc(100vw - 40px), calc(100vw - 496px)" : "100vw"}
