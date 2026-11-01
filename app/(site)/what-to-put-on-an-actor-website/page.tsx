@@ -7,7 +7,7 @@ import { SourceList } from '@/components/source-list';
 
 export const metadata: Metadata = createPageMetadata({
   path: '/what-to-put-on-an-actor-website',
-  title: 'What Should an Actor Website Include? The Essential Checklist | Solta Site',
+  title: 'What Should an Actor Website Include? Checklist | Solta Site',
   description: 'An actor website should make your current headshot, reel, resume, credits, representation and contact information easy to find. Use this practical checklist before you publish.',
   index: true,
 });
