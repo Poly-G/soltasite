@@ -1,10 +1,10 @@
 .preview {
   position: relative;
-  min-height: 430px;
+  min-height: 296px;
   border-radius: 28px;
   background: #e8e1d7;
   overflow: hidden;
-  padding: 34px 42px 28px 28px;
+  padding: 28px 36px 24px 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -69,7 +69,7 @@
 }
 
 .compact {
-  min-height: 260px;
+  min-height: 250px;
   border-radius: 20px;
   padding: 25px 30px 22px 18px;
 }
@@ -177,7 +177,7 @@
 
 @media (max-width: 860px) {
   .preview {
-    min-height: 300px;
+    min-height: 250px;
     padding: 22px 30px 24px 14px;
   }
 
