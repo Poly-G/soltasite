@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { SiteFooter, SiteHeader } from '@/components/site-shell';
-import { KeshiaClientExample } from '@/components/examples/keshia-client-example';
 import { createPageMetadata } from '@/lib/seo';
 import { siteConfig } from '@/lib/site-config';
 
@@ -58,12 +57,30 @@ export default function ActorWebsiteExamplesPage() {
         <section className="wrap sec" style={{ paddingTop: 0 }}>
           <div className="examples">
             <article className="ex">
-              <KeshiaClientExample />
+              <div className="tile" style={{ overflow: 'hidden', position: 'relative', padding: 0 }}>
+                <Image
+                  src="/assets/img/keshia-sophia-jean-desktop-hero.jpg"
+                  alt="Keshia Sophia Jean's actor website on desktop: her name in a handwritten script beside a smiling headshot."
+                  width={2048}
+                  height={1280}
+                  sizes="(max-width: 860px) 90vw, 380px"
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+                <Image
+                  src="/assets/img/keshia-sophia-jean-phone-hero.jpg"
+                  alt="The same site on a phone, with her headshot above her name."
+                  width={780}
+                  height={1800}
+                  sizes="90px"
+                  style={{ position: 'absolute', right: '12px', bottom: '10px', width: '24%', height: '76%', objectFit: 'cover', objectPosition: 'top', border: '3px solid #111318', borderRadius: '10px', boxShadow: '0 12px 30px rgba(17,19,24,.28)' }}
+                />
+              </div>
               <div>
                 <div className="cap">Real client site · Seeking representation</div>
                 <h2 style={{ fontSize: '34px', paddingTop: '8px' }}>Keshia Sophia Jean</h2>
                 <p className="p">Actor · Independent film · Los Angeles and Las Vegas</p>
-                <p className="p">Keshia picked the deep darkroom brown, handwritten name treatment and film-strip headshot row. Her reel sits up top, and the page ends with a meeting request for agents and managers.</p>
+                <p className="p">Deep darkroom brown, a handwritten name treatment, reel up top, four headshot looks, full resume and contact for agents and casting.</p>
+                <Link className="link" href="/examples/keshia-sophia-jean" target="_blank" rel="noopener noreferrer">View the site <span className="ar" aria-hidden="true">→</span></Link>
               </div>
             </article>
             {examples.map((example) => (
