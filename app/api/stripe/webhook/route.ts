@@ -5,6 +5,7 @@ import { verifyPaidSession } from '@/lib/server/orders';
 import { ApiError } from '@/lib/server/errors';
 import { boundedBody, errorResponse, json } from '@/lib/server/http';
 import { processVerifiedStripeEvent } from '@/lib/server/stripe-events';
+import { recordPurchaseAttribution } from '@/lib/server/search-attribution';
 
 export const runtime = 'nodejs';
 export async function POST(request: Request) {
@@ -20,8 +21,10 @@ export async function POST(request: Request) {
       verifyPaidSession: id => verifyPaidSession(id, config),
       retrievePaymentIntent: id => stripe.paymentIntents.retrieve(id),
       recordPaidOrder: async input => {
-        const saved = await database(config).rpc('soltasite_record_paid_order', input);
+        const db = database(config);
+        const saved = await db.rpc('soltasite_record_paid_order', input);
         checkDatabaseError(saved.error);
+        try { await recordPurchaseAttribution(db, input.p_request_id); } catch {}
       },
       revokeRefundedOrder: async input => {
         const saved = await database(config).rpc('soltasite_revoke_refunded_order', input);
