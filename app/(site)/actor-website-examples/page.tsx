@@ -63,7 +63,7 @@ export default function ActorWebsiteExamplesPage() {
                   <div className="shot" style={{ background: '#1C1412' }}>
                     <Image
                       src="/assets/img/keshia-sophia-jean-desktop-hero.jpg"
-                      alt="Keshia Sophia Jean's finished actor website hero."
+                      alt="Keshia Sophia Jean's actor website on desktop: her name in a handwritten script beside a smiling headshot."
                       width={2880}
                       height={1800}
                       sizes="(max-width: 860px) 258px, 310px"
