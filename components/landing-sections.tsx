@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FaqList } from "@/components/faq-list";
+import { siteConfig } from "@/lib/site-config";
 
 export function HeroSection() {
  return (
@@ -64,7 +65,6 @@ export function QuestionsSection() {
 export function ClosingSection() {
  return (
 <section className="wrap rv" style={{"paddingBottom": "112px"}}><div className="close"><div className="circ"></div><div className="in"><h2>Be ready the next time casting looks you up.</h2>
-<div className="ctas"><Link className="btn" href="/start">Start your site · $499 <span className="ar" aria-hidden="true">→</span></Link><a className="link" href="mailto:contact@soltaworks.com">Or email us<span className="ar" aria-hidden="true">→</span></a></div><div className="cap" style={{"fontSize": "16px"}}>contact@soltaworks.com · We reply within one business day</div></div></div></section>
+<div className="ctas"><Link className="btn" href="/start">Start your site · $499 <span className="ar" aria-hidden="true">→</span></Link><a className="link" href={`mailto:${siteConfig.contactEmail}`}>Or email us<span className="ar" aria-hidden="true">→</span></a></div><div className="cap" style={{"fontSize": "16px"}}>{siteConfig.contactEmail} · We reply within one business day</div></div></div></section>
  );
 }
-

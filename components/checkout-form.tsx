@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useRef, useState, type FormEvent } from 'react';
 import { Turnstile } from '@/components/turnstile';
 import { trackSearchEvent } from '@/components/search-attribution';
+import { siteConfig } from '@/lib/site-config';
 
 export function CheckoutForm() {
   const [busy, setBusy] = useState(false);
@@ -55,6 +56,6 @@ export function CheckoutForm() {
     <button className="btn full !px-7 !py-[19px] !text-lg" type="submit" disabled={busy} aria-describedby="checkout-help">{busy ? 'Opening secure checkout…' : 'Continue to payment · $499'} <span className="ar" aria-hidden="true">→</span></button>
     <div className="cap" id="checkout-help">Secure payment by Stripe. Your payment details stay with Stripe.</div>
     <div className="cap border-t border-ink/10 pt-4">If it’s still not right after two rounds of changes, we refund you.</div>
-    <div className="cap">Questions first? Email <a href="mailto:contact@soltaworks.com" className="underline">contact@soltaworks.com</a>.</div>
+    <div className="cap">Questions first? Email <a href={`mailto:${siteConfig.contactEmail}`} className="underline">{siteConfig.contactEmail}</a>.</div>
   </form>;
 }

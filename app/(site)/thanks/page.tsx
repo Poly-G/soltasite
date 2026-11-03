@@ -6,6 +6,7 @@ import { SiteHeader, SiteFooter } from '@/components/site-shell';
 import { loadAuthorizedPaidOrder } from '@/lib/server/orders';
 import { cormorant, interTight, rubik, workSans } from '@/lib/fonts';
 import { createPageMetadata } from '@/lib/seo';
+import { siteConfig } from '@/lib/site-config';
 
 export const metadata: Metadata = createPageMetadata({
   path: '/thanks',
@@ -21,11 +22,11 @@ export default async function ThanksPage({ searchParams }: { searchParams: Promi
   let order;
   try { order = await loadAuthorizedPaidOrder(); }
   catch {
-    return <><SiteHeader mode="simple" /><main id="main" className="wrap min-h-[60vh] py-20"><div className="form-head"><h1>Your materials form is temporarily unavailable.</h1><p className="lead">Please try your order link again shortly. If you need help, email <a href="mailto:contact@soltaworks.com" className="underline">contact@soltaworks.com</a>.</p></div></main><SiteFooter compact /></>;
+    return <><SiteHeader mode="simple" /><main id="main" className="wrap min-h-[60vh] py-20"><div className="form-head"><h1>Your materials form is temporarily unavailable.</h1><p className="lead">Please try your order link again shortly. If you need help, email <a href={`mailto:${siteConfig.contactEmail}`} className="underline">{siteConfig.contactEmail}</a>.</p></div></main><SiteFooter compact /></>;
   }
   if (!order) {
     if (params.payment === 'pending' && /^cs_(test|live)_[A-Za-z0-9]+$/.test(params.session_id ?? '')) {
-      return <><SiteHeader mode="simple" /><main id="main" className="wrap min-h-[60vh] py-20"><div className="form-head"><div className="cap">Checking payment</div><h1>We’re confirming your order.</h1><p className="lead">Your materials form will open once the payment confirmation arrives. This can take a moment.</p><Link className="btn self-start" href={`/api/orders/access?session_id=${encodeURIComponent(params.session_id!)}`}>Check again <span aria-hidden="true">→</span></Link><p className="cap">If this continues, email <a className="underline" href="mailto:contact@soltaworks.com">contact@soltaworks.com</a>.</p></div></main><SiteFooter compact /></>;
+      return <><SiteHeader mode="simple" /><main id="main" className="wrap min-h-[60vh] py-20"><div className="form-head"><div className="cap">Checking payment</div><h1>We’re confirming your order.</h1><p className="lead">Your materials form will open once the payment confirmation arrives. This can take a moment.</p><Link className="btn self-start" href={`/api/orders/access?session_id=${encodeURIComponent(params.session_id!)}`}>Check again <span aria-hidden="true">→</span></Link><p className="cap">If this continues, email <a className="underline" href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>.</p></div></main><SiteFooter compact /></>;
     }
     if (params.session_id && /^cs_(test|live)_[A-Za-z0-9]+$/.test(params.session_id)) redirect(`/api/orders/access?session_id=${encodeURIComponent(params.session_id)}`);
     redirect('/start');
