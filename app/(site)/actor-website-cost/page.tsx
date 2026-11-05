@@ -104,6 +104,7 @@ export default function ActorWebsiteCostPage() {
             </ul>
             <p className="p">For the content itself, use the <Link href="/what-to-put-on-an-actor-website">actor website checklist →</Link></p>
             <p className="p">Still comparing how to build it? <Link href="/actor-website-builder">Compare DIY builders with done-for-you design →</Link></p>
+            <p className="p">Choosing a platform? <Link href="/best-website-builder-for-actors">Compare the best website builders for actors →</Link></p>
             <p className="p">Using a link-in-bio page now? <Link href="/actor-website-vs-linktree">See actor website vs Linktree →</Link></p>
           </div>
         </section>
