@@ -101,6 +101,7 @@ export default function DoActorsNeedAWebsitePage() {
                 <div className="card pad">
                   <h3>Linktree or another link-in-bio page</h3>
                   <p className="p">A link-in-bio page is good at routing people to several destinations. An actor website presents the important material itself, while still linking out to the profiles and platforms you use.</p>
+                  <p className="p"><Link href="/actor-website-vs-linktree">Compare an actor website vs Linktree →</Link></p>
                 </div>
                 <div className="card pad dark">
                   <h3>Your own website</h3>
@@ -130,6 +131,7 @@ export default function DoActorsNeedAWebsitePage() {
               <Link className="link" href="/what-to-put-on-an-actor-website">Actor website checklist <span className="ar" aria-hidden="true">→</span></Link>
               <Link className="link" href="/actor-website-examples">Actor website examples <span className="ar" aria-hidden="true">→</span></Link>
               <Link className="link" href="/actor-website-cost">Actor website cost <span className="ar" aria-hidden="true">→</span></Link>
+              <Link className="link" href="/actor-website-vs-linktree">Actor website vs Linktree <span className="ar" aria-hidden="true">→</span></Link>
             </div>
           </div>
         </section>
