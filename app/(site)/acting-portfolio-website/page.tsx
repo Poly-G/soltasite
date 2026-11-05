@@ -91,6 +91,7 @@ export default function ActingPortfolioWebsitePage() {
             <div className="ctas" style={{ paddingTop: '24px' }}>
               <Link className="link" href="/what-to-put-on-an-actor-website">Use the full actor website checklist <span className="ar" aria-hidden="true">→</span></Link>
               <Link className="link" href="/actor-website-examples">See actor website examples <span className="ar" aria-hidden="true">→</span></Link>
+              <Link className="link" href="/what-casting-directors-need-from-actor-website">See what casting needs to find quickly <span className="ar" aria-hidden="true">→</span></Link>
             </div>
           </div>
         </section>

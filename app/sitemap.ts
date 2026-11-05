@@ -50,6 +50,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: canonicalUrl('/best-website-builder-for-actors'),
       lastModified: '2026-11-04',
     },
+    {
+      url: canonicalUrl('/what-casting-directors-need-from-actor-website'),
+      lastModified: '2026-11-05',
+    },
   ];
 
   return pages;
