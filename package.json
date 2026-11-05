@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "next dev --hostname 0.0.0.0",
     "build": "next build",
+    "postbuild": "node scripts/submit-indexnow.mjs",
     "start": "next start --hostname 0.0.0.0",
     "typecheck": "tsc --noEmit",
     "test": "node --test tests/server/*.test.ts tests/materials/*.test.ts tests/database/*.test.ts",
