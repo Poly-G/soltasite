@@ -43,8 +43,10 @@ export default function ActorWebsiteChecklistPage() {
     description: 'A practical checklist for the essential content on an actor website.',
     mainEntityOfPage: `${siteConfig.origin}/what-to-put-on-an-actor-website`,
     publisher: { '@id': `${siteConfig.origin}/#organization` },
+    author: { '@id': `${siteConfig.origin}/#organization` },
+    image: `${siteConfig.origin}/opengraph-image`,
     datePublished: '2026-10-31',
-    dateModified: '2026-11-01',
+    dateModified: '2026-11-04',
     citation: ["https://actorsaccess.com/","https://support.castingnetworks.com/en/articles/11240193","https://help.imdb.com/article/imdbpro/industry-research/name-title-company-pages-faq/GLY9HY48QGA9F5QC"],
   };
 

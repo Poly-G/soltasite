@@ -30,8 +30,10 @@ export default function ActorSeoPage() {
     description: 'A practical guide to actor SEO and name-based search visibility.',
     mainEntityOfPage: `${siteConfig.origin}/actor-seo`,
     publisher: { '@id': `${siteConfig.origin}/#organization` },
+    author: { '@id': `${siteConfig.origin}/#organization` },
+    image: `${siteConfig.origin}/opengraph-image`,
     datePublished: '2026-10-31',
-    dateModified: '2026-11-01',
+    dateModified: '2026-11-04',
     citation: ["https://developers.google.com/search/docs/essentials","https://developers.google.com/search/docs/appearance/ai-features","https://developers.google.com/search/docs/appearance/structured-data/organization","https://help.imdb.com/article/contribution/submission-guides/linking-to-imdb-on-external-sites/GJ6MHXQ7AHEMZL2Q"],
   };
 

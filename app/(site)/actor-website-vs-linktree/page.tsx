@@ -29,6 +29,8 @@ export default function ActorWebsiteVsLinktreePage() {
     description: 'A practical comparison of Linktree and a dedicated actor website for reels, headshots, resumes, credits and professional contact.',
     mainEntityOfPage: `${siteConfig.origin}/actor-website-vs-linktree`,
     publisher: { '@id': `${siteConfig.origin}/#organization` },
+    author: { '@id': `${siteConfig.origin}/#organization` },
+    image: `${siteConfig.origin}/opengraph-image`,
     datePublished: '2026-11-04',
     dateModified: '2026-11-04',
     citation: [

@@ -1,4 +1,3 @@
-import { faqs } from '@/lib/faqs';
 import { siteConfig } from '@/lib/site-config';
 
 const organizationId = `${siteConfig.origin}/#organization`;
@@ -52,13 +51,12 @@ export function HomeJsonLd() {
         } : {}),
       },
       {
-        '@type': 'FAQPage',
-        '@id': `${siteConfig.origin}/#faq`,
-        mainEntity: faqs.map(([name, text]) => ({
-          '@type': 'Question',
-          name,
-          acceptedAnswer: { '@type': 'Answer', text },
-        })),
+        '@type': 'WebSite',
+        '@id': `${siteConfig.origin}/#website`,
+        name: siteConfig.name,
+        url: `${siteConfig.origin}/`,
+        publisher: { '@id': organizationId },
+        inLanguage: 'en-US',
       },
     ],
   }} />;

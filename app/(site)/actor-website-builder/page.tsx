@@ -25,6 +25,10 @@ export default function ActorWebsiteBuilderPage() {
     description: 'A practical comparison of actor website builders, general website builders and done-for-you actor website design.',
     mainEntityOfPage: `${siteConfig.origin}/actor-website-builder`,
     publisher: { '@id': `${siteConfig.origin}/#organization` },
+    author: { '@id': `${siteConfig.origin}/#organization` },
+    image: `${siteConfig.origin}/opengraph-image`,
+    datePublished: '2026-10-31',
+    dateModified: '2026-11-04',
   };
 
   return (

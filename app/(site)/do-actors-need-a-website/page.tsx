@@ -20,8 +20,10 @@ export default function DoActorsNeedAWebsitePage() {
     description: 'When an actor website is useful, when it can wait, and what it should do once you have one.',
     mainEntityOfPage: `${siteConfig.origin}/do-actors-need-a-website`,
     publisher: { '@id': `${siteConfig.origin}/#organization` },
+    author: { '@id': `${siteConfig.origin}/#organization` },
+    image: `${siteConfig.origin}/opengraph-image`,
     datePublished: '2026-10-31',
-    dateModified: '2026-11-01',
+    dateModified: '2026-11-04',
     citation: ["https://actorsaccess.com/","https://support.castingnetworks.com/en/articles/11240193","https://help.imdb.com/article/imdbpro/membership-benefits/pro-tips-for-talent/GHQ5W5C2BJ2KWP77"],
   };
 

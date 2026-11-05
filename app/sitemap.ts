@@ -8,35 +8,35 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: canonicalUrl('/'),
       // Update only when the homepage's content meaningfully changes.
-      lastModified: '2026-10-31',
+      lastModified: '2026-11-04',
     },
     {
       url: canonicalUrl('/actor-website-examples'),
-      lastModified: '2026-10-31',
+      lastModified: '2026-11-04',
     },
     {
       url: canonicalUrl('/actor-website-cost'),
-      lastModified: '2026-10-31',
+      lastModified: '2026-11-04',
     },
     {
       url: canonicalUrl('/what-to-put-on-an-actor-website'),
-      lastModified: '2026-10-31',
+      lastModified: '2026-11-04',
     },
     {
       url: canonicalUrl('/do-actors-need-a-website'),
-      lastModified: '2026-10-31',
+      lastModified: '2026-11-04',
     },
     {
       url: canonicalUrl('/actor-website-design'),
-      lastModified: '2026-10-31',
+      lastModified: '2026-11-04',
     },
     {
       url: canonicalUrl('/actor-website-builder'),
-      lastModified: '2026-10-31',
+      lastModified: '2026-11-04',
     },
     {
       url: canonicalUrl('/actor-seo'),
-      lastModified: '2026-10-31',
+      lastModified: '2026-11-04',
     },
     {
       url: canonicalUrl('/actor-website-vs-linktree'),
