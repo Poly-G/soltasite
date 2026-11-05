@@ -109,7 +109,10 @@ export default function ActorWebsiteExamplesPage() {
               <div className="cap">What these examples have in common</div>
               <h2 style={{ paddingTop: '10px' }}>Different visual directions. The same core job.</h2>
               <p className="lead">Each example makes the actor easy to recognize, puts the reel or work near the top, and gives a clear route to credits and professional contact information. The visual system changes around the performer; the essentials do not.</p>
-              <Link className="link" href="/what-to-put-on-an-actor-website">See the full actor website checklist <span className="ar" aria-hidden="true">→</span></Link>
+              <div className="ctas" style={{ paddingTop: '18px' }}>
+                <Link className="link" href="/what-to-put-on-an-actor-website">See the full actor website checklist <span className="ar" aria-hidden="true">→</span></Link>
+                <Link className="link" href="/actor-website-cost">See what actor websites cost <span className="ar" aria-hidden="true">→</span></Link>
+              </div>
             </div>
           </div>
         </section>
@@ -121,6 +124,7 @@ export default function ActorWebsiteExamplesPage() {
             <p className="lead">A dramatic film actor can use a darker cinematic page. A commercial performer can go brighter and more personality-forward. A theatre actor may need more space for credits and training. The structure can stay simple while the visual read changes completely.</p>
             <p className="p">That is how Solta Site works: you send the materials, we build the site around the performer, and it goes live on your domain. You do not spend a weekend learning a website builder.</p>
             <p className="p">Looking for the service itself? <Link href="/actor-website-design">See our actor website design service →</Link></p>
+            <p className="p">Want the site to support name-based search too? <Link href="/actor-seo">Read the SEO for actors guide →</Link></p>
             <div className="ctas" style={{ paddingTop: '24px' }}>
               <Link className="btn" href="/start">Start your site · $499 <span className="ar" aria-hidden="true">→</span></Link>
               <Link className="link" href="/">See what is included <span className="ar" aria-hidden="true">→</span></Link>

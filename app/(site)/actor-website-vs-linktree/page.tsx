@@ -173,6 +173,8 @@ export default function ActorWebsiteVsLinktreePage() {
               <Link className="link" href="/what-to-put-on-an-actor-website">Actor website checklist <span className="ar" aria-hidden="true">→</span></Link>
               <Link className="link" href="/actor-website-examples">Actor website examples <span className="ar" aria-hidden="true">→</span></Link>
               <Link className="link" href="/actor-website-builder">Builder vs done-for-you <span className="ar" aria-hidden="true">→</span></Link>
+              <Link className="link" href="/actor-website-cost">Actor website cost <span className="ar" aria-hidden="true">→</span></Link>
+              <Link className="link" href="/actor-seo">SEO for actors <span className="ar" aria-hidden="true">→</span></Link>
             </div>
           </div>
         </section>

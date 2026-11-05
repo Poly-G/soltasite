@@ -173,6 +173,8 @@ export default function ActorSeoPage() {
               <Link className="link" href="/actor-website-design">Actor website design <span className="ar" aria-hidden="true">→</span></Link>
               <Link className="link" href="/actor-website-examples">Actor website examples <span className="ar" aria-hidden="true">→</span></Link>
               <Link className="link" href="/actor-website-builder">Actor website builder vs done-for-you <span className="ar" aria-hidden="true">→</span></Link>
+              <Link className="link" href="/actor-website-vs-linktree">Actor website vs Linktree <span className="ar" aria-hidden="true">→</span></Link>
+              <Link className="link" href="/actor-website-cost">Actor website cost <span className="ar" aria-hidden="true">→</span></Link>
             </div>
           </div>
         </section>
