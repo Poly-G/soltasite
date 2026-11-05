@@ -38,6 +38,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: canonicalUrl('/actor-seo'),
       lastModified: '2026-10-31',
     },
+    {
+      url: canonicalUrl('/actor-website-vs-linktree'),
+      lastModified: '2026-11-04',
+    },
   ];
 
   return pages;
