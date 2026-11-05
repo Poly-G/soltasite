@@ -114,6 +114,7 @@ export default function ActorWebsiteExamplesPage() {
                 <Link className="link" href="/actor-website-cost">See what actor websites cost <span className="ar" aria-hidden="true">→</span></Link>
                 <Link className="link" href="/acting-portfolio-website">How to build an acting portfolio <span className="ar" aria-hidden="true">→</span></Link>
                 <Link className="link" href="/what-casting-directors-need-from-actor-website">What casting directors need from an actor website <span className="ar" aria-hidden="true">→</span></Link>
+                <Link className="link" href="/actor-website-vs-instagram">Actor website vs Instagram <span className="ar" aria-hidden="true">→</span></Link>
               </div>
             </div>
           </div>
