@@ -168,6 +168,7 @@ export default function ActorWebsiteBuilderPage() {
               <Link className="link" href="/actor-website-examples">Actor website examples <span className="ar" aria-hidden="true">→</span></Link>
               <Link className="link" href="/actor-website-cost">Actor website cost breakdown <span className="ar" aria-hidden="true">→</span></Link>
               <Link className="link" href="/what-to-put-on-an-actor-website">Actor website checklist <span className="ar" aria-hidden="true">→</span></Link>
+              <Link className="link" href="/actor-website-vs-linktree">Actor website vs Linktree <span className="ar" aria-hidden="true">→</span></Link>
             </div>
           </div>
         </section>
