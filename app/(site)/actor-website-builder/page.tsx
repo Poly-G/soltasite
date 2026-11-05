@@ -175,6 +175,7 @@ export default function ActorWebsiteBuilderPage() {
               <Link className="link" href="/actor-website-vs-linktree">Actor website vs Linktree <span className="ar" aria-hidden="true">→</span></Link>
               <Link className="link" href="/do-actors-need-a-website">Do actors need a website? <span className="ar" aria-hidden="true">→</span></Link>
               <Link className="link" href="/actor-seo">SEO for actors <span className="ar" aria-hidden="true">→</span></Link>
+              <Link className="link" href="/acting-portfolio-website">How to make an acting portfolio website <span className="ar" aria-hidden="true">→</span></Link>
             </div>
           </div>
         </section>

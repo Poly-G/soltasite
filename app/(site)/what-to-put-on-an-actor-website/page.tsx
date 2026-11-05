@@ -137,6 +137,7 @@ export default function ActorWebsiteChecklistPage() {
               <Link className="link" href="/actor-website-cost">See what actor websites cost <span className="ar" aria-hidden="true">→</span></Link>
               <Link className="link" href="/actor-website-builder">Compare DIY vs done-for-you <span className="ar" aria-hidden="true">→</span></Link>
               <Link className="link" href="/actor-seo">See the SEO for actors guide <span className="ar" aria-hidden="true">→</span></Link>
+              <Link className="link" href="/acting-portfolio-website">How to make an acting portfolio website <span className="ar" aria-hidden="true">→</span></Link>
             </div>
           </div>
         </section>

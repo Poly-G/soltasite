@@ -112,6 +112,7 @@ export default function ActorWebsiteExamplesPage() {
               <div className="ctas" style={{ paddingTop: '18px' }}>
                 <Link className="link" href="/what-to-put-on-an-actor-website">See the full actor website checklist <span className="ar" aria-hidden="true">→</span></Link>
                 <Link className="link" href="/actor-website-cost">See what actor websites cost <span className="ar" aria-hidden="true">→</span></Link>
+                <Link className="link" href="/acting-portfolio-website">How to build an acting portfolio <span className="ar" aria-hidden="true">→</span></Link>
               </div>
             </div>
           </div>

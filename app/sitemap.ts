@@ -42,6 +42,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: canonicalUrl('/actor-website-vs-linktree'),
       lastModified: '2026-11-04',
     },
+    {
+      url: canonicalUrl('/acting-portfolio-website'),
+      lastModified: '2026-11-04',
+    },
   ];
 
   return pages;
